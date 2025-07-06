@@ -1,0 +1,71 @@
+@{
+    ViewData["Title"] = "Vizyonumuz";
+}
+
+<style>
+    .kurumsal-baslik {
+        text-align: left;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background-color: #bbcfb9;
+        padding: 0.75rem 1.5rem;
+        border-radius: 0.5rem;
+        display: inline-block;
+    }
+    .kurumsal-aciklama {
+        text-align: left;
+        max-width: 800px;
+        margin-left: 0;
+        margin-right: auto;
+        font-size: 1.15rem;
+        line-height: 1.7;
+    }
+    @@media (max-width: 991.98px) {
+        .kurumsal-aciklama { max-width: 100%; }
+    }
+</style>
+
+<div class="container py-5">
+    <div class="mb-4">
+        <h2 class="kurumsal-baslik">VİZYONUMUZ</h2>
+        <p class="kurumsal-aciklama">Tokat'ın zengin gıda kültürünü modern üretim teknikleriyle birleştirerek sektörde öncü olmak.</p>
+        <p class="kurumsal-aciklama">Yöresel ürünlerimizi ulusal ve uluslararası pazarlarda tanınır hale getirmek.</p>
+        <p class="kurumsal-aciklama">Doğallık ve kaliteyi her zaman en üst seviyede tutmak.</p>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function(){
+      $('#vizyon-carousel-1').owlCarousel({
+          loop:true,
+          margin:20,
+          nav:true,
+          dots:true,
+          responsive:{
+              0:{ items:1 },
+              600:{ items:2 },
+              1000:{ items:3 }
+          }
+      });
+      $('#vizyon-carousel-2').owlCarousel({
+          loop:true,
+          margin:20,
+          nav:true,
+          dots:true,
+          responsive:{
+              0:{ items:1 },
+              600:{ items:2 },
+              1000:{ items:3 }
+          }
+      });
+    });
+    </script>
+    <style>
+    #vizyon-carousel-1 .card-img-top,
+    #vizyon-carousel-2 .card-img-top {
+        object-fit: cover;
+        height: 200px;
+    }
+    </style>
+} 

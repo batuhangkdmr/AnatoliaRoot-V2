@@ -1,0 +1,60 @@
+@model AnatoliaRoot_V2.Models.ProductIndexViewModel
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Ürün Yönetimi";
+    var isAdmin = true;
+}
+<!-- Admin ürün yönetimi: ürünler listesi ve CRUD butonları -->
+<div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Ürün Yönetimi</h2>
+        <a asp-action="Create" class="btn btn-success"><i class="fas fa-plus"></i> Yeni Ürün</a>
+    </div>
+    <div class="row">
+        @if (Model.Products.Any())
+        {
+            @foreach (var product in Model.Products)
+            {
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="card h-100 product-card">
+                        <div class="card-body text-center">
+                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                            {
+                                <img src="@product.ImageUrl" class="img-fluid mb-3" alt="@product.Name" style="max-height: 150px; object-fit: cover;">
+                            }
+                            else
+                            {
+                                <div class="product-icon mb-3">
+                                    <i class="fas fa-box fa-3x text-primary"></i>
+                                </div>
+                            }
+                            <h6 class="card-title">@product.Name</h6>
+                            @if (!string.IsNullOrEmpty(product.Description))
+                            {
+                                <p class="card-text text-muted small">@product.Description</p>
+                            }
+                            @if (product.Category != null)
+                            {
+                                <span class="badge bg-info">@product.Category.Name</span>
+                            }
+                        </div>
+                        <div class="card-footer bg-transparent">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a asp-action="Edit" asp-route-id="@product.Id" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Güncelle</a>
+                                <a asp-action="Delete" asp-route-id="@product.Id" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i> Sil</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="col-12 text-center py-5">
+                <i class="fas fa-box-open fa-4x text-muted mb-4"></i>
+                <h4 class="text-muted">Henüz Ürün Bulunmuyor</h4>
+                <p class="text-muted">Ürünler yakında eklenecektir.</p>
+            </div>
+        }
+    </div>
+</div> 

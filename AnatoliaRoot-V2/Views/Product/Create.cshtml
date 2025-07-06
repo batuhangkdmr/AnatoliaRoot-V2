@@ -1,0 +1,97 @@
+@model AnatoliaRoot_V2.Models.ProductCreateViewModel
+
+@{
+    ViewData["Title"] = "Ürün Ekle";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="card-title mb-0">
+                        <i class="fas fa-plus"></i> Yeni Ürün Ekle
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                        <div class="mb-3">
+                            <label asp-for="Name" class="form-label fw-bold">Ürün Adı *</label>
+                            <input asp-for="Name" class="form-control" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="Description" class="form-label fw-bold">Açıklama</label>
+                            <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="AnaCategoryId" class="form-label fw-bold">Ana Kategori *</label>
+                            <select asp-for="AnaCategoryId" class="form-select" id="anaKategoriSelect">
+                                <option value="">Ana Kategori Seçiniz</option>
+                                @foreach (var ana in Model.AnaKategoriler)
+                                {
+                                    <option value="@ana.Id">@ana.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="AnaCategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="AltCategoryId" class="form-label fw-bold">Alt Kategori *</label>
+                            <select asp-for="AltCategoryId" class="form-select" id="altKategoriSelect">
+                                <option value="">Alt Kategori Seçiniz</option>
+                                @foreach (var alt in Model.AltKategoriler.Where(a => a.ParentCategoryId != null))
+                                {
+                                    <option value="@alt.Id" data-parent="@alt.ParentCategoryId">@alt.Name</option>
+                                }
+                            </select>
+                            <span asp-validation-for="AltCategoryId" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label asp-for="ImageFile" class="form-label fw-bold">Ürün Görseli *</label>
+                            <input asp-for="ImageFile" type="file" class="form-control" accept="image/*" />
+                            <span asp-validation-for="ImageFile" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <a asp-action="AdminIndex" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i> Geri Dön
+                            </a>
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-save"></i> Kaydet
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $(document).ready(function() {
+            function updateAltKategoriler() {
+                var anaId = $('#anaKategoriSelect').val();
+                $('#altKategoriSelect option').each(function() {
+                    var parentId = $(this).data('parent');
+                    if (typeof parentId === 'undefined') {
+                        if ($(this).val() === "") $(this).show(); // ilk option
+                        return;
+                    }
+                    if (anaId && String(parentId) === String(anaId)) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                        if ($(this).is(':selected')) {
+                            $(this).prop('selected', false);
+                        }
+                    }
+                });
+            }
+            $('#anaKategoriSelect').on('change', updateAltKategoriler);
+            updateAltKategoriler();
+        });
+    </script>
+} 

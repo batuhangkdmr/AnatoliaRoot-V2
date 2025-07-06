@@ -1,0 +1,99 @@
+﻿@{
+    ViewData["Title"] = "AnatoliaRoot Dünyası";
+}
+
+<!-- Hero Section -->
+<div class="relative">
+    <div class="owl-navigation owl-carousel owl-theme">
+        <div class="item">
+            <div class="image-overly-bright-opacity:1 header-content bck" data-background="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750509157/dunyaharitasi_c2ceps.jpg" role="banner" style="height: 50px; min-height: 150px; max-height: 80vh; background-size: cover; background-position: center;">
+                <div class="container opac">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-12 header-area">
+                            <div class="header-area-inner header-text hero-text-container">
+                                <h1 class="hero-heading">SİTEMİZ YAPIM AŞAMASINDADIR</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Projects Section -->
+<div id="projects" class="wrap-bg-small">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="section-title with-p">
+                    <br>
+                    <br>
+                    <br>
+                    <h2>ANATOLIA ROOT DÜNYASI <br> TOKAT YAYLASI</h2>
+                    <p style="font-size: 20px; color: #535353;">Sizin için en iyisini yapana kadar, yine bizim hizmetlerimiz sizler için en iyisi.</p>
+                </div>
+            </div>
+        </div>
+        <div class="rotating-world-container">
+            <div class="rotating-world">
+                <div class="world-continents"></div>
+            </div>
+            <div class="world-orbit"></div>
+        </div>
+        <div class="world-info">
+           <br>
+           <br>
+           <br>
+           <br>
+        </div>
+    </div>
+</div>
+
+<!-- Anatolia World Section -->
+<div id="anatolia-world" class="wrap-bg-small">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="section-title with-p">
+                    <h2>ANATOLIA ROOT DÜNYASI</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-12 text-center">
+                <div class="rotating-world-image-container">
+                     <img src="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750516674/world_thcj6o.jpg" alt="Dönen Dünya ve Yöresel Ürünler" class="rotating-world-image" loading="lazy" width="500" height="500"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <!-- Sweet Alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Yapısal Veri (JSON-LD Schema) -->
+    <script type="application/ld+json">
+    {
+      "@@context": "https://schema.org",
+      "@@type": "Organization",
+      "name": "AnatoliaRoot",
+      "url": "https://www.anatoliaroot.com",
+      "logo": "https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png",
+      "contactPoint": {
+        "@@type": "ContactPoint",
+        "telephone": "+90-532-399-72-60",
+        "contactType": "Customer Service",
+        "email": "info@anatoliaroot.com"
+      },
+      "description": "Tokat'ın bereketli topraklarından doğal ve lezzetli yöresel ürünler.",
+      "address": {
+        "@@type": "PostalAddress",
+        "addressLocality": "Tokat",
+        "addressCountry": "TR"
+      }
+    }
+    </script>
+}

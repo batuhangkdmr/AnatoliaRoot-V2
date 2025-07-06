@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AnatoliaRoot</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="~/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <link rel="stylesheet" href="~/css/slick.css" />
+    <link rel="stylesheet" href="~/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="~/css/jquery.fancybox.css" />
+    <link rel="stylesheet" href="~/css/magnific-popup.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    
+    <!-- Custom CSS Variables -->
+    <style>
+        :root {
+            --renk: #0B18C9
+        }
+        
+        /* Arka plan resmi düzgün ve tam oturacak şekilde ayarlandı */
+        #widget-call {
+          background-size: cover;
+          background-position: center center;
+          background-repeat: no-repeat;
+          background-attachment: scroll;
+          height: 50%;
+          width: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        /* Gölgelendirme efekti eğer istenirse */
+        .image-overlay::before {
+          content: "";
+          position: absolute;
+          top: 0; left: 0; right: 0; bottom: 0;
+          background: rgba(0, 0, 0, 0.6);
+          z-index: 1;
+        }
+
+        .call-to-action-content {
+          position: relative;
+          z-index: 2;
+          text-align: center;
+        }
+
+        .call-to-action-content h3 {
+          font-size: 36px;
+          font-weight: bold;
+          color: #fff;
+          margin-bottom: 20px;
+        }
+
+        .call-to-action-btn a {
+          padding: 12px 24px;
+          background-color: #0033ff;
+          color: #fff;
+          font-weight: 600;
+          border-radius: 5px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+        }
+
+        .call-to-action-btn a:hover {
+          background-color: #001ecc;
+        }
+
+        .footer-visible {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        #main-content {
+            padding-top: 120px;
+        }
+        @@media (max-width: 991.98px) {
+            #main-content { padding-top: 90px; }
+        }
+        @@media (max-width: 575.98px) {
+            #main-content { padding-top: 70px; }
+        }
+    </style>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Tokat'ın bereketli topraklarından doğal ve lezzetli yöresel ürünler. AnatoliaRoot ile kaliteli hizmet.">
+    <meta name="keywords" content="Tokat, yöresel ürünler, gıda, inşaat, ithalat, ihracat, AnatoliaRoot">
+    <link rel="canonical" href="https://www.anatoliaroot.com">
+
+    <!-- Open Graph (Facebook, Instagram, etc.) -->
+    <meta property="og:title" content="@ViewData["Title"] - AnatoliaRoot">
+    <meta property="og:description" content="Tokat'ın bereketli topraklarından doğal ve lezzetli yöresel ürünler.">
+    <meta property="og:image" content="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png">
+    <meta property="og:url" content="https://www.anatoliaroot.com">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="AnatoliaRoot">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="@ViewData["Title"] - AnatoliaRoot">
+    <meta name="twitter:description" content="Tokat'ın bereketli topraklarından doğal ve lezzetli yöresel ürünler.">
+    <meta name="twitter:image" content="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header" class="transparent-header">
+        <div class="topheader top_header_light hidemobile">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="address-icon"><i class="fa fa-envelope"></i><a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a></div>
+                        <div class="address-icon"><i class="fa fa-phone"></i><a href="tel:+90 532 399 72 60">0532 399 72 60</a></div>
+                        <div class="address-icon"><i class="fa fa-id-badge"></i><a href="mailto:info@anatoliaroot.com">AGAH EMİR AKAR</a></div>
+                    </div>
+                    <div class="col-lg-5 text-right">
+                        <div class="social_top_header">
+                            <a><i class="fa fa-map-marker"></i> Tokat Merkez</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Navbar -->
+        <nav class="navbar navbar-default navbar-expand-md navbar-light" id="navigation" data-offset-top="1">
+            <div class="container">
+                <!-- Logo Alanı -->
+                <div class="navbar-header">
+                    <div class="navbar-brand">
+                        <a asp-controller="Home" asp-action="Index">
+                            <img 
+                                src="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png" 
+                                alt="AnatoliaRoot Yöresel Ürünler Logo"
+                                width="180" height="90"
+                                style="height: 81px; width: auto;"
+                            />
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Mobil Menü İkonu -->
+                <div class="burger-icon">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
+
+                <!-- Menü -->
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <ul class="nav navbar-nav ml-auto">
+                        <li><a asp-controller="Home" asp-action="Services">Hizmetler</a></li>
+                        <li><a asp-controller="Product" asp-action="Index">Ürünler</a></li>
+                        <li class="subnav">
+                            <a href="#">Kurumsal</a>
+                            <ul class="sub-menu">
+                                <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
+                                <li><a asp-controller="Home" asp-action="Mission">Misyonumuz</a></li>
+                                <li><a asp-controller="Home" asp-action="Vision">Vizyonumuz</a></li>
+                                <li><a asp-controller="Home" asp-action="Quality">Kalite Politikamız</a></li>
+                            </ul>
+                        </li>
+                        <li class="subnav">
+                            <a href="#">Kategori</a>
+                            <ul class="sub-menu">
+                                <li><a asp-controller="Category" asp-action="Food">Gıda</a></li>
+                                <li><a asp-controller="Category" asp-action="Construction">İnşaat</a></li>
+                                <li><a asp-controller="Category" asp-action="Import">İthalat</a></li>
+                                <li><a asp-controller="Category" asp-action="Export">İhracat</a></li>
+                                <li><a asp-controller="Category" asp-action="Ideas">Fikirler</a></li>
+                            </ul>
+                        </li>
+                        <li class="subnav">
+                            <a href="#">Medya</a>
+                            <ul class="sub-menu">
+                                <li><a asp-controller="Media" asp-action="Gallery">Resim galerisi</a></li>
+                            </ul>
+                        </li>
+                        <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main" style="padding-bottom: 120px;">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    <footer id="mainFooter" class="site-footer fixed-footer footer-hidden" style="position: fixed; left: 0; bottom: 0; width: 100%; background: #f8f9fa; border-top: 2px solid #e9ecef; z-index: 1000; box-shadow: 0 -2px 10px rgba(0,0,0,0.1); transition: all 0.6s cubic-bezier(.4,0,.2,1); opacity: 0; transform: translateY(40px);">
+        <div class="lower-footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="extra-link text-center" style="padding: 10px 0;">
+                            <p style="margin: 0; color: #6c757d; font-size: 14px;">
+                                &copy; 2025 AnatoliaRoot - Tüm hakları saklıdır.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="margin: 0;">
+            <div class="col-lg-12" style="text-align: center; padding: 5px 0; background: #e9ecef;">
+                <a href="https://www.bariscanyonel.com" target="_blank" style="color: #495057; text-decoration: none; font-size: 13px;">
+                    Media Batuhan Gökdemir
+                </a>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript Files -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/main.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/slick.min.js"></script>
+    <script src="~/js/jquery.fancybox.pack.js"></script>
+    <script src="~/js/jquery.magnific-popup.min.js"></script>
+    <script src="~/js/waypoints.min.js"></script>
+    <script src="~/js/jquery.counterup.min.js"></script>
+    <script src="~/js/owl.carousel.min.js"></script>
+    <script src="~/js/typed.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- Kolay Erişim Butonu -->
+    <div style="position: fixed; bottom: 20px; left: 18px; z-index: 9999;">
+        <button class="color-two btn-custom" data-bs-toggle="modal" data-bs-target="#myModal">KOLAY ERİŞİM</button>
+    </div>
+
+    <!-- Kolay Erişim Modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title text-center" id="myModalLabel" style="color: #848484;">KOLAY ERİŞİM</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+          </div>
+          <div class="modal-body text-center">
+            <p><a href="tel:05323997260" class="btn btn-info" style="width: 50%;background: #3b5998; border: none"><i class="fa fa-phone"></i>&nbsp;TIKLA ARA</a></p>
+            <p><a href="https://api.whatsapp.com/send?phone=905323997260" class="btn btn-info" style="width: 50%;background: #23A217; border: none"><i class="fa fa-whatsapp"></i>&nbsp;WHATSAPP</a></p>
+            <p><a href="mailto:info@anatoliaroot.com" class="btn btn-info" style="width: 50%;background: #2a1891; border: none"><i class="fa fa-envelope-o"></i>&nbsp;MAİL GÖNDER</a></p>
+            <p><a href="#" class="btn btn-info" style="width: 50%;background: #28d6c8; border: none"><i class="fa fa-question-circle-o"></i>&nbsp;SIK SORULAN SORULAR</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+    function checkFooterVisibility() {
+        var footer = document.getElementById('mainFooter');
+        var bodyHeight = document.body.offsetHeight;
+        var winHeight = window.innerHeight;
+        if (bodyHeight <= winHeight + 5) {
+            // İçerik az, footer her zaman görünür
+            footer.classList.add('footer-visible');
+        } else {
+            // İçerik fazla, scroll ile görünür
+            if ((window.innerHeight + window.scrollY) >= bodyHeight - 10) {
+                footer.classList.add('footer-visible');
+            } else {
+                footer.classList.remove('footer-visible');
+            }
+        }
+    }
+    window.addEventListener('scroll', checkFooterVisibility);
+    window.addEventListener('resize', checkFooterVisibility);
+    window.addEventListener('DOMContentLoaded', checkFooterVisibility);
+    </script>
+</body>
+</html>

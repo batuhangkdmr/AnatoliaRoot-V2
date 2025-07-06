@@ -1,0 +1,191 @@
+@{
+    Layout = "_AdminLayout";
+}
+
+@model IEnumerable<AnatoliaRoot_V2.Models.Category>
+
+@{
+    ViewData["Title"] = "Kategoriler";
+    var isAdmin = User.Identity?.IsAuthenticated ?? false;
+    var anaKategoriler = Model.Where(c => c.ParentCategoryId == null).ToList();
+}
+
+<!-- Hero Section with Slider -->
+<div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 80px 0; margin-bottom: 50px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="text-white mb-4" style="font-size: 3rem; font-weight: bold;">Kategoriler</h1>
+                <p class="text-white-50 mb-4" style="font-size: 1.2rem;">Tokat'ın bereketli topraklarından seçilmiş ürün kategorilerimizi keşfedin</p>
+                @if (isAdmin)
+                {
+                    <a asp-action="Create" class="btn btn-light btn-lg">
+                        <i class="fas fa-plus"></i> Yeni Kategori Ekle
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Success Message -->
+@if (TempData["Success"] != null)
+{
+    <div class="container">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <i class="fas fa-check-circle"></i> @TempData["Success"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    </div>
+}
+
+<!-- Categories Grid -->
+<div class="container">
+    @if (anaKategoriler.Any())
+    {
+        <div class="row">
+            @foreach (var ana in anaKategoriler)
+            {
+                var altlar = Model.Where(c => c.ParentCategoryId == ana.Id).ToList();
+                <div class="col-lg-6 col-md-8 mb-4">
+                    <div class="card h-100 shadow-sm hover-lift">
+                        <div class="card-body">
+                            <div class="d-flex align-items-center mb-2">
+                                <div class="category-icon me-2">
+                                    <i class="fas fa-tags fa-2x text-primary"></i>
+                                </div>
+                                <h5 class="card-title mb-0">@ana.Name</h5>
+                                @if (isAdmin)
+                                {
+                                    <a asp-action="Edit" asp-route-id="@ana.Id" class="btn btn-outline-warning btn-sm ms-2">
+                                        <i class="fas fa-edit"></i> Güncelle
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@ana.Id" class="btn btn-outline-danger btn-sm ms-1">
+                                        <i class="fas fa-trash"></i> Sil
+                                    </a>
+                                    <a asp-action="Create" asp-route-parentCategoryId="@ana.Id" class="btn btn-outline-primary btn-sm ms-1">
+                                        <i class="fas fa-plus"></i> Alt Kategori
+                                    </a>
+                                }
+                            </div>
+                            @if (altlar.Any())
+                            {
+                                <div class="d-flex flex-wrap gap-2 mt-3">
+                                    @foreach (var alt in altlar)
+                                    {
+                                        <div class="badge bg-light border text-dark d-flex align-items-center p-2" style="font-size:1rem;">
+                                            <span class="me-2"><i class="fas fa-angle-right text-primary"></i> @alt.Name</span>
+                                            @if (isAdmin)
+                                            {
+                                                <a asp-action="Edit" asp-route-id="@alt.Id" class="btn btn-outline-warning btn-sm btn-xs ms-1">
+                                                    <i class="fas fa-edit"></i> Güncelle
+                                                </a>
+                                                <a asp-action="Delete" asp-route-id="@alt.Id" class="btn btn-outline-danger btn-sm btn-xs ms-1">
+                                                    <i class="fas fa-trash"></i> Sil
+                                                </a>
+                                            }
+                                        </div>
+                                    }
+                                </div>
+                            }
+                            else
+                            {
+                                <span class="text-muted small">Alt kategori yok</span>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+                <div class="empty-state">
+                    <i class="fas fa-folder-open fa-4x text-muted mb-4"></i>
+                    <h4 class="text-muted">Henüz kategori bulunmamaktadır</h4>
+                    <p class="text-muted">Kategoriler burada görüntülenecektir.</p>
+                    @if (isAdmin)
+                    {
+                        <a asp-action="Create" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> İlk Kategoriyi Oluştur
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<!-- Statistics Section (Admin Only) -->
+@if (isAdmin && Model.Any())
+{
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <i class="fas fa-chart-bar"></i> İstatistikler
+                        </h5>
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <h3 class="text-primary">@Model.Count()</h3>
+                                    <p class="text-muted">Toplam Kategori</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <h3 class="text-success">@Model.Count(c => c.ParentCategoryId == null)</h3>
+                                    <p class="text-muted">Ana Kategori</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="stat-item">
+                                    <h3 class="text-info">@Model.Count(c => c.ParentCategoryId != null)</h3>
+                                    <p class="text-muted">Alt Kategori</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<style>
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.category-icon {
+    transition: transform 0.3s ease;
+}
+
+.card:hover .category-icon {
+    transform: scale(1.1);
+}
+
+.empty-state {
+    padding: 60px 20px;
+}
+
+.stat-item h3 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+.stat-item p {
+    margin-top: 5px;
+    font-size: 0.9rem;
+}
+</style> 

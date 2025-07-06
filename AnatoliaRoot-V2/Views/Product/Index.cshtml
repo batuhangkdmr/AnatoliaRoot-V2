@@ -1,0 +1,280 @@
+@model AnatoliaRoot_V2.Models.ProductIndexViewModel
+
+@{
+    ViewData["Title"] = "Ürünler";
+    var isAdmin = User.Identity?.IsAuthenticated ?? false;
+    var anaKategoriler = Model.Categories.Where(c => c.ParentCategoryId == null).ToList();
+    var altKategoriler = Model.Categories.Where(c => c.ParentCategoryId != null).ToList();
+}
+
+<!-- Hero Section -->
+<div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 60px 0; margin-bottom: 40px;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="text-white mb-4" style="font-size: 2.5rem; font-weight: bold;">Ürünlerimiz</h1>
+                <p class="text-white-50 mb-4" style="font-size: 1.1rem;">Tokat'ın bereketli topraklarından seçilmiş kaliteli ürünlerimizi keşfedin</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Sol Taraf - Kategori Accordion -->
+        <div class="col-lg-3 col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-tags"></i> Kategoriler
+                    </h5>
+                </div>
+                <div class="card-body p-0">
+                    @if (anaKategoriler.Any())
+                    {
+                        <div class="accordion" id="categoryAccordion">
+                            @foreach (var ana in anaKategoriler)
+                            {
+                                var altlar = Model.Categories.Where(c => c.ParentCategoryId == ana.Id).ToList();
+                                var collapseId = $"collapse_{ana.Id}";
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="heading_@ana.Id">
+                                        <button class="accordion-button collapsed d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#@collapseId" aria-expanded="false" aria-controls="@collapseId">
+                                            <span>@ana.Name</span>
+                                            @if (altlar.Any())
+                                            {
+                                                <span class="ms-auto"><i class="fas fa-chevron-down"></i></span>
+                                            }
+                                        </button>
+                                    </h2>
+                                    <div id="@collapseId" class="accordion-collapse collapse" aria-labelledby="heading_@ana.Id" data-bs-parent="#categoryAccordion">
+                                        <div class="accordion-body p-2">
+                                            @if (altlar.Any())
+                                            {
+                                                <ul class="list-unstyled mb-0">
+                                                    @foreach (var alt in altlar)
+                                                    {
+                                                        <li class="ps-3 py-1">
+                                                            <i class="fas fa-angle-right text-primary"></i> @alt.Name
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted small">Alt kategori yok</span>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center p-4">
+                            <i class="fas fa-folder-open fa-3x text-muted mb-3"></i>
+                            <p class="text-muted mb-0">Henüz kategori bulunmamaktadır</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sağ Taraf - Ürün Alanı -->
+        <div class="col-lg-9 col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-success text-white">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title mb-0">
+                            <i class="fas fa-box"></i> Ürünler
+                        </h5>
+                        <span class="badge bg-light text-dark">@Model.Products.Count() Ürün</span>
+                    </div>
+                </div>
+                <div class="card-body">
+                    @if (Model.Products.Any())
+                    {
+                        <div class="row">
+                            @foreach (var product in Model.Products)
+                            {
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <div class="card h-100 product-card">
+                                        <div class="card-body text-center">
+                                            @if (!string.IsNullOrEmpty(product.ImageUrl))
+                                            {
+                                                <img src="@product.ImageUrl" class="img-fluid mb-3" alt="@product.Name" style="max-height: 150px; object-fit: cover;">
+                                            }
+                                            else
+                                            {
+                                                <div class="product-icon mb-3">
+                                                    <i class="fas fa-box fa-3x text-primary"></i>
+                                                </div>
+                                            }
+                                            <h6 class="card-title">@product.Name</h6>
+                                            @if (!string.IsNullOrEmpty(product.Description))
+                                            {
+                                                <p class="card-text text-muted small">@product.Description</p>
+                                            }
+                                            @if (product.Category != null)
+                                            {
+                                                <span class="badge bg-info">@product.Category.Name</span>
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="text-center py-5">
+                            <i class="fas fa-box-open fa-4x text-muted mb-4"></i>
+                            <h4 class="text-muted">Henüz Ürün Bulunmuyor</h4>
+                            <p class="text-muted">Ürünler yakında eklenecektir.</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.category-slider {
+    max-height: 400px;
+    overflow: hidden;
+}
+
+.category-item {
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    margin: 5px;
+}
+
+.category-item:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.category-icon {
+    transition: transform 0.3s ease;
+}
+
+.category-item:hover .category-icon {
+    transform: scale(1.1);
+}
+
+.category-name {
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.product-card {
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    border-color: #007bff;
+}
+
+.product-icon {
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-icon {
+    transform: scale(1.1);
+}
+
+/* Owl Carousel Custom Styles */
+.owl-carousel .owl-item {
+    padding: 5px;
+}
+
+.owl-carousel .owl-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    pointer-events: none;
+}
+
+.owl-carousel .owl-prev,
+.owl-carousel .owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5) !important;
+    color: white !important;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+}
+
+.owl-carousel .owl-prev {
+    left: -15px;
+}
+
+.owl-carousel .owl-next {
+    right: -15px;
+}
+
+.owl-carousel .owl-dots {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.owl-carousel .owl-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ddd;
+    margin: 0 3px;
+    display: inline-block;
+}
+
+.owl-carousel .owl-dot.active {
+    background: #007bff;
+}
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Kategori Carousel'ı başlat
+            $("#categoryCarousel").owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: true,
+                autoplay: true,
+                autoplayTimeout: 3000,
+                autoplayHoverPause: true,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                },
+                navText: [
+                    '<i class="fas fa-chevron-left"></i>',
+                    '<i class="fas fa-chevron-right"></i>'
+                ]
+            });
+        });
+    </script>
+} 

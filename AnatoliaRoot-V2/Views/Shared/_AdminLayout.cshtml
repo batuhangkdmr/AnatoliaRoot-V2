@@ -1,0 +1,55 @@
+@{
+    Layout = null;
+    var username = User.Identity?.Name;
+}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AnatoliaRoot Admin</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/fontawesome.min.css" />
+    <link rel="stylesheet" href="~/css/main.css" />
+    <style>
+        body { background: #f8f9fa; }
+        .admin-navbar { background: #22223b; }
+        .admin-navbar .navbar-brand, .admin-navbar .nav-link, .admin-navbar .navbar-text { color: #fff !important; }
+        .admin-navbar .nav-link.active, .admin-navbar .nav-link:hover { color: #4ea8de !important; }
+        .admin-navbar .btn-logout { color: #fff; border: 1px solid #fff; }
+        .admin-navbar .btn-logout:hover { background: #e63946; color: #fff; border: 1px solid #e63946; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg admin-navbar mb-4">
+        <div class="container-fluid">
+            <a class="navbar-brand fw-bold" asp-controller="Product" asp-action="Index">AnatoliaRoot Admin</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNavbar" aria-controls="adminNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="adminNavbar">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Category" asp-action="Index">Kategori Yönetimi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Product" asp-action="AdminIndex">Ürün Yönetimi</a>
+                    </li>
+                </ul>
+                <span class="navbar-text me-3">
+                    <i class="fas fa-user"></i> @username
+                </span>
+                <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-logout">Çıkış</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <main class="container">
+        @RenderBody()
+    </main>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html> 
