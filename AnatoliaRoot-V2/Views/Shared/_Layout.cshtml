@@ -163,7 +163,8 @@
                         <li><a asp-controller="Home" asp-action="Services">Hizmetler</a></li>
                         <li><a asp-controller="Product" asp-action="Index">Ürünler</a></li>
                         <li class="subnav">
-                            <a href="#">Kurumsal</a>
+                            <a href="javascript:void(0)">Kurumsal</a>
+                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
                             <ul class="sub-menu">
                                 <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
                                 <li><a asp-controller="Home" asp-action="Mission">Misyonumuz</a></li>
@@ -172,7 +173,8 @@
                             </ul>
                         </li>
                         <li class="subnav">
-                            <a href="#">Kategori</a>
+                            <a href="javascript:void(0)">Kategori</a>
+                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
                             <ul class="sub-menu">
                                 <li><a asp-controller="Category" asp-action="Food">Gıda</a></li>
                                 <li><a asp-controller="Category" asp-action="Construction">İnşaat</a></li>
@@ -182,7 +184,8 @@
                             </ul>
                         </li>
                         <li class="subnav">
-                            <a href="#">Medya</a>
+                            <a href="javascript:void(0)">Medya</a>
+                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
                             <ul class="sub-menu">
                                 <li><a asp-controller="Media" asp-action="Gallery">Resim galerisi</a></li>
                             </ul>
@@ -225,7 +228,7 @@
     
     <!-- JavaScript Files -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/js/main.js"></script>
+    <script src="~/js/main.js?v=1"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/slick.min.js"></script>
     <script src="~/js/jquery.fancybox.pack.js"></script>
