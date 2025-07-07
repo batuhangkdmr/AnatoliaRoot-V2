@@ -59,6 +59,7 @@ namespace AnatoliaRoot_V2.Controllers
             model.AltKategoriler = altKategoriler;
             ModelState.Remove("AnaKategoriler");
             ModelState.Remove("AltKategoriler");
+            ModelState.Remove("ExistingImageUrl");
             if (model.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "Resim yüklenmesi zorunludur.");
@@ -123,6 +124,7 @@ namespace AnatoliaRoot_V2.Controllers
             model.AltKategoriler = altKategoriler;
             ModelState.Remove("AnaKategoriler");
             ModelState.Remove("AltKategoriler");
+            ModelState.Remove("ExistingImageUrl");
             ModelState.Remove("ImageFile");
             if (!ModelState.IsValid)
             {
