@@ -42,10 +42,6 @@ window.jQuery(document).ready(function($) {
                 scrollTop: 0,
             }, scroll_top_duration);
         });
-        $('#header .navbar-default li.subnav ul').after('<div class="nav__expand"><i class="fa fa-chevron-down"></i></div>');
-        $("#header .navbar-default li.subnav .nav__expand").on('click', function() {
-            $(this).prev("ul").slideToggle("slow");
-        });
     });
 
 
@@ -251,11 +247,31 @@ window.jQuery(document).ready(function($) {
         time: 3000
     });
 
-    $('.burger-icon').on('click touchstart', function(e) {
-        $(this).toggleClass('change');
-        $("#navbarCollapse").slideToggle();
-        e.preventDefault();
-    });
+
+});
+
+// Burger menü kodu - event çakışmalarını engelle
+$(document).off('click.burger').on('click.burger', '.burger-icon', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    $(this).toggleClass('change');
+    $("#navbarCollapse").stop(true, true).slideToggle();
+});
+
+// Sadece alt menü başlıklarını engelle, alt menü içindeki linkleri engelleme
+$(document).on('click', '.subnav > a[href="javascript:void(0)"]', function(e) {
+    e.preventDefault();
+});
+
+// Alt menü genişletme/daraltma - bubbling ve animasyon çakışmasını engelle
+$(document).off('click.subnav').on('click.subnav', '.nav__expand', function(e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    $(this).next("ul").stop(true, true).slideToggle("slow");
+    $(this).find('i').toggleClass('fa-chevron-down fa-chevron-up');
+});
+
+document.addEventListener('DOMContentLoaded', function() {
 
 
     $('#contact-us-form').submit(function() {
