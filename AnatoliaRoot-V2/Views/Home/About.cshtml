@@ -3,69 +3,279 @@
 }
 
 <style>
-    .kurumsal-baslik {
-        text-align: left;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        background-color: #bbcfb9;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        display: inline-block;
+    .about-hero {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+        border-radius: 1.5rem;
+        padding: 2.5rem 1rem 2rem 1rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
     }
-    .kurumsal-aciklama {
-        text-align: left;
-        max-width: 800px;
-        margin-left: 0;
-        margin-right: auto;
-        font-size: 1.15rem;
-        line-height: 1.7;
+
+    .about-hero-img {
+        flex: 1 1 320px;
+        max-width: 350px;
+        border-radius: 1rem;
+        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
+        background: #fff;
     }
+
+    .about-hero-content {
+        flex: 2 1 400px;
+        min-width: 280px;
+        text-align: left;
+    }
+
+        .about-hero-content h1 {
+            font-size: 2.7rem;
+            font-weight: 800;
+            color: #123524;
+            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        .about-hero-content p {
+            font-size: 1.25rem;
+            color: #333;
+            margin-bottom: 0.7rem;
+        }
+
+    .about-section {
+        margin-bottom: 2.5rem;
+    }
+
+        .about-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #123524;
+            margin-bottom: 1.2rem;
+            text-align: center;
+        }
+
+        .about-section p {
+            font-size: 1.15rem;
+            color: #222;
+            text-align: center;
+            margin-bottom: 0.7rem;
+        }
+
+    .about-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .feature-box {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 2px 12px 0 rgba(11,24,201,0.07);
+        padding: 1.5rem 1.2rem;
+        max-width: 260px;
+        flex: 1 1 220px;
+        text-align: center;
+    }
+
+        .feature-box h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #123524;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-box p {
+            font-size: 1rem;
+            color: #444;
+        }
+
+    .about-team {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        margin-bottom: 2.5rem;
+    }
+
+    .team-member {
+        background: #fff;
+        border-radius: 1rem;
+        box-shadow: 0 2px 12px 0 rgba(11,24,201,0.07);
+        padding: 1.2rem 1rem;
+        max-width: 220px;
+        flex: 1 1 180px;
+        text-align: center;
+    }
+
+        .team-member img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 0.7rem;
+        }
+
+        .team-member h4 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: black;
+            margin-bottom: 0.2rem;
+        }
+
+        .team-member p {
+            font-size: 0.98rem;
+            color: #444;
+            margin-bottom: 0.2rem;
+        }
+
     @@media (max-width: 991.98px) {
-        .kurumsal-aciklama { max-width: 100%; }
+        .about-hero {
+            flex-direction: column;
+            padding: 1.5rem 0.5rem;
+        }
+
+        .about-hero-content h1 {
+            font-size: 2rem;
+        }
+
+        .about-section h2 {
+            font-size: 1.3rem;
+        }
+    }
+
+    @@media (max-width: 767.98px) {
+        .about-hero {
+            flex-direction: column;
+            padding: 1rem 0.3rem;
+            gap: 1.2rem;
+            border-radius: 1rem;
+        }
+
+        .about-hero-img {
+            max-width: 100%;
+            width: 100%;
+            min-width: 0;
+            border-radius: 1rem;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,0.08);
+            margin-bottom: 0.5rem;
+        }
+
+        .about-hero-content {
+            min-width: 0;
+            width: 100%;
+            text-align: left;
+            padding: 0 0.2rem;
+            margin-bottom: -200px
+        }
+
+            .about-hero-content h1 {
+                font-size: 1.3rem;
+                margin-bottom: 0.7rem;
+            }
+
+            .about-hero-content p {
+                font-size: 0.98rem;
+                margin-bottom: 0.5rem;
+            }
     }
 </style>
 
-<div class="container py-5">
-    <div class="mb-4">
-        <h2 class="kurumsal-baslik">HAKKIMIZDA</h2>
-        <p class="kurumsal-aciklama">Tokat'ın bereketli topraklarından gelen doğal ürünleri, geleneksel yöntemlerle işleyerek sofralarınıza ulaştırıyoruz.</p>
-        <p class="kurumsal-aciklama">Yılların verdiği tecrübe ve güvenle, sağlıklı ve lezzetli gıda ürünlerini sizlerle buluşturmak için çalışıyoruz.</p>
-        <p class="kurumsal-aciklama">Doğallık, kalite ve müşteri memnuniyeti temel ilkelerimizdir.</p>
+<div class="container py-4">
+    <!-- Hero Section -->
+    <div class="about-hero">
+        <img class="about-hero-img" src="~/images/about-us.jpg" alt="Tokat Köy Ürünleri">
+        <div class="about-hero-content">
+            <h1>Tokat'ın Doğal Lezzetleriyle Tanışın</h1>
+            <p>Tokat'ın bereketli topraklarından, köylerimizin el emeğiyle üretilen en taze ve doğal ürünleri sofralarınıza getiriyoruz. Gelenekten geleceğe uzanan bu yolculukta, sağlıklı ve güvenilir gıdayı sizlerle buluşturmak için çalışıyoruz.</p>
+        </div>
     </div>
-</div>
 
-@section Scripts {
-    <script>
-    $(document).ready(function(){
-      $('#about-carousel-1').owlCarousel({
-          loop:true,
-          margin:20,
-          nav:true,
-          dots:true,
-          responsive:{
-              0:{ items:1 },
-              600:{ items:2 },
-              1000:{ items:3 }
-          }
-      });
-      $('#about-carousel-2').owlCarousel({
-          loop:true,
-          margin:20,
-          nav:true,
-          dots:true,
-          responsive:{
-              0:{ items:1 },
-              600:{ items:2 },
-              1000:{ items:3 }
-          }
-      });
-    });
-    </script>
-    <style>
-    #about-carousel-1 .card-img-top,
-    #about-carousel-2 .card-img-top {
-        object-fit: cover;
-        height: 200px;
+    <!-- Our Story -->
+    <div class="about-section">
+        <h2>Hikayemiz</h2>
+        <p>Yıllardır Tokat'ın köylerinde, doğayla iç içe, geleneksel yöntemlerle üretim yapıyoruz. Her ürünümüz, toprağın bereketi ve köylümüzün emeğiyle şekilleniyor. Amacımız; sağlıklı, katkısız ve lezzetli gıdaları, Türkiye'nin dört bir yanına ulaştırmak.</p>
+        <p>Doğallık, kalite ve müşteri memnuniyeti temel ilkelerimizdir. Her bir ürünümüz, Tokat'ın eşsiz doğasından sofralarınıza uzanan bir hikayenin parçasıdır.</p>
+    </div>
+
+    <!-- Features -->
+    <div class="about-features">
+        <div class="feature-box">
+            <h3>El Yapımı & Doğal</h3>
+            <p>Tüm ürünlerimiz geleneksel yöntemlerle, katkısız ve doğal olarak üretilir.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Yerel Üretici Desteği</h3>
+            <p>Köylerimizdeki üreticilerimizin emeğini ve sürdürülebilir tarımı destekliyoruz.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Tazelik Garantisi</h3>
+            <p>Ürünlerimiz dalından sofranıza en taze haliyle ulaşır.</p>
+        </div>
+        <div class="feature-box">
+            <h3>Güvenilir & Sağlıklı</h3>
+            <p>Hijyen ve kalite standartlarına uygun, güvenilir gıda sunuyoruz.</p>
+        </div>
+    </div>
+
+    <!-- Team Section -->
+    @*     <div class="about-section">
+        <h2>Ekibimiz</h2>
+        <div class="about-team">
+            <div class="team-member">
+                <img src="https://placehold.co/100x100?text=AE" alt="Agah Emir Akar">
+                <h4>Agah Emir Akar</h4>
+                <p>Kurucu & Yöresel Ürün Uzmanı</p>
+            </div>
+            <div class="team-member">
+                <img src="https://placehold.co/100x100?text=BG" alt="Batuhan Gökdemir">
+                <h4>Batuhan Gökdemir</h4>
+                <p>Medya & Pazarlama</p>
+            </div>
+            <div class="team-member">
+                <img src="https://placehold.co/100x100?text=EK" alt="Ekip Üyesi">
+                <h4>Elif Kaya</h4>
+                <p>Üretim Sorumlusu</p>
+            </div>
+        </div>
+    </div>
+</div> *@
+
+    @section Scripts {
+        <script>
+            $(document).ready(function(){
+              $('#about-carousel-1').owlCarousel({
+                  loop:true,
+                  margin:20,
+                  nav:true,
+                  dots:true,
+                  responsive:{
+                      0:{ items:1 },
+                      600:{ items:2 },
+                      1000:{ items:3 }
+                  }
+              });
+              $('#about-carousel-2').owlCarousel({
+                  loop:true,
+                  margin:20,
+                  nav:true,
+                  dots:true,
+                  responsive:{
+                      0:{ items:1 },
+                      600:{ items:2 },
+                      1000:{ items:3 }
+                  }
+              });
+            });
+        </script>
+        <style>
+            #about-carousel-1 .card-img-top,
+            #about-carousel-2 .card-img-top {
+                object-fit: cover;
+                height: 200px;
+            }
+        </style>
     }
-    </style>
-} 
