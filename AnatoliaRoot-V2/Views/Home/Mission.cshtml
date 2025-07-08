@@ -4,24 +4,30 @@
 
 <style>
     .kurumsal-baslik {
-        text-align: left;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        background-color: #bbcfb9;
-        padding: 0.75rem 1.5rem;
-        border-radius: 0.5rem;
-        display: inline-block;
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-weight: 800;
+        font-size: 2.5rem;
+        margin-bottom: 2.5rem;
+        padding: 1.5rem 0;
+        border-radius: 1.5rem;
+        background: linear-gradient(90deg, #bbcfb9 0%, #cdd9c8 100%);
+        color: #222;
+        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
+        letter-spacing: 2px;
     }
     .kurumsal-aciklama {
-        text-align: left;
-        max-width: 800px;
-        margin-left: 0;
-        margin-right: auto;
-        font-size: 1.15rem;
-        line-height: 1.7;
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 1.5rem auto;
+        font-size: 1.25rem;
+        line-height: 1.8;
+        color: #222;
     }
     @@media (max-width: 991.98px) {
-        .kurumsal-aciklama { max-width: 100%; }
+        .kurumsal-baslik { font-size: 2rem; padding: 1rem 0; }
+        .kurumsal-aciklama { font-size: 1.1rem; }
     }
 </style>
 

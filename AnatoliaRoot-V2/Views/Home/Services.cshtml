@@ -2,38 +2,278 @@
     ViewData["Title"] = "Hizmetlerimiz";
 }
 
-<div class="wrap-bg-small">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <div class="section-title with-p">
-                    <h2>HİZMETLERİMİZ</h2>
-                    <p>Çeşitli sektörlerde kapsamlı hizmetler sunuyoruz.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-6">
-                <div class="single-features-light">
-                    <i class="fa fa-cutlery"></i>
-                    <h4>Gıda Ürünleri</h4>
-                    <p>Tokat'ın yöresel gıda ürünlerini kaliteli şekilde sunuyoruz.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-features-light">
-                    <i class="fa fa-building"></i>
-                    <h4>İnşaat Hizmetleri</h4>
-                    <p>Profesyonel inşaat ve yapı hizmetleri veriyoruz.</p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-features-light">
-                    <i class="fa fa-ship"></i>
-                    <h4>İthalat & İhracat</h4>
-                    <p>Uluslararası ticaret hizmetleri sunuyoruz.</p>
-                </div>
-            </div>
-        </div>
+<style>
+    .services-hero {
+        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+        border-radius: 1.5rem;
+        padding: 2.5rem 1rem 2rem 1rem;
+        margin-bottom: 2.5rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .services-hero h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #123524;
+            margin-bottom: 1.2rem;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .services-hero p {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 0.7rem;
+            position: relative;
+            z-index: 1;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+
+    .carousel-3d-container {
+        perspective: 1200px;
+        width: 100%;
+        max-width: 900px;
+        margin: 0 auto 3rem auto;
+        position: relative;
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .carousel-3d {
+        width: 100%;
+        height: 350px;
+        position: relative;
+        transform-style: preserve-3d;
+        transition: transform 0.8s cubic-bezier(.17,.67,.83,.67);
+    }
+
+    .carousel-3d-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 300px;
+        height: 350px;
+        margin: auto;
+        background: #fff;
+        border-radius: 1.2rem;
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 1.5rem 1rem 1.2rem 1rem;
+        text-align: center;
+        transition: box-shadow 0.3s, transform 0.3s;
+        opacity: 0.7;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+        .carousel-3d-card.active {
+            box-shadow: 0 20px 40px 0 rgba(31, 38, 135, 0.25);
+            opacity: 1;
+            z-index: 2;
+            pointer-events: auto;
+        }
+
+        .carousel-3d-card img {
+            width: 100%;
+            max-width: 240px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 1rem;
+            margin-bottom: 1.2rem;
+            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+            transition: transform 0.3s ease;
+        }
+
+        .carousel-3d-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #123524;
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .carousel-3d-card p {
+            font-size: 1rem;
+            color: #555;
+            line-height: 1.6;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+    .carousel-3d-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        border: none;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #5A827E 0%, #FAFFCA 100%);
+        color: white;
+        font-size: 1.5rem;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+        .carousel-3d-btn.left {
+            left: -60px;
+        }
+
+        .carousel-3d-btn.right {
+            right: -60px;
+        }
+
+        .carousel-3d-btn:hover {
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
+            background: linear-gradient(135deg, #5A827E 0%, #5A827E 100%);
+        }
+
+    @@media (max-width: 991.98px) {
+        .carousel-3d-container {
+            height: 350px;
+        }
+
+        .carousel-3d {
+            height: 300px;
+        }
+
+        .carousel-3d-card {
+            width: 220px;
+            height: 300px;
+        }
+
+        .carousel-3d-btn.left {
+            left: -30px;
+        }
+
+        .carousel-3d-btn.right {
+            right: -30px;
+        }
+    }
+
+    @@media (max-width: 767.98px) {
+        .carousel-3d-container {
+            height: auto;
+            min-height: 340px;
+        }
+
+        .carousel-3d {
+            height: auto;
+            min-height: 260px;
+        }
+
+        .carousel-3d-card {
+            width: 200px;
+            height: auto;
+            min-height: 220px;
+            padding: 1rem 0.5rem;
+        }
+
+        .carousel-3d-btn {
+            width: 36px;
+            height: 36px;
+            font-size: 1.1rem;
+        }
+
+            .carousel-3d-btn.left {
+                left: 0;
+            }
+
+            .carousel-3d-btn.right {
+                right: 0;
+            }
+
+        .carousel-3d-card p {
+            font-size: 10px;
+            word-break: break-word;
+            overflow-wrap: anywhere;
+            line-height: 1.35;
+            margin-bottom: 0.2rem;
+            max-height: none;
+            overflow: visible;
+        }
+    }
+</style>
+
+<div class="container py-4">
+    <!-- Hero Section -->
+    <div class="services-hero">
+        <h1>Hizmetlerimiz</h1>
+        <p>Tokat'ın bereketli topraklarından ilham alan, güvenilir ve çeşitli hizmetler sunuyoruz. Her biri kalite, doğallık ve müşteri memnuniyeti odaklıdır.</p>
     </div>
-</div> 
+
+    <!-- 3D Carousel -->
+    <div class="carousel-3d-container">
+        <button class="carousel-3d-btn left" id="carousel3dPrev" aria-label="Önceki">&#10094;</button>
+        <div class="carousel-3d" id="carousel3d">
+            <div class="carousel-3d-card active">
+                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=250&fit=crop&crop=center" alt="İnşaat Hizmeti">
+                <h3>İnşaat Hizmetleri</h3>
+                <p>Profesyonel ekibimizle, güvenli ve kaliteli inşaat projeleri gerçekleştiriyoruz. Dayanıklı yapılar ve müşteri odaklı çözümler sunuyoruz.</p>
+            </div>
+            <div class="carousel-3d-card">
+                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop&crop=center" alt="İthalat & İhracat">
+                <h3>İthalat & İhracat</h3>
+                <p>Uluslararası ticaret ağımızla, Tokat'ın eşsiz ürünlerini dünyaya taşıyor, farklı coğrafyalardan kaliteli ürünleri ülkemize getiriyoruz.</p>
+            </div>
+            <div class="carousel-3d-card">
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop&crop=center" alt="Danışmanlık">
+                <h3>Danışmanlık</h3>
+                <p>Gıda, inşaat ve dış ticaret alanlarında uzman danışmanlık hizmetleriyle işinizi büyütmenize destek oluyoruz.</p>
+            </div>
+        </div>
+        <button class="carousel-3d-btn right" id="carousel3dNext" aria-label="Sonraki">&#10095;</button>
+    </div>
+</div>
+
+<script>
+    // 3D Carousel Logic
+    (function() {
+        const carousel = document.getElementById('carousel3d');
+        const cards = carousel.querySelectorAll('.carousel-3d-card');
+        const prevBtn = document.getElementById('carousel3dPrev');
+        const nextBtn = document.getElementById('carousel3dNext');
+        const cardCount = cards.length;
+        let selectedIndex = 0;
+        const theta = 360 / cardCount;
+        const radius = 420;
+
+        function rotateCarousel() {
+            for (let i = 0; i < cardCount; i++) {
+                const angle = theta * (i - selectedIndex);
+                cards[i].style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
+                cards[i].classList.toggle('active', i === selectedIndex);
+            }
+        }
+
+        prevBtn.addEventListener('click', function() {
+            selectedIndex = (selectedIndex - 1 + cardCount) % cardCount;
+            rotateCarousel();
+        });
+        nextBtn.addEventListener('click', function() {
+            selectedIndex = (selectedIndex + 1) % cardCount;
+            rotateCarousel();
+        });
+
+        // Başlangıçta konumlandır
+        rotateCarousel();
+    })();
+</script> 
