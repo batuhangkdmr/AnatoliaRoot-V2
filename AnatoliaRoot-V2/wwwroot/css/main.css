@@ -817,17 +817,17 @@ button {
     padding-bottom: 16px;
 }
 
-.btn-custom:hover,
-input[type="button"]:hover,
-input[type="submit"]:hover,
-input[type="reset"]:hover,
-button:hover {
-    outline: none !important;
-    background: #fff;
-    border: 2px solid var(--renk);
-    color: var(--renk);
-    box-shadow: 0 0.2px 1px -4px rgba(0, 0, 0, 0.109), 0 0.4px 2.6px -4px rgba(0, 0, 0, 0.155), 0 0.9px 5.3px -4px rgba(0, 0, 0, 0.195), 0 1.8px 11px -4px rgba(0, 0, 0, 0.241), 0 5px 20px -4px rgba(0, 0, 0, 0.35);
-}
+    .btn-custom:hover,
+    input[type="button"]:hover,
+    input[type="submit"]:hover,
+    input[type="reset"]:hover,
+    button:hover {
+        outline: none !important;
+        background: #fff;
+        border: 2px solid var(--renk); değişti 
+        color: var(--renk);
+        box-shadow: 0 0.2px 1px -4px rgba(0, 0, 0, 0.109), 0 0.4px 2.6px -4px rgba(0, 0, 0, 0.155), 0 0.9px 5.3px -4px rgba(0, 0, 0, 0.195), 0 1.8px 11px -4px rgba(0, 0, 0, 0.241), 0 5px 20px -4px rgba(0, 0, 0, 0.35);
+    }
 
 .owl-carousel .btn-custom:hover {
     border: 2px solid #fff;

@@ -3,277 +3,536 @@
 }
 
 <style>
-    .services-hero {
-        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
-        border-radius: 1.5rem;
-        padding: 2.5rem 1rem 2rem 1rem;
-        margin-bottom: 2.5rem;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-    }
+.services-hero {
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+    border-radius: 1.5rem;
+    padding: 2.5rem 1rem 2rem 1rem;
+    margin-bottom: 2.5rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
 
-        .services-hero h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #123524;
-            margin-bottom: 1.2rem;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            position: relative;
-            z-index: 1;
-        }
+.consulting-section {
+    display: flex;
+    gap: 2.5rem;
+    align-items: flex-start;
+    justify-content: center;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+.consulting-card {
+    background: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    text-align: center;
+    max-width: 340px;
+    min-width: 260px;
+    flex: 1 1 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+}
+.consulting-card img {
+    width: 100%;
+    max-width: 220px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 1rem;
+    margin-bottom: 1.2rem;
+    background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+}
+.consulting-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #123524;
+    margin-bottom: 0.8rem;
+    position: relative;
+}
+.consulting-card p {
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.6;
+    margin: 0 0 0.7rem 0;
+    flex-grow: 1;
+}
 
-        .services-hero p {
-            font-size: 1.2rem;
-            color: #555;
-            margin-bottom: 0.7rem;
-            position: relative;
-            z-index: 1;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-
-    .carousel-3d-container {
-        perspective: 1200px;
-        width: 100%;
-        max-width: 900px;
-        margin: 0 auto 3rem auto;
-        position: relative;
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .carousel-3d {
-        width: 100%;
-        height: 350px;
-        position: relative;
-        transform-style: preserve-3d;
-        transition: transform 0.8s cubic-bezier(.17,.67,.83,.67);
-    }
-
-    .carousel-3d-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        width: 300px;
-        height: 350px;
-        margin: auto;
-        background: #fff;
-        border-radius: 1.2rem;
-        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-        display: flex;
+.consulting-form-box {
+    background: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
+    padding: 2rem 1.5rem 1.5rem 1.5rem;
+    max-width: 400px;
+    min-width: 260px;
+    flex: 1 1 340px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+}
+.consulting-form-box h4 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #123524;
+    margin-bottom: 1.1rem;
+    text-align: center;
+}
+.consulting-form label {
+    font-size: 0.98rem;
+    color: #333;
+    margin-bottom: 0.2rem;
+    font-weight: 500;
+}
+.consulting-form input,
+.consulting-form textarea {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #b1cfb1;
+    border-radius: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    background: #f8faf8;
+    transition: border 0.2s;
+}
+.consulting-form input:focus,
+.consulting-form textarea:focus {
+    border-color: #5A827E;
+    outline: none;
+}
+.consulting-form button {
+    background: linear-gradient(135deg, #5A827E 0%, #FAFFCA 100%);
+    color: #123524;
+    font-weight: 700;
+    border: none;
+    border-radius: 0.6rem;
+    padding: 0.8rem 1.2rem;
+    font-size: 1.08rem;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+.consulting-form button:hover {
+    background: linear-gradient(135deg, #123524 0%, #b1cfb1 100%);
+    color: #fff;
+}
+@@media (max-width: 991.98px) {
+    .consulting-section {
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 1.5rem 1rem 1.2rem 1rem;
-        text-align: center;
-        transition: box-shadow 0.3s, transform 0.3s;
-        opacity: 0.7;
-        z-index: 1;
-        pointer-events: none;
+        gap: 1.5rem;
+        align-items: stretch;
     }
-
-        .carousel-3d-card.active {
-            box-shadow: 0 20px 40px 0 rgba(31, 38, 135, 0.25);
-            opacity: 1;
-            z-index: 2;
-            pointer-events: auto;
-        }
-
-        .carousel-3d-card img {
-            width: 100%;
-            max-width: 240px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 1rem;
-            margin-bottom: 1.2rem;
-            background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
-            transition: transform 0.3s ease;
-        }
-
-        .carousel-3d-card h3 {
-            font-size: 1.25rem;
-            font-weight: 700;
-            color: #123524;
-            margin-bottom: 0.8rem;
-            position: relative;
-        }
-
-        .carousel-3d-card p {
-            font-size: 1rem;
-            color: #555;
-            line-height: 1.6;
-            margin: 0;
-            flex-grow: 1;
-        }
-
-    .carousel-3d-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        border: none;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #5A827E 0%, #FAFFCA 100%);
-        color: white;
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        z-index: 10;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+    .consulting-card, .consulting-form-box {
+        max-width: 100%;
+        min-width: 0;
     }
-
-        .carousel-3d-btn.left {
-            left: -60px;
-        }
-
-        .carousel-3d-btn.right {
-            right: -60px;
-        }
-
-        .carousel-3d-btn:hover {
-            transform: translateY(-50%) scale(1.1);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.6);
-            background: linear-gradient(135deg, #5A827E 0%, #5A827E 100%);
-        }
-
-    @@media (max-width: 991.98px) {
-        .carousel-3d-container {
-            height: 350px;
-        }
-
-        .carousel-3d {
-            height: 300px;
-        }
-
-        .carousel-3d-card {
-            width: 220px;
-            height: 300px;
-        }
-
-        .carousel-3d-btn.left {
-            left: -30px;
-        }
-
-        .carousel-3d-btn.right {
-            right: -30px;
-        }
+}
+@@media (max-width: 600px) {
+    #kvkkModal > div, #kvkkRizaModal > div {
+        max-width: 98vw !important;
+        margin: 2vh auto !important;
+        padding: 1rem 0.5rem !important;
+        border-radius: 0.7rem !important;
     }
-
-    @@media (max-width: 767.98px) {
-        .carousel-3d-container {
-            height: auto;
-            min-height: 340px;
-        }
-
-        .carousel-3d {
-            height: auto;
-            min-height: 260px;
-        }
-
-        .carousel-3d-card {
-            width: 200px;
-            height: auto;
-            min-height: 220px;
-            padding: 1rem 0.5rem;
-        }
-
-        .carousel-3d-btn {
-            width: 36px;
-            height: 36px;
-            font-size: 1.1rem;
-        }
-
-            .carousel-3d-btn.left {
-                left: 0;
-            }
-
-            .carousel-3d-btn.right {
-                right: 0;
-            }
-
-        .carousel-3d-card p {
-            font-size: 10px;
-            word-break: break-word;
-            overflow-wrap: anywhere;
-            line-height: 1.35;
-            margin-bottom: 0.2rem;
-            max-height: none;
-            overflow: visible;
-        }
+    #kvkkModal h2, #kvkkRizaModal h2 {
+        font-size: 1.05rem !important;
+        margin-bottom: 0.7rem !important;
     }
+    #kvkkModal div[style*='overflow-y:auto'], #kvkkRizaModal div[style*='overflow-y:auto'] {
+        font-size: 0.97rem !important;
+        max-height: 70vh !important;
+    }
+    #kvkkModalClose, #kvkkRizaModalClose {
+        font-size: 1.2rem !important;
+        top: 6px !important;
+        right: 10px !important;
+    }
+}
+.consulting-card-modern {
+  position: relative;
+        background: linear-gradient(135deg, #e0f7fa 0%, #b1cfb1 100%);
+  border-radius: 1.5rem;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
+  padding: 2.5rem 1.5rem 2rem 1.5rem;
+  text-align: center;
+  transition: box-shadow 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+.consulting-card-modern:hover {
+  box-shadow: 0 16px 48px 0 rgba(31, 38, 135, 0.22);
+  transform: scale(1.03) rotate(-1deg);
+}
+.consulting-badge {
+  position: absolute;
+  top: 1.2rem; left: 1.2rem;
+  background: #0B18C9;
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border-radius: 1rem;
+  display: flex; align-items: center; gap: 0.4rem;
+  box-shadow: 0 2px 8px rgba(11,24,201,0.12);
+  z-index: 2;
+  animation: badgeFadeIn 1.2s;
+}
+@@keyframes badgeFadeIn {
+  from { opacity: 0; transform: translateY(-20px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+.consulting-icon {
+  font-size: 2.8rem;
+  color: #0B18C9;
+  margin-bottom: 1.2rem;
+  margin-top: 0.5rem;
+  transition: transform 0.4s;
+}
+.pulse-anim {
+  animation: pulse 2s infinite;
+}
+@@keyframes pulse {
+  0% { transform: scale(1);}
+  50% { transform: scale(1.13);}
+  100% { transform: scale(1);}
+}
+.consulting-desc {
+  font-size: 1.08rem;
+  color: #222;
+  margin-bottom: 1.1rem;
+}
+.consulting-rating {
+  margin-top: 1.2rem;
+  color: #388e3c;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+}
+.bounce-anim {
+  animation: bounceIn 1.5s;
+}
+@@keyframes bounceIn {
+  0% { transform: scale(0.7);}
+  60% { transform: scale(1.15);}
+  80% { transform: scale(0.95);}
+  100% { transform: scale(1);}
+}
+@@media (max-width: 600px) {
+  .consulting-card-modern { padding: 1.2rem 0.5rem 1.2rem 0.5rem; }
+  .consulting-badge { font-size: 0.85rem; padding: 0.2rem 0.7rem; }
+  .consulting-icon { font-size: 2rem; }
+}
 </style>
 
 <div class="container py-4">
-    <!-- Hero Section -->
     <div class="services-hero">
         <h1>Hizmetlerimiz</h1>
-        <p>Tokat'ın bereketli topraklarından ilham alan, güvenilir ve çeşitli hizmetler sunuyoruz. Her biri kalite, doğallık ve müşteri memnuniyeti odaklıdır.</p>
+        <p>Anadolu'nın bereketli topraklarından ilham alan, güvenilir ve çeşitli hizmetler sunuyoruz. Her biri kalite, doğallık ve müşteri memnuniyeti odaklıdır.</p>
     </div>
-
-    <!-- 3D Carousel -->
-    <div class="carousel-3d-container">
-        <button class="carousel-3d-btn left" id="carousel3dPrev" aria-label="Önceki">&#10094;</button>
-        <div class="carousel-3d" id="carousel3d">
-            <div class="carousel-3d-card active">
-                <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=400&h=250&fit=crop&crop=center" alt="İnşaat Hizmeti">
-                <h3>İnşaat Hizmetleri</h3>
-                <p>Profesyonel ekibimizle, güvenli ve kaliteli inşaat projeleri gerçekleştiriyoruz. Dayanıklı yapılar ve müşteri odaklı çözümler sunuyoruz.</p>
-            </div>
-            <div class="carousel-3d-card">
-                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=250&fit=crop&crop=center" alt="İthalat & İhracat">
-                <h3>İthalat & İhracat</h3>
-                <p>Uluslararası ticaret ağımızla, Tokat'ın eşsiz ürünlerini dünyaya taşıyor, farklı coğrafyalardan kaliteli ürünleri ülkemize getiriyoruz.</p>
-            </div>
-            <div class="carousel-3d-card">
-                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop&crop=center" alt="Danışmanlık">
-                <h3>Danışmanlık</h3>
-                <p>Gıda, inşaat ve dış ticaret alanlarında uzman danışmanlık hizmetleriyle işinizi büyütmenize destek oluyoruz.</p>
-            </div>
+    <div class="consulting-section">
+        <div class="consulting-card consulting-card-modern animate__animated animate__fadeInUp">
+          <div class="consulting-badge"><i class="fa fa-star"></i> Uzman Kadro</div>
+          <div class="consulting-icon pulse-anim"><i class="fa fa-handshake"></i></div>
+          <h3>Danışmanlık</h3>
+          <p class="consulting-desc">
+            Gıda üretimi, satış-pazarlama ve ihracat alanlarında <b>uzman danışmanlık</b> hizmetleriyle işinizi büyütmenize destek oluyoruz.
+          </p>
+          <div class="consulting-rating bounce-anim">
+            <i class="fa fa-check-circle"></i> %100 Müşteri Memnuniyeti
+          </div>
         </div>
-        <button class="carousel-3d-btn right" id="carousel3dNext" aria-label="Sonraki">&#10095;</button>
+        <div class="consulting-form-box">
+            <h4>Danışmanlık Formu</h4>
+            <form class="consulting-form" action="https://formspree.io/f/xldlrpza" method="POST" id="consultingForm">
+                <label for="name">Adınız Soyadınız</label>
+                <input type="text" id="name" name="name" required placeholder="Adınızı giriniz">
+                <label for="email">E-posta</label>
+                <input type="email" id="email" name="email" required placeholder="E-posta adresiniz">
+                <label for="message">Mesajınız</label>
+                <textarea id="message" name="message" rows="4" required placeholder="Ör: Şu konu ile danışmanlık almak istiyorum..."></textarea>
+                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
+                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                        <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                    </label>
+                </div>
+                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
+                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                        <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                    </label>
+                </div>
+                <button type="submit">Danışmanlık Talebi Gönder</button>
+            </form>
+            <!-- Bootstrap Modal KVKK Aydınlatma -->
+            <div class="modal fade" id="kvkkAydinlatmaModal" tabindex="-1" aria-labelledby="kvkkAydinlatmaModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="kvkkAydinlatmaModalLabel">Kişisel Verilerin Korunması Aydınlatma Metni</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                  </div>
+                  <div class="modal-body" style="font-size:1rem; color:#222;">
+                    <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında, <b>AnatoliaRoot</b> olarak tarafımıza ilettiğiniz kişisel verilerinizin işlenme amaçları, hukuki sebepleri, toplanma yöntemi, kimlere ve hangi amaçla aktarılabileceği ve KVKK kapsamındaki haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
+                    <h6 class="mt-3">1. Kişisel Verilerin İşlenme Amacı</h6>
+                    <p>Danışmanlık formu ve diğer iletişim formları aracılığıyla paylaştığınız ad, soyad, e-posta adresi ve mesaj bilgileriniz; yalnızca danışmanlık talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
+                    <h6 class="mt-3">2. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h6>
+                    <p>Kişisel verileriniz, web sitemizdeki formlar aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK’nın 5. ve 6. maddelerinde belirtilen kişisel veri işleme şartlarına uygun olarak işlenmektedir.</p>
+                    <h6 class="mt-3">3. Kişisel Verilerin Aktarılması</h6>
+                    <p>Kişisel verileriniz, yasal yükümlülükler haricinde hiçbir şekilde üçüncü şahıslarla paylaşılmaz ve yurt dışına aktarılmaz.</p>
+                    <h6 class="mt-3">4. Kişisel Verilerin Saklanma Süresi</h6>
+                    <p>Paylaştığınız kişisel veriler, danışmanlık talebinizin sonuçlandırılması ve yasal yükümlülüklerimizin gerektirdiği süre boyunca saklanır, sonrasında güvenli şekilde imha edilir.</p>
+                    <h6 class="mt-3">5. KVKK Kapsamındaki Haklarınız</h6>
+                    <p>KVKK’nın 11. maddesi uyarınca, kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işlenme amacını ve uygun kullanılıp kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme, verilerin eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme, silinmesini veya yok edilmesini isteme, bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve zarara uğramanız hâlinde zararın giderilmesini talep etme haklarına sahipsiniz.</p>
+                    <h6 class="mt-3">6. İletişim</h6>
+                    <p>KVKK kapsamındaki haklarınızı kullanmak veya kişisel verilerinizle ilgili her türlü soru ve talepleriniz için <a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a> adresine e-posta gönderebilirsiniz.</p>
+                    <hr />
+                    <p style="font-size:0.98rem; color:#555;">Bu metin, <b>AnatoliaRoot</b> tarafından güncellenebilir. Lütfen düzenli olarak kontrol ediniz.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Bootstrap Modal KVKK Açık Rıza -->
+            <div class="modal fade" id="kvkkRizaModal" tabindex="-1" aria-labelledby="kvkkRizaModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="kvkkRizaModalLabel">KVKK Açık Rıza Metni</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+                  </div>
+                  <div class="modal-body" style="font-size:1rem; color:#222;">
+                    <p>Danışmanlık talebim kapsamında paylaştığım kişisel bilgilerimin AnatoliaRoot tarafından yalnızca iletişim ve hizmet amacıyla kullanılmasına açık rıza veriyorum.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Bootstrap 5 Modal JS (CDN) -->
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+            <!-- SweetAlert2 CDN -->
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+            <script>
+            document.getElementById('consultingForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                var kvkkAydinlatma = document.getElementById('kvkkAydinlatma');
+                var kvkkRiza = document.getElementById('kvkkRiza');
+                if (!kvkkAydinlatma.checked || !kvkkRiza.checked) {
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Uyarı',
+                        text: 'Formu gönderebilmek için her iki KVKK onay kutusunu da işaretlemelisiniz.'
+                    });
+                    return;
+                }
+                // Form verilerini topla
+                const formData = new FormData(consultingForm);
+                try {
+                    const response = await fetch(consultingForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Başarılı!',
+                            text: 'Danışmanlık talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.',
+                            confirmButtonText: 'Tamam'
+                        });
+                        consultingForm.reset();
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Hata',
+                            text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+                        });
+                    }
+                } catch (err) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+                    });
+                }
+            });
+            document.getElementById('kvkkModalLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                var modal = new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal'));
+                modal.show();
+            });
+            document.getElementById('kvkkRizaModalLink').addEventListener('click', function(e) {
+                e.preventDefault();
+                var modal = new bootstrap.Modal(document.getElementById('kvkkRizaModal'));
+                modal.show();
+            });
+            </script>
+        </div>
     </div>
 </div>
-
+<hr style="margin: 3rem 0 2rem 0; border-top: 2px solid #e0e0e0;">
+<div class="container py-4" id="peyzaj-section">
+    <h2 style="font-size:2rem; font-weight:800; color:#123524; text-align:center; margin-bottom:2.2rem;">Peyzaj & Bahçe Bakım Hizmetleri</h2>
+    <div class="peyzaj-cards-row" style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:2.5rem;">
+        <div class="peyzaj-card">
+            <div class="peyzaj-icon">🌿</div>
+            <h3>Bahçe Bakımı</h3>
+            <p>Profesyonel ekibimizle, bahçenizin dört mevsim sağlıklı ve estetik kalmasını sağlıyoruz. Düzenli bakım, budama, sulama ve gübreleme hizmetleriyle yeşil alanlarınızı koruyoruz.</p>
+            <div class="peyzaj-fiyat">Fiyatlandırma: <b>m² başı</b></div>
+        </div>
+        <div class="peyzaj-card">
+            <div class="peyzaj-icon">🌳</div>
+            <h3>Ağaç Dikimi</h3>
+            <p>Bahçenize ve arazinize uygun ağaç türlerini seçiyor, doğru tekniklerle dikimini gerçekleştiriyoruz. Sağlıklı büyüme ve uzun ömür için uzman desteği sunuyoruz.</p>
+            <div class="peyzaj-fiyat">Fiyatlandırma: <b>Hizmete göre</b></div>
+        </div>
+        <div class="peyzaj-card">
+            <div class="peyzaj-icon">🌱</div>
+            <h3>Çim Ekimi</h3>
+            <p>Dayanıklı ve canlı çim alanlar için toprak hazırlığından ekime, ilk bakımdan sulamaya kadar tüm süreci titizlikle yönetiyoruz. Bahçeniz yemyeşil olsun!</p>
+            <div class="peyzaj-fiyat">Fiyatlandırma: <b>m² başı</b></div>
+        </div>
+        <div class="peyzaj-card">
+            <div class="peyzaj-icon">🛠️</div>
+            <h3>Ek Hizmetler</h3>
+            <p>Budama, sulama sistemleri kurulumu, gübreleme, hastalık ve zararlı kontrolü gibi ek hizmetlerle bahçenizin tüm ihtiyaçlarını karşılıyoruz.</p>
+            <div class="peyzaj-fiyat">Fiyatlandırma: <b>Hizmete göre</b></div>
+        </div>
+    </div>
+    <div class="alert alert-info" style="max-width:600px; margin:0 auto 2.5rem auto; text-align:center; font-size:1.08rem;">
+        Hizmetin talebine ve içeriğine göre fiyatlandırılıp geri dönüş yapılacaktır.
+    </div>
+    <div class="peyzaj-form-box" style="max-width:500px; margin:0 auto; background:#fff; border-radius:1.2rem; box-shadow:0 8px 32px 0 rgba(31,38,135,0.10); padding:2rem 1.5rem 1.5rem 1.5rem;">
+        <h4 style="font-size:1.15rem; font-weight:700; color:#123524; margin-bottom:1.1rem; text-align:center;">Peyzaj Hizmeti Talep Formu</h4>
+        <form id="peyzajForm" action="https://formspree.io/f/xldlrpza" method="POST">
+            <label for="peyzaj-name">Adınız Soyadınız</label>
+            <input type="text" id="peyzaj-name" name="name" required placeholder="Adınızı giriniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+            <label for="peyzaj-email">E-posta</label>
+            <input type="email" id="peyzaj-email" name="email" required placeholder="E-posta adresiniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+            <label for="peyzaj-service">Hizmet Seçimi</label>
+            <select id="peyzaj-service" name="service" required style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+                <option value="">Hizmet seçiniz</option>
+                <option>Bahçe Bakımı</option>
+                <option>Ağaç Dikimi</option>
+                <option>Çim Ekimi</option>
+                <option>Ek Hizmetler</option>
+            </select>
+            <label for="peyzaj-message">Mesajınız</label>
+            <textarea id="peyzaj-message" name="message" rows="4" required placeholder="Bahçeniz veya talebiniz hakkında detay verebilirsiniz..." style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;"></textarea>
+            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                <input class="form-check-input" type="checkbox" id="peyzajKvkk" name="kvkk" required style="width:16px; height:16px; margin:0;">
+                <label class="form-check-label" for="peyzajKvkk" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                    <a href="#" id="peyzajKvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                </label>
+            </div>
+            <button type="submit" style="background:linear-gradient(135deg,#5A827E 0%,#FAFFCA 100%); color:#123524; font-weight:700; border:none; border-radius:0.6rem; padding:0.8rem 1.2rem; font-size:1.08rem; cursor:pointer; width:100%;">Peyzaj Hizmeti Talebi Gönder</button>
+        </form>
+    </div>
+</div>
+<style>
+.peyzaj-cards-row { flex-wrap: wrap; }
+.peyzaj-card {
+    background: #fff;
+    border-radius: 1.2rem;
+    box-shadow: 0 8px 32px 0 rgba(31,38,135,0.12);
+    padding: 2rem 1.2rem 1.5rem 1.2rem;
+    text-align: center;
+    max-width: 270px;
+    min-width: 200px;
+    flex: 1 1 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 auto;
+    transition: transform 0.25s cubic-bezier(.17,.67,.83,.67), box-shadow 0.25s;
+    cursor: pointer;
+    position: relative;
+}
+.peyzaj-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 20px 40px 0 rgba(31,38,135,0.18);
+    z-index: 2;
+}
+.peyzaj-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+}
+.peyzaj-card h3 {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #0B18C9;
+    margin-bottom: 0.7rem;
+}
+.peyzaj-card p {
+    font-size: 0.98rem;
+    color: #444;
+    margin-bottom: 0.7rem;
+}
+.peyzaj-fiyat {
+    font-size: 0.97rem;
+    color: #123524;
+    background: #f3f7f3;
+    border-radius: 0.5rem;
+    padding: 0.3rem 0.7rem;
+    margin-top: auto;
+}
+@@media (max-width: 991.98px) {
+    .peyzaj-cards-row { flex-direction: column; gap: 1.2rem; }
+    .peyzaj-card { max-width: 100%; min-width: 0; }
+}
+</style>
 <script>
-    // 3D Carousel Logic
-    (function() {
-        const carousel = document.getElementById('carousel3d');
-        const cards = carousel.querySelectorAll('.carousel-3d-card');
-        const prevBtn = document.getElementById('carousel3dPrev');
-        const nextBtn = document.getElementById('carousel3dNext');
-        const cardCount = cards.length;
-        let selectedIndex = 0;
-        const theta = 360 / cardCount;
-        const radius = 420;
-
-        function rotateCarousel() {
-            for (let i = 0; i < cardCount; i++) {
-                const angle = theta * (i - selectedIndex);
-                cards[i].style.transform = `rotateY(${angle}deg) translateZ(${radius}px)`;
-                cards[i].classList.toggle('active', i === selectedIndex);
-            }
+// Peyzaj form KVKK modal
+const peyzajKvkkModalLink = document.getElementById('peyzajKvkkModalLink');
+if (peyzajKvkkModalLink) {
+    peyzajKvkkModalLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        var modal = new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal'));
+        modal.show();
+    });
+}
+// Peyzaj form submit SweetAlert2
+const peyzajForm = document.getElementById('peyzajForm');
+if (peyzajForm) {
+    peyzajForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        var peyzajKvkk = document.getElementById('peyzajKvkk');
+        if (!peyzajKvkk.checked) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Uyarı',
+                text: 'Formu gönderebilmek için KVKK onay kutusunu işaretlemelisiniz.'
+            });
+            return;
         }
-
-        prevBtn.addEventListener('click', function() {
-            selectedIndex = (selectedIndex - 1 + cardCount) % cardCount;
-            rotateCarousel();
-        });
-        nextBtn.addEventListener('click', function() {
-            selectedIndex = (selectedIndex + 1) % cardCount;
-            rotateCarousel();
-        });
-
-        // Başlangıçta konumlandır
-        rotateCarousel();
-    })();
+        const formData = new FormData(peyzajForm);
+        try {
+            const response = await fetch(peyzajForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Başarılı!',
+                    text: 'Peyzaj hizmeti talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.',
+                    confirmButtonText: 'Tamam'
+                });
+                peyzajForm.reset();
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+                });
+            }
+        } catch (err) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Hata',
+                text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+            });
+        }
+    });
+}
 </script> 
