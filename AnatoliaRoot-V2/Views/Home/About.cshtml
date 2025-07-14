@@ -2,280 +2,634 @@
     ViewData["Title"] = "Hakkımızda";
 }
 
-<style>
-    .about-hero {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
-        border-radius: 1.5rem;
-        padding: 2.5rem 1rem 2rem 1rem;
-        margin-bottom: 2.5rem;
-        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
-    }
-
-    .about-hero-img {
-        flex: 1 1 320px;
-        max-width: 350px;
-        border-radius: 1rem;
-        box-shadow: 0 2px 16px 0 rgba(0,0,0,0.07);
-        background: #fff;
-    }
-
-    .about-hero-content {
-        flex: 2 1 400px;
-        min-width: 280px;
-        text-align: left;
-    }
-
-        .about-hero-content h1 {
-            font-size: 2.7rem;
-            font-weight: 800;
-            color: #123524;
-            margin-bottom: 1.2rem;
-            letter-spacing: 2px;
-        }
-
-        .about-hero-content p {
-            font-size: 1.25rem;
-            color: #333;
-            margin-bottom: 0.7rem;
-        }
-
-    .about-section {
-        margin-bottom: 2.5rem;
-    }
-
-        .about-section h2 {
-            font-size: 2rem;
-            font-weight: 700;
-            color: #123524;
-            margin-bottom: 1.2rem;
-            text-align: center;
-        }
-
-        .about-section p {
-            font-size: 1.15rem;
-            color: #222;
-            text-align: center;
-            margin-bottom: 0.7rem;
-        }
-
-    .about-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-        margin-bottom: 2.5rem;
-    }
-
-    .feature-box {
-        background: #fff;
-        border-radius: 1rem;
-        box-shadow: 0 2px 12px 0 rgba(11,24,201,0.07);
-        padding: 1.5rem 1.2rem;
-        max-width: 260px;
-        flex: 1 1 220px;
-        text-align: center;
-    }
-
-        .feature-box h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #123524;
-            margin-bottom: 0.5rem;
-        }
-
-        .feature-box p {
-            font-size: 1rem;
-            color: #444;
-        }
-
-    .about-team {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2rem;
-        justify-content: center;
-        margin-bottom: 2.5rem;
-    }
-
-    .team-member {
-        background: #fff;
-        border-radius: 1rem;
-        box-shadow: 0 2px 12px 0 rgba(11,24,201,0.07);
-        padding: 1.2rem 1rem;
-        max-width: 220px;
-        flex: 1 1 180px;
-        text-align: center;
-    }
-
-        .team-member img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 0.7rem;
-        }
-
-        .team-member h4 {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: black;
-            margin-bottom: 0.2rem;
-        }
-
-        .team-member p {
-            font-size: 0.98rem;
-            color: #444;
-            margin-bottom: 0.2rem;
-        }
-
-    @@media (max-width: 991.98px) {
-        .about-hero {
-            flex-direction: column;
-            padding: 1.5rem 0.5rem;
-        }
-
-        .about-hero-content h1 {
-            font-size: 2rem;
-        }
-
-        .about-section h2 {
-            font-size: 1.3rem;
-        }
-    }
-
-    @@media (max-width: 767.98px) {
-        .about-hero {
-            flex-direction: column;
-            padding: 1rem 0.3rem;
-            gap: 1.2rem;
-            border-radius: 1rem;
-        }
-
-        .about-hero-img {
-            max-width: 100%;
-            width: 100%;
-            min-width: 0;
-            border-radius: 1rem;
-            box-shadow: 0 2px 10px 0 rgba(0,0,0,0.08);
-            margin-bottom: 0.5rem;
-        }
-
-        .about-hero-content {
-            min-width: 0;
-            width: 100%;
-            text-align: left;
-            padding: 0 0.2rem;
-            margin-bottom: -200px
-        }
-
-            .about-hero-content h1 {
-                font-size: 1.3rem;
-                margin-bottom: 0.7rem;
-            }
-
-            .about-hero-content p {
-                font-size: 0.98rem;
-                margin-bottom: 0.5rem;
-            }
-    }
-</style>
-
-<div class="container py-4">
+<div class="container-fluid p-0">
     <!-- Hero Section -->
     <div class="about-hero">
-        <img class="about-hero-img" src="~/images/about-us.jpg" alt="Tokat Köy Ürünleri">
-        <div class="about-hero-content">
-            <h1>Tokat'ın Doğal Lezzetleriyle Tanışın</h1>
-            <p>Tokat'ın bereketli topraklarından, köylerimizin el emeğiyle üretilen en taze ve doğal ürünleri sofralarınıza getiriyoruz. Gelenekten geleceğe uzanan bu yolculukta, sağlıklı ve güvenilir gıdayı sizlerle buluşturmak için çalışıyoruz.</p>
+        <div class="hero-background">
+            <div class="hero-pattern"></div>
         </div>
-    </div>
-
-    <!-- Our Story -->
-    <div class="about-section">
-        <h2>Hikayemiz</h2>
-        <p>Yıllardır Tokat'ın köylerinde, doğayla iç içe, geleneksel yöntemlerle üretim yapıyoruz. Her ürünümüz, toprağın bereketi ve köylümüzün emeğiyle şekilleniyor. Amacımız; sağlıklı, katkısız ve lezzetli gıdaları, Türkiye'nin dört bir yanına ulaştırmak.</p>
-        <p>Doğallık, kalite ve müşteri memnuniyeti temel ilkelerimizdir. Her bir ürünümüz, Tokat'ın eşsiz doğasından sofralarınıza uzanan bir hikayenin parçasıdır.</p>
-    </div>
-
-    <!-- Features -->
-    <div class="about-features">
-        <div class="feature-box">
-            <h3>El Yapımı & Doğal</h3>
-            <p>Tüm ürünlerimiz geleneksel yöntemlerle, katkısız ve doğal olarak üretilir.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Yerel Üretici Desteği</h3>
-            <p>Köylerimizdeki üreticilerimizin emeğini ve sürdürülebilir tarımı destekliyoruz.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Tazelik Garantisi</h3>
-            <p>Ürünlerimiz dalından sofranıza en taze haliyle ulaşır.</p>
-        </div>
-        <div class="feature-box">
-            <h3>Güvenilir & Sağlıklı</h3>
-            <p>Hijyen ve kalite standartlarına uygun, güvenilir gıda sunuyoruz.</p>
-        </div>
-    </div>
-
-    <!-- Team Section -->
-    @*     <div class="about-section">
-        <h2>Ekibimiz</h2>
-        <div class="about-team">
-            <div class="team-member">
-                <img src="https://placehold.co/100x100?text=AE" alt="Agah Emir Akar">
-                <h4>Agah Emir Akar</h4>
-                <p>Kurucu & Yöresel Ürün Uzmanı</p>
-            </div>
-            <div class="team-member">
-                <img src="https://placehold.co/100x100?text=BG" alt="Batuhan Gökdemir">
-                <h4>Batuhan Gökdemir</h4>
-                <p>Medya & Pazarlama</p>
-            </div>
-            <div class="team-member">
-                <img src="https://placehold.co/100x100?text=EK" alt="Ekip Üyesi">
-                <h4>Elif Kaya</h4>
-                <p>Üretim Sorumlusu</p>
+        <div class="hero-content">
+            <div class="container">
+                <div class="row align-items-center min-vh-70">
+                    <div class="col-lg-6">
+                        <div class="hero-text animate__animated animate__fadeInLeft">
+                            <h1 class="hero-title">
+                                Anadolu'nun İlhamı ve Enerjisi
+                            </h1>
+                            <p class="hero-subtitle">
+                                Gelenekten geleceğe, Anadolu'nun bereketiyle...
+                            </p>
+                            <div class="hero-description">
+                                <p>
+                                    Anadolu, sadece bir coğrafya değil; ilhamın, emeğin ve yeniliğin buluşma noktasıdır. 
+                                    Bu toprakların enerjisini ve çeşitliliğini işimize yansıtıyor, Anadolu'nun bereketini 
+                                    ve kültürel zenginliğini sizlerle buluşturuyoruz.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="hero-visual animate__animated animate__fadeInRight">
+                            <div class="floating-elements">
+                                <div class="floating-icon" style="--delay: 0s;">
+                                    <i class="fa fa-seedling"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 1s;">
+                                    <i class="fa fa-leaf"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 2s;">
+                                    <i class="fa fa-globe"></i>
+                                </div>
+                                <div class="floating-icon" style="--delay: 3s;">
+                                    <i class="fa fa-handshake"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div> *@
 
-    @section Scripts {
-        <script>
-            $(document).ready(function(){
-              $('#about-carousel-1').owlCarousel({
-                  loop:true,
-                  margin:20,
-                  nav:true,
-                  dots:true,
-                  responsive:{
-                      0:{ items:1 },
-                      600:{ items:2 },
-                      1000:{ items:3 }
-                  }
-              });
-              $('#about-carousel-2').owlCarousel({
-                  loop:true,
-                  margin:20,
-                  nav:true,
-                  dots:true,
-                  responsive:{
-                      0:{ items:1 },
-                      600:{ items:2 },
-                      1000:{ items:3 }
-                  }
-              });
-            });
-        </script>
-        <style>
-            #about-carousel-1 .card-img-top,
-            #about-carousel-2 .card-img-top {
-                object-fit: cover;
-                height: 200px;
-            }
-        </style>
+    <!-- Main Content -->
+    <div class="about-main">
+        <!-- Story Section -->
+        <section class="story-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 mx-auto">
+                        <div class="story-content animate__animated animate__fadeInUp">
+                            <h2 class="section-title">Hikayemiz</h2>
+                            <div class="story-text">
+                                <p class="lead">
+                                    Yılların deneyimi ve Anadolu'nun zengin kültürüyle, gıda üretiminden satış-pazarlamaya, 
+                                    ihracattan danışmanlığa kadar geniş bir yelpazede hizmet veriyoruz.
+                                </p>
+                                
+                                <p>
+                                    Yerel üreticilerimizin emeğini, modern pazarlama teknikleriyle tüm Türkiye'ye ve dünyaya 
+                                    ulaştırıyoruz. Anadolu'nun değerlerini uluslararası pazarlara taşıyor, ülkemizin markasını 
+                                    güçlendiriyoruz.
+                                </p>
+                                
+                                <p>
+                                    Gıda, dış ticaret ve peyzaj alanlarında uzman ekibimizle işinizi büyütmenize destek oluyoruz. 
+                                    Doğayla uyumlu, sürdürülebilir ve estetik çözümler sunuyoruz.
+                                </p>
+                                
+                                <p>
+                                    Anadolu'nun ilhamı ve enerjisiyle, her zaman en iyisi ve yenisi için çalışıyoruz. 
+                                    Sadece ürün değil, bir yaşam kültürü sunuyoruz. Geleceğe yönelik projelerimizle, 
+                                    Anadolu'nun bereketini dünyaya taşımaya devam edeceğiz.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Values Section -->
+   @*      <section class="values-section">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="section-title animate__animated animate__fadeInUp">Değerlerimiz</h2>
+                    <p class="section-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                        Çalışma prensiplerimizi şekillendiren temel değerler
+                    </p>
+                </div>
+                
+                <div class="values-grid">
+                    <div class="value-item animate__animated animate__fadeInUp">
+                        <div class="value-icon">
+                            <i class="fa fa-shield-alt"></i>
+                        </div>
+                        <h4>Güven</h4>
+                        <p>Şeffaflık ve dürüstlük temelinde güvenilir iş ortaklıkları kuruyoruz.</p>
+                    </div>
+                    
+                    <div class="value-item animate__animated animate__fadeInUp animate__delay-1s">
+                        <div class="value-icon">
+                            <i class="fa fa-lightbulb"></i>
+                        </div>
+                        <h4>Yenilik</h4>
+                        <p>Sürekli gelişim ve yenilikçi çözümlerle sektörde öncü olmaya çalışıyoruz.</p>
+                    </div>
+                    
+                    <div class="value-item animate__animated animate__fadeInUp animate__delay-2s">
+                        <div class="value-icon">
+                            <i class="fa fa-seedling"></i>
+                        </div>
+                        <h4>Doğallık</h4>
+                        <p>Doğanın sunduğu en saf ve kaliteli ürünleri koruyarak sunuyoruz.</p>
+                    </div>
+                    
+                    <div class="value-item animate__animated animate__fadeInUp animate__delay-3s">
+                        <div class="value-icon">
+                            <i class="fa fa-users"></i>
+                        </div>
+                        <h4>Paylaşım</h4>
+                        <p>Bilgi, deneyim ve başarıları paylaşarak birlikte büyüyoruz.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+ *@
+        <!-- Journey Section -->
+        <section class="journey-section">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <div class="journey-content animate__animated animate__fadeInLeft">
+                            <h2>Yolculuğumuz</h2>
+                            <p class="lead">
+                                Anadolu'nun köklü kültüründen ve bereketli topraklarından aldığımız ilhamla, 
+                                yenilikçi ve sürdürülebilir çözümler sunuyoruz.
+                            </p>
+                            <p>
+                                Binlerce yıllık geleneksel bilgiyi modern teknoloji ile birleştirerek, 
+                                hem geçmişin değerlerini koruyor hem de geleceğe yönelik yenilikler getiriyoruz. 
+                                Anadolu'nun bereketli topraklarından aldığımız güçle, sadece ürün değil, 
+                                bir yaşam kültürü sunuyoruz.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="journey-visual animate__animated animate__fadeInRight">
+                            <div class="journey-timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Geleneksel Bilgi</h5>
+                                        <p>Anadolu'nun binlerce yıllık kültürü</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Modern Teknoloji</h5>
+                                        <p>Güncel teknikler ve yenilikler</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-dot"></div>
+                                    <div class="timeline-content">
+                                        <h5>Sürdürülebilir Gelecek</h5>
+                                        <p>Çevre dostu ve kalıcı çözümler</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>
+
+<style>
+/* Hero Section */
+.about-hero {
+    position: relative;
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+    color: #123524;
+    overflow: hidden;
+}
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(177,207,177,0.13) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(213,221,209,0.13) 0%, transparent 50%);
+    animation: float 20s ease-in-out infinite;
+}
+
+@@keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(180deg); }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.08);
+    color: #123524;
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    font-style: italic;
+    color: #388e3c;
+}
+
+.hero-description p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 0;
+    color: #222;
+}
+
+/* Floating Elements */
+.floating-elements {
+    position: relative;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-icon {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    background: rgba(177,207,177,0.22);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #388e3c;
+    backdrop-filter: blur(10px);
+    animation: floatIcon 6s ease-in-out infinite;
+    animation-delay: var(--delay);
+    box-shadow: 0 4px 16px 0 rgba(187,207,185,0.10);
+}
+
+.floating-icon:nth-child(1) { top: 20%; left: 20%; }
+.floating-icon:nth-child(2) { top: 60%; right: 20%; }
+.floating-icon:nth-child(3) { bottom: 20%; left: 30%; }
+.floating-icon:nth-child(4) { top: 40%; right: 40%; }
+
+@@keyframes floatIcon {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-30px) rotate(180deg); }
+}
+
+.hero-logo-shape {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 420px;
+    height: 420px;
+    transform: translate(-50%, -55%);
+    z-index: 1;
+    pointer-events: none;
+    filter: blur(0.5px);
+}
+
+/* Main Content */
+.about-main {
+    background: #f8f9fa;
+}
+
+/* Story Section */
+.story-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #123524;
+    margin-bottom: 2rem;
+    text-align: center;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+    border-radius: 2px;
+}
+
+.section-subtitle {
+    font-size: 1.2rem;
+    color: #388e3c;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.story-text .lead {
+    font-size: 1.3rem;
+    color: #123524;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+.story-text p {
+    font-size: 1.1rem;
+    color: #388e3c;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+
+/* Values Section */
+.values-section {
+    padding: 100px 0;
+    background: #f8f9fa;
+}
+
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 3rem;
+}
+
+.value-item {
+    text-align: center;
+    padding: 40px 20px;
+    background: white;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.value-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.value-item:hover::before {
+    left: 100%;
+}
+
+.value-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.value-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    color: white;
+    font-size: 2rem;
+    transition: transform 0.3s ease;
+}
+
+.value-item:hover .value-icon {
+    transform: scale(1.1);
+}
+
+.value-item h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.value-item p {
+    color: #6c757d;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Journey Section */
+.journey-section {
+    padding: 100px 0;
+    background: white;
+}
+
+.journey-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #123524;
+    margin-bottom: 1.5rem;
+    position: relative;
+}
+
+.journey-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+    border-radius: 2px;
+}
+
+.journey-content .lead {
+    font-size: 1.3rem;
+    color: #123524;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+.journey-content p {
+    font-size: 1.1rem;
+    color: #388e3c;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+/* Timeline */
+.journey-timeline {
+    position: relative;
+    padding: 40px 0;
+}
+
+.journey-timeline::before {
+    content: '';
+    position: absolute;
+    left: 20px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 40px;
+    padding-left: 60px;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 11px;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+    border-radius: 50%;
+    border: 4px solid white;
+    box-shadow: 0 0 0 4px rgba(177,207,177,0.15);
+}
+
+.timeline-content {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(177,207,177,0.10);
+}
+
+.timeline-content h5 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #123524;
+    margin-bottom: 10px;
+}
+
+.timeline-content p {
+    color: #388e3c;
+    margin-bottom: 0;
+    font-size: 0.95rem;
+}
+
+/* Animations */
+.animate__delay-1s {
+    animation-delay: 1s;
+}
+
+.animate__delay-2s {
+    animation-delay: 2s;
+}
+
+.animate__delay-3s {
+    animation-delay: 3s;
+}
+
+/* Responsive Design */
+@@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2.5rem;
     }
+    
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .floating-elements {
+        height: 300px;
+    }
+    
+    .floating-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .story-section,
+    .values-section,
+    .journey-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .journey-content h2 {
+        font-size: 2rem;
+    }
+}
+
+@@media (max-width: 480px) {
+    .hero-title {
+        font-size: 2rem;
+        margin-top: 15%;
+        text-align: center;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .floating-elements {
+        height: 250px;
+    }
+    
+    .floating-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .story-section,
+    .values-section,
+    .journey-section {
+        padding: 40px 0;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .journey-content h2 {
+        font-size: 1.8rem;
+    }
+}
+</style>
+
+<script>
+// Intersection Observer for animations
+document.addEventListener('DOMContentLoaded', function() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    // Observe all animated elements
+    document.querySelectorAll('.animate__animated').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
