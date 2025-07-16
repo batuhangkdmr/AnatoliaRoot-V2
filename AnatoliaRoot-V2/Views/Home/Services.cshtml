@@ -64,10 +64,10 @@
     background: #fff;
     border-radius: 1.2rem;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.10);
-    padding: 2rem 1.5rem 1.5rem 1.5rem;
-    max-width: 400px;
+    padding: 2.5rem 2.2rem 2rem 2.2rem;
+    max-width: 570px;
     min-width: 260px;
-    flex: 1 1 340px;
+    flex: 1 1 520px;
     margin: 0 auto;
     display: flex;
     flex-direction: column;
@@ -126,6 +126,11 @@
     .consulting-card, .consulting-form-box {
         max-width: 100%;
         min-width: 0;
+    }
+    .consulting-form-box {
+        max-width: 100%;
+        min-width: 0;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
     }
 }
 @@media (max-width: 600px) {
@@ -222,6 +227,37 @@
   .consulting-badge { font-size: 0.85rem; padding: 0.2rem 0.7rem; }
   .consulting-icon { font-size: 2rem; }
 }
+.consulting-form button[type="submit"],
+.peyzaj-form-box button[type="submit"] {
+    background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%);
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.15rem;
+    border-radius: 0.7rem;
+    padding: 0.7rem 0;
+    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.10);
+    transition: background 0.2s, box-shadow 0.2s;
+    border: none;
+    width: 100%;
+}
+.consulting-form button[type="submit"]:hover,
+.peyzaj-form-box button[type="submit"]:hover {
+    background: linear-gradient(135deg, #388e3c 0%, #b1cfb1 100%);
+    color: #fff;
+    box-shadow: 0 4px 16px 0 rgba(56,142,60,0.13);
+}
+.consulting-form .form-check-label a,
+.peyzaj-form-box .form-check-label a {
+    color: #388e3c;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.consulting-form .form-check-label a:hover,
+.peyzaj-form-box .form-check-label a:hover {
+    color: #123524;
+    text-decoration: underline;
+}
 </style>
 
 <div class="container py-4">
@@ -244,12 +280,12 @@
         <div class="consulting-form-box">
             <h4>Danışmanlık Formu</h4>
             <form class="consulting-form" action="https://formspree.io/f/xldlrpza" method="POST" id="consultingForm">
-                <label for="name">Adınız Soyadınız</label>
-                <input type="text" id="name" name="name" required placeholder="Adınızı giriniz">
-                <label for="email">E-posta</label>
-                <input type="email" id="email" name="email" required placeholder="E-posta adresiniz">
-                <label for="message">Mesajınız</label>
-                <textarea id="message" name="message" rows="4" required placeholder="Ör: Şu konu ile danışmanlık almak istiyorum..."></textarea>
+                <label for="adSoyad">Adınız Soyadınız</label>
+                <input type="text" id="adSoyad" name="adSoyad" required placeholder="Adınızı giriniz">
+                <label for="eposta">E-posta</label>
+                <input type="email" id="eposta" name="eposta" required placeholder="E-posta adresiniz">
+                <label for="mesaj">Mesajınız</label>
+                <textarea id="mesaj" name="mesaj" rows="4" required placeholder="Ör: Şu konu ile danışmanlık almak istiyorum..."></textarea>
                 <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
                     <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
                     <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
@@ -275,15 +311,24 @@
                   <div class="modal-body" style="font-size:1rem; color:#222;">
                     <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında, <b>AnatoliaRoot</b> olarak tarafımıza ilettiğiniz kişisel verilerinizin işlenme amaçları, hukuki sebepleri, toplanma yöntemi, kimlere ve hangi amaçla aktarılabileceği ve KVKK kapsamındaki haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
                     <h6 class="mt-3">1. Kişisel Verilerin İşlenme Amacı</h6>
-                    <p>Danışmanlık formu ve diğer iletişim formları aracılığıyla paylaştığınız ad, soyad, e-posta adresi ve mesaj bilgileriniz; yalnızca danışmanlık talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
+                    <p>Danışmanlık formu aracılığıyla paylaştığınız ad, soyad, e-posta adresi ve mesaj bilgileriniz; yalnızca danışmanlık talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir.</p>
+                    <p><strong>Zorunlu Kişisel Veriler:</strong> Ad Soyad, e-posta adresi ve mesaj alanları danışmanlık hizmeti verebilmek için zorunludur. Bu bilgiler olmadan danışmanlık talebinizi değerlendiremeyiz. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
                     <h6 class="mt-3">2. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h6>
-                    <p>Kişisel verileriniz, web sitemizdeki formlar aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK’nın 5. ve 6. maddelerinde belirtilen kişisel veri işleme şartlarına uygun olarak işlenmektedir.</p>
+                    <p>Kişisel verileriniz, web sitemizdeki danışmanlık formu aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK md. 5/1-a kapsamında "açık rızanızın bulunması" hukuki sebebine dayanmaktadır.</p>
                     <h6 class="mt-3">3. Kişisel Verilerin Aktarılması</h6>
                     <p>Kişisel verileriniz, yasal yükümlülükler haricinde hiçbir şekilde üçüncü şahıslarla paylaşılmaz ve yurt dışına aktarılmaz.</p>
                     <h6 class="mt-3">4. Kişisel Verilerin Saklanma Süresi</h6>
-                    <p>Paylaştığınız kişisel veriler, danışmanlık talebinizin sonuçlandırılması ve yasal yükümlülüklerimizin gerektirdiği süre boyunca saklanır, sonrasında güvenli şekilde imha edilir.</p>
+                    <p>Danışmanlık formu ile paylaşılan kişisel veriler, 3 yıl süreyle saklanır ve bu sürenin sonunda güvenli şekilde silinir.</p>
                     <h6 class="mt-3">5. KVKK Kapsamındaki Haklarınız</h6>
-                    <p>KVKK’nın 11. maddesi uyarınca, kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işlenme amacını ve uygun kullanılıp kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme, verilerin eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme, silinmesini veya yok edilmesini isteme, bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve zarara uğramanız hâlinde zararın giderilmesini talep etme haklarına sahipsiniz.</p>
+                    <p>KVKK md. 11 uyarınca sahip olduğunuz haklar:</p>
+                    <ul>
+                      <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                      <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+                      <li>Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                      <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme</li>
+                      <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme</li>
+                      <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme</li>
+                    </ul>
                     <h6 class="mt-3">6. İletişim</h6>
                     <p>KVKK kapsamındaki haklarınızı kullanmak veya kişisel verilerinizle ilgili her türlü soru ve talepleriniz için <a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a> adresine e-posta gönderebilirsiniz.</p>
                     <hr />
@@ -301,7 +346,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
                   </div>
                   <div class="modal-body" style="font-size:1rem; color:#222;">
-                    <p>Danışmanlık talebim kapsamında paylaştığım kişisel bilgilerimin AnatoliaRoot tarafından yalnızca iletişim ve hizmet amacıyla kullanılmasına açık rıza veriyorum.</p>
+                    <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) md. 5/1-a kapsamında, danışmanlık formu aracılığıyla paylaştığım kişisel verilerimin yukarıda belirtilen aydınlatma metni doğrultusunda toplanmasına, işlenmesine ve belirtilen amaçlarla kullanılmasına bilinçli ve açık rızamla izin veriyorum.</p>
                   </div>
                 </div>
               </div>
@@ -325,6 +370,10 @@
                 }
                 // Form verilerini topla
                 const formData = new FormData(consultingForm);
+                
+                // Sadece formSource alanını ekle (Türkçe ve tek)
+                formData.append('formSource', 'Danışmanlık Formu - Hizmetler Sayfası');
+                
                 try {
                     const response = await fetch(consultingForm.action, {
                         method: 'POST',
@@ -400,32 +449,171 @@
     <div class="alert alert-info" style="max-width:600px; margin:0 auto 2.5rem auto; text-align:center; font-size:1.08rem;">
         Hizmetin talebine ve içeriğine göre fiyatlandırılıp geri dönüş yapılacaktır.
     </div>
-    <div class="peyzaj-form-box" style="max-width:500px; margin:0 auto; background:#fff; border-radius:1.2rem; box-shadow:0 8px 32px 0 rgba(31,38,135,0.10); padding:2rem 1.5rem 1.5rem 1.5rem;">
+    <div class="peyzaj-form-box" style="max-width:550px; margin:0 auto; background:#fff; border-radius:1.2rem; box-shadow:0 8px 32px 0 rgba(31,38,135,0.10); padding:2rem 1.5rem 1.5rem 1.5rem;">
         <h4 style="font-size:1.15rem; font-weight:700; color:#123524; margin-bottom:1.1rem; text-align:center;">Peyzaj Hizmeti Talep Formu</h4>
         <form id="peyzajForm" action="https://formspree.io/f/xldlrpza" method="POST">
-            <label for="peyzaj-name">Adınız Soyadınız</label>
-            <input type="text" id="peyzaj-name" name="name" required placeholder="Adınızı giriniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
-            <label for="peyzaj-email">E-posta</label>
-            <input type="email" id="peyzaj-email" name="email" required placeholder="E-posta adresiniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
-            <label for="peyzaj-service">Hizmet Seçimi</label>
-            <select id="peyzaj-service" name="service" required style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+            <label for="peyzaj-adSoyad">Adınız Soyadınız</label>
+            <input type="text" id="peyzaj-adSoyad" name="adSoyad" required placeholder="Adınızı giriniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+            <label for="peyzaj-eposta">E-posta</label>
+            <input type="email" id="peyzaj-eposta" name="eposta" required placeholder="E-posta adresiniz" style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
+            <label for="peyzaj-hizmet">Hizmet Seçimi</label>
+            <select id="peyzaj-hizmet" name="hizmet" required style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;">
                 <option value="">Hizmet seçiniz</option>
                 <option>Bahçe Bakımı</option>
                 <option>Ağaç Dikimi</option>
                 <option>Çim Ekimi</option>
                 <option>Ek Hizmetler</option>
+                <option>Diğer</option>
             </select>
-            <label for="peyzaj-message">Mesajınız</label>
-            <textarea id="peyzaj-message" name="message" rows="4" required placeholder="Bahçeniz veya talebiniz hakkında detay verebilirsiniz..." style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;"></textarea>
+            <label for="peyzaj-mesaj">Mesajınız</label>
+            <textarea id="peyzaj-mesaj" name="mesaj" rows="4" required placeholder="Bahçeniz veya talebiniz hakkında detay verebilirsiniz..." style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;"></textarea>
             <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                <input class="form-check-input" type="checkbox" id="peyzajKvkk" name="kvkk" required style="width:16px; height:16px; margin:0;">
+                <input class="form-check-input" type="checkbox" id="peyzajKvkk" name="peyzajKvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
                 <label class="form-check-label" for="peyzajKvkk" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
                     <a href="#" id="peyzajKvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                 </label>
             </div>
-            <button type="submit" style="background:linear-gradient(135deg,#5A827E 0%,#FAFFCA 100%); color:#123524; font-weight:700; border:none; border-radius:0.6rem; padding:0.8rem 1.2rem; font-size:1.08rem; cursor:pointer; width:100%;">Peyzaj Hizmeti Talebi Gönder</button>
+            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                <input class="form-check-input" type="checkbox" id="peyzajKvkkRiza" name="peyzajKvkkRiza" required style="width:16px; height:16px; margin:0;">
+                <label class="form-check-label" for="peyzajKvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                    <a href="#" id="peyzajKvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                </label>
+            </div>
+            <button type="submit" style="background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%); color: #fff; font-weight: 700; font-size: 1.15rem; border-radius: 0.7rem; padding: 0.7rem 0; box-shadow: 0 2px 8px 0 rgba(56,142,60,0.10); transition: background 0.2s, box-shadow 0.2s; border: none; width: 100%;">Peyzaj Hizmeti Talebi Gönder</button>
         </form>
-    </div>
+        <!-- Bootstrap Modal KVKK Aydınlatma -->
+        <div class="modal fade" id="peyzajKvkkAydinlatmaModal" tabindex="-1" aria-labelledby="peyzajKvkkAydinlatmaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="peyzajKvkkAydinlatmaModalLabel">Kişisel Verilerin Korunması Aydınlatma Metni</h5>
+                <button type="button" class="btn-close" aria-label="Kapat" id="peyzajKvkkAydinlatmaClose"></button>
+              </div>
+              <div class="modal-body" style="font-size:1rem; color:#222;">
+                <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, <b>AnatoliaRoot</b> olarak tarafımıza ilettiğiniz kişisel verilerinizin işlenme amaçları, hukuki sebepleri, toplanma yöntemi, kimlere ve hangi amaçla aktarılabileceği ve KVKK kapsamındaki haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
+                <h6 class="mt-3">1. Kişisel Verilerin İşlenme Amacı</h6>
+                <p>Peyzaj hizmeti talep formu aracılığıyla paylaştığınız ad, soyad, e-posta adresi, hizmet seçimi ve mesaj bilgileriniz; yalnızca talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir.</p>
+                <p><strong>Zorunlu Kişisel Veriler:</strong> Ad Soyad, e-posta adresi, hizmet seçimi ve mesaj alanları peyzaj hizmeti verebilmek için zorunludur. Bu bilgiler olmadan talebinizi değerlendiremeyiz. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
+                <h6 class="mt-3">2. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h6>
+                <p>Kişisel verileriniz, web sitemizdeki peyzaj hizmeti talep formu aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK md. 5/1-a kapsamında "açık rızanızın bulunması" hukuki sebebine dayanmaktadır.</p>
+                <h6 class="mt-3">3. Kişisel Verilerin Aktarılması</h6>
+                <p>Kişisel verileriniz, yasal yükümlülükler haricinde hiçbir şekilde üçüncü şahıslarla paylaşılmaz ve yurt dışına aktarılmaz.</p>
+                <h6 class="mt-3">4. Kişisel Verilerin Saklanma Süresi</h6>
+                <p>Peyzaj hizmeti talep formu ile paylaşılan kişisel veriler, 3 yıl süreyle saklanır ve bu sürenin sonunda güvenli şekilde silinir.</p>
+                <h6 class="mt-3">5. KVKK Kapsamındaki Haklarınız</h6>
+                <p>KVKK md. 11 uyarınca sahip olduğunuz haklar:</p>
+                <ul>
+                  <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+                  <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+                  <li>Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+                  <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme</li>
+                  <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme</li>
+                  <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Bootstrap Modal KVKK Açık Rıza -->
+        <div class="modal fade" id="peyzajKvkkRizaModal" tabindex="-1" aria-labelledby="peyzajKvkkRizaModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="peyzajKvkkRizaModalLabel">KVKK Açık Rıza Metni</h5>
+                <button type="button" class="btn-close" aria-label="Kapat" id="peyzajKvkkRizaClose"></button>
+              </div>
+              <div class="modal-body" style="font-size:1rem; color:#222;">
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) md. 5/1-a kapsamında, peyzaj hizmeti talep formu aracılığıyla paylaştığım kişisel verilerimin yukarıda belirtilen aydınlatma metni doğrultusunda toplanmasına, işlenmesine ve belirtilen amaçlarla kullanılmasına bilinçli ve açık rızamla izin veriyorum.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+        document.getElementById('peyzajForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var peyzajKvkk = document.getElementById('peyzajKvkk');
+            var peyzajKvkkRiza = document.getElementById('peyzajKvkkRiza');
+            if (!peyzajKvkk.checked || !peyzajKvkkRiza.checked) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Uyarı',
+                    text: 'Formu gönderebilmek için her iki KVKK onay kutusunu da işaretlemelisiniz.'
+                });
+                return;
+            }
+            const formData = new FormData(peyzajForm);
+            
+            // Sadece formSource alanını ekle (Türkçe ve tek)
+            formData.append('formSource', 'Peyzaj Hizmeti Formu - Hizmetler Sayfası');
+            
+            try {
+                const response = await fetch(peyzajForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+                if (response.ok) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Başarılı!',
+                        text: 'Peyzaj hizmeti talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.',
+                        confirmButtonText: 'Tamam'
+                    });
+                    peyzajForm.reset();
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Hata',
+                        text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+                    });
+                }
+            } catch (err) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: 'Bir hata oluştu, lütfen tekrar deneyin.'
+                });
+            }
+        });
+        // Modal açma işlemleri
+        document.getElementById('peyzajKvkkModalLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('peyzajKvkkAydinlatmaModal'));
+            modal.show();
+        });
+        document.getElementById('peyzajKvkkRizaModalLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('peyzajKvkkRizaModal'));
+            modal.show();
+        });
+        
+        // Modal kapatma işlemleri - Focus yönetimi ile
+        document.getElementById('peyzajKvkkAydinlatmaModal').addEventListener('hidden.bs.modal', function () {
+            // Modal kapandığında focus'u link'e geri döndür
+            document.getElementById('peyzajKvkkModalLink').focus();
+        });
+        
+        document.getElementById('peyzajKvkkRizaModal').addEventListener('hidden.bs.modal', function () {
+            // Modal kapandığında focus'u link'e geri döndür
+            document.getElementById('peyzajKvkkRizaModalLink').focus();
+        });
+        
+        // Modal kapatma butonlarına tıklama olayları
+        document.getElementById('peyzajKvkkAydinlatmaClose').addEventListener('click', function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('peyzajKvkkAydinlatmaModal'));
+            if (modal) {
+                modal.hide();
+            }
+        });
+        
+        document.getElementById('peyzajKvkkRizaClose').addEventListener('click', function() {
+            var modal = bootstrap.Modal.getInstance(document.getElementById('peyzajKvkkRizaModal'));
+            if (modal) {
+                modal.hide();
+            }
+        });
+        </script>
+</div>
 </div>
 <style>
 .peyzaj-cards-row { flex-wrap: wrap; }
@@ -479,60 +667,38 @@
     .peyzaj-cards-row { flex-direction: column; gap: 1.2rem; }
     .peyzaj-card { max-width: 100%; min-width: 0; }
 }
+
+/* Modal düzeltmeleri */
+.modal .btn-close {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    border-radius: 0.25rem;
+}
+
+.modal .btn-close:hover {
+    opacity: 1;
+    color: #000;
+}
+
+.modal .btn-close:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Modal backdrop düzeltmesi */
+.modal-backdrop {
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}
 </style>
-<script>
-// Peyzaj form KVKK modal
-const peyzajKvkkModalLink = document.getElementById('peyzajKvkkModalLink');
-if (peyzajKvkkModalLink) {
-    peyzajKvkkModalLink.addEventListener('click', function(e) {
-        e.preventDefault();
-        var modal = new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal'));
-        modal.show();
-    });
-}
-// Peyzaj form submit SweetAlert2
-const peyzajForm = document.getElementById('peyzajForm');
-if (peyzajForm) {
-    peyzajForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        var peyzajKvkk = document.getElementById('peyzajKvkk');
-        if (!peyzajKvkk.checked) {
-            Swal.fire({
-                icon: 'warning',
-                title: 'Uyarı',
-                text: 'Formu gönderebilmek için KVKK onay kutusunu işaretlemelisiniz.'
-            });
-            return;
-        }
-        const formData = new FormData(peyzajForm);
-        try {
-            const response = await fetch(peyzajForm.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Başarılı!',
-                    text: 'Peyzaj hizmeti talebiniz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.',
-                    confirmButtonText: 'Tamam'
-                });
-                peyzajForm.reset();
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Hata',
-                    text: 'Bir hata oluştu, lütfen tekrar deneyin.'
-                });
-            }
-        } catch (err) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Hata',
-                text: 'Bir hata oluştu, lütfen tekrar deneyin.'
-            });
-        }
-    });
-}
-</script> 
+ 

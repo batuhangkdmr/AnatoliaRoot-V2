@@ -1,55 +1,63 @@
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
+using AnatoliaRoot_V2.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace AnatoliaRoot_V2
 {
-    using AnatoliaRoot_V2.Models;
-    using AnatoliaRoot_V2.Data;
-    using Microsoft.EntityFrameworkCore;
-    using AnatoliaRoot_V2.Services;
-
     public class Program
     {
         public static void Main(string[] args)
         {
-            var builder = WebApplication.CreateBuilder(args);
+            var host = CreateHostBuilder(args).Build();
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-            builder.Services.AddScoped<ICloudinaryService, CloudinaryService>();
-            builder.Services.AddAuthentication("AdminCookie")
-                .AddCookie("AdminCookie", options =>
-                {
-                    options.LoginPath = "/Account/Login";
-                    options.LogoutPath = "/Account/Logout";
-                    options.AccessDeniedPath = "/Account/Login";
-                    options.Cookie.Name = "AnatoliaRootAdminAuth";
-                    options.ExpireTimeSpan = TimeSpan.FromHours(8);
-                });
-            builder.Services.AddAuthorization();
-
-            var app = builder.Build();
-
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
+            using (var scope = host.Services.CreateScope())
             {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
+                var services = scope.ServiceProvider;
+                try
+                {
+                    var context = services.GetRequiredService<AppDbContext>();
+                    
+                    // Veritabanının var olup olmadığını kontrol et
+                    if (!context.Database.CanConnect())
+                    {
+                        context.Database.EnsureCreated();
+                    }
+                    else
+                    {
+                        // Migration history tablosuna manuel kayıt ekle
+                        var connection = context.Database.GetDbConnection();
+                        connection.Open();
+                        
+                        using (var command = connection.CreateCommand())
+                        {
+                            command.CommandText = @"
+                                IF NOT EXISTS (SELECT * FROM [__EFMigrationsHistory] WHERE [MigrationId] = '20250715162127_InitialCreate')
+                                BEGIN
+                                    INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion]) 
+                                    VALUES ('20250715162127_InitialCreate', '3.1.32')
+                                END";
+                            command.ExecuteNonQuery();
+                        }
+                    }
+                }
+                catch (System.Exception ex)
+                {
+                    var logger = services.GetRequiredService<ILogger<Program>>();
+                    logger.LogError(ex, "An error occurred while setting up the database.");
+                }
             }
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
-
-            app.UseRouting();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
-
-            app.Run();
+            host.Run();
         }
+
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args)
+                .ConfigureWebHostDefaults(webBuilder =>
+                {
+                    webBuilder.UseStartup<Startup>();
+                });
     }
 }
