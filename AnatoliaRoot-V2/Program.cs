@@ -47,7 +47,7 @@ namespace AnatoliaRoot_V2
                 {
                     var logger = services.GetRequiredService<ILogger<Program>>();
                     logger.LogError(ex, "An error occurred while setting up the database.");
-                }
+            }
             }
 
             host.Run();

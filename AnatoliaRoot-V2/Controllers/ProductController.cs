@@ -23,19 +23,56 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // GET: Product - Sadece ürünleri göster
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? categoryId = null)
         {
             var categories = await _context.Categories.ToListAsync();
-            var products = await _context.Products
-                .Include(p => p.Category)
-                .ToListAsync();
-            
+            List<Product> products;
+            if (categoryId.HasValue)
+            {
+                var selectedCategory = categories.FirstOrDefault(c => c.Id == categoryId.Value);
+                if (selectedCategory != null)
+                {
+                    if (selectedCategory.ParentCategoryId == null)
+                    {
+                        // Ana kategori: kendisi ve alt kategorilerdeki ürünler
+                        var altKategoriIdler = categories
+                            .Where(c => c.ParentCategoryId == selectedCategory.Id)
+                            .Select(c => c.Id)
+                            .ToList();
+                        altKategoriIdler.Add(selectedCategory.Id);
+                        products = await _context.Products
+                            .Include(p => p.Category)
+                            .Where(p => altKategoriIdler.Contains(p.CategoryId))
+                            .ToListAsync();
+                    }
+                    else
+                    {
+                        // Alt kategori: sadece bu kategoriye ait ürünler
+                        products = await _context.Products
+                            .Include(p => p.Category)
+                            .Where(p => p.CategoryId == selectedCategory.Id)
+                            .ToListAsync();
+                    }
+                }
+                else
+                {
+                    products = await _context.Products
+                        .Include(p => p.Category)
+                        .ToListAsync();
+                }
+            }
+            else
+            {
+                products = await _context.Products
+                    .Include(p => p.Category)
+                    .ToListAsync();
+            }
             var viewModel = new ProductIndexViewModel
             {
                 Categories = categories,
-                Products = products
+                Products = products,
+                SelectedCategoryId = categoryId
             };
-            
             return View(viewModel);
         }
 
