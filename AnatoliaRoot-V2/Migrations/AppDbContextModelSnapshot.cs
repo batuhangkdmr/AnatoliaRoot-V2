@@ -41,6 +41,88 @@ namespace AnatoliaRoot_V2.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("AnatoliaRoot_V2.Models.ExchangeRate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("EurRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("EurTry")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<decimal>("UsdRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("UsdTry")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ExchangeRates");
+                });
+
+            modelBuilder.Entity("AnatoliaRoot_V2.Models.GoldPrice", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<decimal>("ChangeRate")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Currency")
+                        .HasColumnType("nvarchar(10)")
+                        .HasMaxLength(10);
+
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("DayHigh")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("DayLow")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Exchange")
+                        .HasColumnType("nvarchar(50)")
+                        .HasMaxLength(50);
+
+                    b.Property<decimal>("GramGold")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("HalfGold")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("PrevClose")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("QuarterGold")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Source")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<long>("Timestamp")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("GoldPrices");
+                });
+
             modelBuilder.Entity("AnatoliaRoot_V2.Models.Product", b =>
                 {
                     b.Property<int>("Id")

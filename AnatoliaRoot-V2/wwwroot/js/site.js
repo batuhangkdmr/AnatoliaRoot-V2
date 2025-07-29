@@ -31,16 +31,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Mobil menü toggle
-    const burgerIcon = document.querySelector('.burger-icon');
-    const navbarCollapse = document.querySelector('#navbarCollapse');
-    
-    if (burgerIcon && navbarCollapse) {
-        burgerIcon.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
-            burgerIcon.classList.toggle('active');
-        });
-    }
+    // Mobil menü toggle - main.js'de zaten tanımlı olduğu için burada kaldırıldı
+    // Burger menü işlevselliği main.js dosyasında yönetiliyor
 
     // Dropdown menüler için
     const subnavs = document.querySelectorAll('.subnav');

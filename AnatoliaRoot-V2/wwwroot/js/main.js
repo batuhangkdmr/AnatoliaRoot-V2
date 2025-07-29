@@ -250,12 +250,39 @@ window.jQuery(document).ready(function($) {
 
 });
 
-// Burger menü kodu - event çakışmalarını engelle
-$(document).off('click.burger').on('click.burger', '.burger-icon', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    $(this).toggleClass('change');
-    $("#navbarCollapse").stop(true, true).slideToggle();
+// Burger menü kodu - tamamen yeniden yazıldı
+$(document).ready(function() {
+    var isAnimating = false;
+    
+    $(document).off('click.burger').on('click.burger', '.burger-icon', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
+        if (isAnimating) return; // Animasyon devam ediyorsa işlemi engelle
+        
+        var $burgerIcon = $(this);
+        var $navbarCollapse = $("#navbarCollapse");
+        var isVisible = $navbarCollapse.is(':visible');
+        
+        isAnimating = true;
+        
+        if (isVisible) {
+            // Menüyü kapat
+            $burgerIcon.removeClass('change');
+            $navbarCollapse.slideUp(300, function() {
+                $navbarCollapse.removeClass('show');
+                isAnimating = false;
+            });
+        } else {
+            // Menüyü aç
+            $burgerIcon.addClass('change');
+            $navbarCollapse.slideDown(300, function() {
+                $navbarCollapse.addClass('show');
+                isAnimating = false;
+            });
+        }
+    });
 });
 
 // Sadece alt menü başlıklarını engelle, alt menü içindeki linkleri engelleme

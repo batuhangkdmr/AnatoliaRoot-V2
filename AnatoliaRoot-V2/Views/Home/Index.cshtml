@@ -21,37 +21,461 @@
     </div>
 </div>
 
-<!-- Projects Section -->
-<div id="projects" class="wrap-bg-small">
-    <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <div class="section-title with-p">
-                    <br>
-                    <br>
-                    <br>
-                    <h2>ANATOLIA ROOT DÜNYASI <br> TOKAT YAYLASI</h2>
-                    <p style="font-size: 20px; color: #535353;">Sizin için en iyisini yapana kadar, yine bizim hizmetlerimiz sizler için en iyisi.</p>
-                </div>
-            </div>
+
+<!-- Anatolia World Info Section -->
+<div class="container my-5">
+    <div class="row align-items-center">
+        <!-- Sol: Açıklama Yazısı -->
+        <div class="col-lg-7 col-md-6 mb-4 mb-lg-0">
+            <h3 class="mb-3" style="font-weight:700; color:#2d2d2d;">Anadolu'nun Bereketi, Modern Hizmetlerle Buluşuyor</h3>
+            <p style="font-size:1.15rem; color:#444;">
+                Anadolu'nun bereketli topraklarında yetişen doğal ve kaliteli ürünlerin satışını yapıyoruz. Ayrıca <b>peyzaj hizmetleri</b> ile yaşam alanlarınızı güzelleştiriyor, <b>danışmanlık</b> ve <b>tedarik</b> hizmetlerimizle iş ortaklarımıza sürdürülebilir çözümler sunuyoruz. Anadolu'nun zenginliğini, modern hizmet anlayışıyla birleştirerek sizlere ulaştırıyoruz.
+            </p>
         </div>
-        <div class="rotating-world-container">
-            <div class="rotating-world">
-                <div class="world-continents"></div>
-            </div>
-            <div class="world-orbit"></div>
-        </div>
-        <div class="world-info">
-           <br>
-           <br>
-           <br>
-           <br>
+        <!-- Sağ: Görsel -->
+        <div class="col-lg-5 col-md-6 text-center">
+            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753453326/business-8941891_1280_jclsxg.jpg" alt="Anadolu Hizmetleri" class="img-fluid rounded shadow" style="max-height:320px; object-fit:cover;" loading="lazy" />
         </div>
     </div>
 </div>
 
-<!-- Anatolia World Section -->
-<div id="anatolia-world" class="wrap-bg-small">
+
+<!-- Projects Section -->
+<div class="container mt-5">
+    <!-- Kurlar Yan Yana -->
+    <div class="row mb-4">
+        <!-- Döviz Kurları -->
+        <div class="col-lg-6 col-md-6 mb-4">
+            @if (ViewBag.ExchangeRate != null)
+            {
+                var kur = (AnatoliaRoot_V2.Models.ViewModels.ExchangeRateViewModel)ViewBag.ExchangeRate;
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0"><strong>Döviz Kurları</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-6">
+                                <h5>1 USD = @kur.UsdTry.ToString("N2") TL</h5>
+                            </div>
+                            <div class="col-6">
+                                <h5>1 EUR = @kur.EurTry.ToString("N2") TL</h5>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                Güncellenme: @kur.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm")<br />
+                                Kaynak: @kur.Source
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center h-100">
+                    <h5>Döviz kuru bilgisi bulunamadı.</h5>
+                </div>
+            }
+        </div>
+
+        <!-- Altın Kurları -->
+        <div class="col-lg-6 col-md-6 mb-4">
+            @if (ViewBag.GoldPrice != null)
+            {
+                var altin = (AnatoliaRoot_V2.Models.ViewModels.GoldPriceViewModel)ViewBag.GoldPrice;
+                <div class="card shadow-sm h-100">
+                    <div class="card-header bg-warning text-dark">
+                        <h4 class="mb-0"><strong>Altın Kurları</strong></h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row text-center">
+                            <div class="col-4">
+                                <h6>Gram Altın:</h6>
+                                <h5>@altin.GramGold.ToString("N2") TL</h5>
+                            </div>
+                            <div class="col-4">
+                                <h6>Çeyrek Altın:</h6>
+                                <h5>@altin.QuarterGold.ToString("N2") TL</h5>
+                            </div>
+                            <div class="col-4">
+                                <h6>Yarım Altın:</h6>
+                                <h5>@altin.HalfGold.ToString("N2") TL</h5>
+                            </div>
+                        </div>
+                        @if (altin.ChangeRate != 0)
+                        {
+                            <div class="text-center mt-3">
+                                <h6>Değişim: <span class="@(altin.ChangeRate > 0 ? "text-success" : "text-danger")">@(altin.ChangeRate > 0 ? "+" : "")@altin.ChangeRate.ToString("N2")%</span></h6>
+                            </div>
+                        }
+                        <div class="text-center mt-3">
+                            <small class="text-muted">
+                                Güncellenme: @altin.Date.ToLocalTime().ToString("dd.MM.yyyy HH:mm")<br />
+                                Kaynak: @altin.Source
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="alert alert-warning text-center h-100">
+                    <h5>Altın kuru bilgisi bulunamadı.</h5>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- ANATOLIA ROOT DÜNYASI Alt Kısım -->
+@*     <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="mb-3" style="font-weight: 700; color: #2d2d2d;">ANATOLIA ROOT DÜNYASI</h2>
+            <p style="font-size: 1.2rem; color: #535353;">
+                Sizin için en iyisini yapana kadar, yine bizim hizmetlerimiz sizler için en iyisi.
+            </p>
+        </div>
+    </div> *@
+</div>
+
+<!-- Anadolia Carousel Section -->
+<div class="container my-4">
+    <!-- Hizmetlerimiz -->
+    <div class="card h-100 shadow-sm text-center border-0 mb-4" style="border-radius:1.2rem;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+            <div style="font-size:2.5rem; color:#388e3c; margin-bottom:1rem;"><i class="fa fa-handshake-o"></i></div>
+            <h4 class="mb-2" style="font-weight:700;">Hizmetlerimiz</h4>
+            <p style="font-size:1.08rem; color:#444;">Danışmanlık, peyzaj ve tedarik hizmetlerimizle işinizi büyütün.</p>
+            <a href="/Home/Services" class="btn btn-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Hizmetlerimizi İncele</a>
+            <!-- Masaüstü Grid Görünümü -->
+            <div class="d-none d-md-block">
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716259/danismanlik_zf1rsz.jpg" alt="Danışmanlık" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-user-tie"></i></div>
+                            <h5>Danışmanlık</h5>
+                            <p class="consulting-desc">Gıda üretimi, satış-pazarlama ve ihracat alanlarında uzman danışmanlık.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716484/peyzajVeBahce_c1yirp.jpg" alt="Peyzaj ve Bahçe Bakımı" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-tree"></i></div>
+                            <h5>Peyzaj ve Bahçe Bakımı</h5>
+                            <p class="consulting-desc">Bahçe bakımı, ağaç dikimi, çim ekimi ve ek hizmetler.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716582/tedarik_uriycg.jpg" alt="Tedarik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-truck"></i></div>
+                            <h5>Tedarik</h5>
+                            <p class="consulting-desc">Anadolu'nun doğal ürünlerinin güvenli tedariki.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobil Grid Görünümü -->
+            <div class="d-md-none">
+                <div class="row mt-4">
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716259/danismanlik_zf1rsz.jpg" alt="Danışmanlık" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-user-tie"></i></div>
+                            <h5>Danışmanlık</h5>
+                            <p class="consulting-desc">Gıda üretimi, satış-pazarlama ve ihracat alanlarında uzman danışmanlık.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716484/peyzajVeBahce_c1yirp.jpg" alt="Peyzaj ve Bahçe Bakımı" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-tree"></i></div>
+                            <h5>Peyzaj ve Bahçe Bakımı</h5>
+                            <p class="consulting-desc">Bahçe bakımı, ağaç dikimi, çim ekimi ve ek hizmetler.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716582/tedarik_uriycg.jpg" alt="Tedarik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-truck"></i></div>
+                            <h5>Tedarik</h5>
+                            <p class="consulting-desc">Anadolu'nun doğal ürünlerinin güvenli tedariki.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Carousel Sonu -->
+        </div>
+    </div>
+    <!-- Fikirler & Projeler -->
+    <div class="card h-100 shadow-sm text-center border-0 mb-4" style="border-radius:1.2rem;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+            <div style="font-size:2.5rem; color:#0B18C9; margin-bottom:1rem;"><i class="fa fa-lightbulb-o"></i></div>
+            <h4 class="mb-2" style="font-weight:700;">Fikirler & Projeler</h4>
+            <p style="font-size:1.08rem; color:#444;">Yaratıcı fikirlerinizi paylaşın, birlikte geliştirelim.</p>
+            <a href="/Category/Ideas" class="btn btn-primary mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Fikirlerini Paylaş</a>
+            <!-- Masaüstü Grid Görünümü -->
+            <div class="d-none d-md-block">
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716652/FikirPaylasimi_rn271i.jpg" alt="Fikir Paylaşımı" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-share-alt"></i></div>
+                            <h5>Fikir Paylaşımı</h5>
+                            <p class="consulting-desc">Yaratıcı fikirlerinizi paylaşın, toplulukla birlikte geliştirin.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716834/Gizlilik_c4rjfu.jpg" alt="Gizlilik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-shield"></i></div>
+                            <h5>Gizlilik</h5>
+                            <p class="consulting-desc">Tüm fikirler sadece yöneticilere ulaşır, gizlilikle değerlendirilir.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716961/cozumVeGeridonus_od2glz.jpg" alt="Çözüm ve Geri Dönüş" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-comments"></i></div>
+                            <h5>Çözüm ve Geri Dönüş</h5>
+                            <p class="consulting-desc">Fikrinize çözüm önerisi ve hızlı geri dönüş.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobil Grid Görünümü -->
+            <div class="d-md-none">
+                <div class="row mt-4">
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716652/FikirPaylasimi_rn271i.jpg" alt="Fikir Paylaşımı" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-share-alt"></i></div>
+                            <h5>Fikir Paylaşımı</h5>
+                            <p class="consulting-desc">Yaratıcı fikirlerinizi paylaşın, toplulukla birlikte geliştirin.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716834/Gizlilik_c4rjfu.jpg" alt="Gizlilik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-shield"></i></div>
+                            <h5>Gizlilik</h5>
+                            <p class="consulting-desc">Tüm fikirler sadece yöneticilere ulaşır, gizlilikle değerlendirilir.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753716961/cozumVeGeridonus_od2glz.jpg" alt="Çözüm ve Geri Dönüş" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-comments"></i></div>
+                            <h5>Çözüm ve Geri Dönüş</h5>
+                            <p class="consulting-desc">Fikrinize çözüm önerisi ve hızlı geri dönüş.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Gıda Tedarik -->
+    <div class="card h-100 shadow-sm text-center border-0 mb-4" style="border-radius:1.2rem;">
+        <div class="card-body d-flex flex-column align-items-center justify-content-center">
+            <div style="font-size:2.5rem; color:#b1cfb1; margin-bottom:1rem;"><i class="fa fa-leaf"></i></div>
+            <h4 class="mb-2" style="font-weight:700;">Gıda Tedarik</h4>
+            <p style="font-size:1.08rem; color:#444;">Anadolu’nun doğal ürünlerini güvenle temin edin.</p>
+            <a href="/Category/Food" class="btn btn-outline-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Gıda Tedarik</a>
+            <!-- Masaüstü Grid Görünümü -->
+            <div class="d-none d-md-block">
+                <div class="row mt-4">
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753717165/TamTedarik_jt4ci3.jpg" alt="Tam Tedarik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-archive"></i></div>
+                            <h5>Tam Tedarik</h5>
+                            <p class="consulting-desc">Her türlü gıda ürününü güvenilir tedarikçilerden temin.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718195/MarkaVeMuadil_h1aqav.jpg" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-tags"></i></div>
+                            <h5>Marka ve Muadil</h5>
+                            <p class="consulting-desc">Marka veya Muadiliyle Size En Uygun Teklif.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718426/HizliVeSeffaf_apjhnj.jpg" alt="Hızlı ve Şeffaf" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-bolt"></i></div>
+                            <h5>Hızlı ve Şeffaf</h5>
+                            <p class="consulting-desc">Hızlı, şeffaf ve size özel teklif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobil Grid Görünümü -->
+            <div class="d-md-none">
+                <div class="row mt-4">
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753717165/TamTedarik_jt4ci3.jpg" alt="Tam Tedarik" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-archive"></i></div>
+                            <h5>Tam Tedarik</h5>
+                            <p class="consulting-desc">Her türlü gıda ürününü güvenilir tedarikçilerden temin.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718195/MarkaVeMuadil_h1aqav.jpg" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-tags"></i></div>
+                            <h5>Marka ve Muadil</h5>
+                            <p class="consulting-desc">Marka veya Muadiliyle Size En Uygun Teklif.</p>
+                        </div>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
+                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718426/HizliVeSeffaf_apjhnj.jpg" alt="Hızlı ve Şeffaf" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <div class="consulting-icon pulse-anim"><i class="fa fa-bolt"></i></div>
+                            <h5>Hızlı ve Şeffaf</h5>
+                            <p class="consulting-desc">Hızlı, şeffaf ve size özel teklif.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+/* Kurlar için kart stilleri */
+.card {
+    border-radius: 1rem;
+    border: none;
+}
+
+.card-header {
+    border-radius: 1rem 1rem 0 0 !important;
+    border-bottom: none;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+h4, h5, h6 {
+    margin-bottom: 0.5rem;
+}
+
+.text-success {
+    color: #28a745 !important;
+}
+
+.text-danger {
+    color: #dc3545 !important;
+}
+
+@@media (max-width: 768px) {
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    .col-4 h5 {
+        font-size: 1rem;
+    }
+}
+
+.scroll-cards-row {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+.scroll-cards-row > .card {
+    min-width: 260px;
+    max-width: 320px;
+    flex: 1 1 30%;
+    height: 340px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    background: #fff;
+    margin-bottom: 0.5rem;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.scroll-cards-row > .card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    transform: translateY(-4px) scale(1.03);
+}
+.scroll-cards-row .consulting-desc {
+    font-size: 1rem;
+    color: #555;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    white-space: normal;
+    min-height: 2.5em;
+    max-height: 3.2em;
+}
+.scroll-cards-row h5 {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+@@media (max-width: 991.98px) {
+    .scroll-cards-row {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+        margin-left: -1rem;
+        margin-right: -1rem;
+    }
+    .scroll-cards-row > .card {
+        min-width: 80vw;
+        max-width: 85vw;
+        flex: 0 0 auto;
+        scroll-snap-align: start;
+        margin-right: 1rem;
+        margin-left: 0;
+        height: 340px;
+    }
+    .scroll-cards-row::-webkit-scrollbar {
+        height: 6px;
+        background: #f1f1f1;
+    }
+    .scroll-cards-row::-webkit-scrollbar-thumb {
+        background: #d1d1d1;
+        border-radius: 3px;
+    }
+}
+.carousel-dots {
+    gap: 0.5rem;
+}
+.carousel-dots span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #bbb;
+    margin: 0 3px;
+    transition: background 0.2s;
+}
+.carousel-dots span.active {
+    background: #388e3c;
+}
+</style>
+
+<!-- Anatolia World Section -->@* <div id="anatolia-world" class="wrap-bg-small">
     <div class="container">
         <div class="row justify-content-center text-center">
             <div class="col-lg-8">
@@ -69,7 +493,13 @@
         </div>
     </div>
 </div>
+ *@
 
+@section Styles {
+    <link rel="stylesheet" href="~/wwwroot/css/owl.carousel.min.css" />
+    <link rel="stylesheet" href="~/wwwroot/css/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+}
 @section Scripts {
     <!-- Sweet Alerts -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -97,3 +527,48 @@
     }
     </script>
 }
+<style>
+.subcard-carousel .card.consulting-card-modern {
+    min-width: 240px;
+    max-width: 280px;
+    height: 320px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 1rem;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+.subcard-carousel .card.consulting-card-modern:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+    transform: translateY(-4px) scale(1.03);
+}
+.subcard-carousel .consulting-desc {
+    font-size: 1rem;
+    color: #555;
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    white-space: normal;
+    min-height: 2.5em;
+    max-height: 3.2em;
+}
+.subcard-carousel h5 {
+    font-size: 1.08rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    margin-top: 0.2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+</style>
