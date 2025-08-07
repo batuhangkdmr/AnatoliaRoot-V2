@@ -20,30 +20,28 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // Public actions - Herkes erişebilir
+        [Route("gida")]
         public IActionResult Food()
         {
             ViewData["Title"] = "Gıda Ürünleri";
             return View();
         }
 
+        [Route("insaat")]
         public IActionResult Construction()
         {
             ViewData["Title"] = "İnşaat Hizmetleri";
             return View();
         }
 
-        public IActionResult Import()
+        [Route("ithalat-ihracat")]
+        public IActionResult Trade()
         {
-            ViewData["Title"] = "İthalat Hizmetleri";
+            ViewData["Title"] = "İthalat & İhracat Hizmetleri";
             return View();
         }
 
-        public IActionResult Export()
-        {
-            ViewData["Title"] = "İhracat Hizmetleri";
-            return View();
-        }
-
+        [Route("fikirler")]
         public IActionResult Ideas()
         {
             ViewData["Title"] = "Fikirler ve Projeler";
@@ -51,6 +49,7 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // Dashboard - Public erişim
+        [Route("kategoriler")]
         public async Task<IActionResult> Index()
         {
             var categories = await _context.Categories.ToListAsync();
@@ -59,12 +58,16 @@ namespace AnatoliaRoot_V2.Controllers
 
         // Admin actions - Sadece giriş yapmış kullanıcılar
         [Authorize]
-        public IActionResult Create(int? parentCategoryId = null)
+        public async Task<IActionResult> Create(int? parentCategoryId = null)
         {
             var model = new CategoryCreateViewModel
             {
                 ParentCategoryId = parentCategoryId
             };
+
+            // Mevcut kategorileri ViewBag'e ekle
+            ViewBag.ParentCategories = await _context.Categories.ToListAsync();
+            
             return View(model);
         }
 
@@ -96,18 +99,27 @@ namespace AnatoliaRoot_V2.Controllers
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.Categories
+                .Include(c => c.ParentCategory)
+                .FirstOrDefaultAsync(c => c.Id == id);
+                
             if (category == null)
             {
                 return NotFound();
             }
+
+            // Parent kategorileri ViewBag'e ekle
+            ViewBag.ParentCategories = await _context.Categories
+                .Where(c => c.Id != id) // Kendisini parent olarak seçemez
+                .ToListAsync();
+
             return View(category);
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,ParentCategoryId")] Category category)
         {
             if (id != category.Id)
             {
@@ -118,7 +130,27 @@ namespace AnatoliaRoot_V2.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    // Mevcut kategoriyi bul
+                    var existingCategory = await _context.Categories.FindAsync(id);
+                    if (existingCategory == null)
+                    {
+                        return NotFound();
+                    }
+
+                    // Sadece değişen alanları güncelle
+                    existingCategory.Name = category.Name;
+                    
+                    // Ana kategori ise ParentCategoryId'yi null olarak koru
+                    if (existingCategory.ParentCategoryId == null)
+                    {
+                        existingCategory.ParentCategoryId = null; // Ana kategori kalır
+                    }
+                    else
+                    {
+                        // Alt kategori ise ParentCategoryId'yi güncelle
+                        existingCategory.ParentCategoryId = category.ParentCategoryId;
+                    }
+
                     await _context.SaveChangesAsync();
                     TempData["Success"] = "Kategori başarıyla güncellendi.";
                 }
@@ -135,6 +167,12 @@ namespace AnatoliaRoot_V2.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
+            // Hata durumunda parent kategorileri tekrar yükle
+            ViewBag.ParentCategories = await _context.Categories
+                .Where(c => c.Id != id)
+                .ToListAsync();
+
             return View(category);
         }
 
@@ -164,12 +202,30 @@ namespace AnatoliaRoot_V2.Controllers
             var category = await _context.Categories.FindAsync(id);
             if (category != null)
             {
-                _context.Categories.Remove(category);
-                await _context.SaveChangesAsync();
-                TempData["Success"] = "Kategori başarıyla silindi.";
+                try
+                {
+                    // Kategoriye bağlı ürün var mı kontrol et
+                    var hasProducts = await _context.Products.AnyAsync(p => p.CategoryId == id);
+                    if (hasProducts)
+                    {
+                        return Json(new { success = false, message = "Bu kategoriye bağlı ürünler bulunmaktadır. Lütfen önce bu kategoriye bağlı ürünleri silip tekrar deneyiniz." });
+                    }
+
+                    _context.Categories.Remove(category);
+                    await _context.SaveChangesAsync();
+                    return Json(new { success = true, message = "Kategori başarıyla silindi." });
+                }
+                catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("REFERENCE constraint") == true)
+                {
+                    return Json(new { success = false, message = "Bu kategoriye bağlı ürünler bulunmaktadır. Lütfen önce bu kategoriye bağlı ürünleri silip tekrar deneyiniz." });
+                }
+                catch (Exception)
+                {
+                    return Json(new { success = false, message = "Kategori silinirken bir hata oluştu." });
+                }
             }
 
-            return RedirectToAction(nameof(Index));
+            return Json(new { success = false, message = "Kategori bulunamadı." });
         }
 
         private bool CategoryExists(int id)

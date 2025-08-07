@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.anatoliaroot.com/sitemap.xml
+
+# Disallow admin areas
+Disallow: /Admin/
+Disallow: /Account/
+Disallow: /Category/Create
+Disallow: /Category/Edit
+Disallow: /Category/Delete
+Disallow: /Product/Create
+Disallow: /Product/Edit
+Disallow: /Product/Delete
+Disallow: /Product/AdminIndex
+
+# Allow important pages
+Allow: /hizmetlerimiz
+Allow: /urunler
+Allow: /hakkimizda
+Allow: /misyonumuz
+Allow: /vizyonumuz
+Allow: /kalite-politikamiz
+Allow: /gida
+Allow: /insaat
+Allow: /ithalat-ihracat
+Allow: /fikirler
+Allow: /galeri
+Allow: /iletisim 

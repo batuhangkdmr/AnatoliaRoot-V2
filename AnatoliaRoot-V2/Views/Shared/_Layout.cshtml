@@ -141,16 +141,16 @@
             <div class="container">
                 <!-- Logo Alanı -->
                 <div class="navbar-header">
-                    <div class="navbar-brand">
-                        <a asp-controller="Home" asp-action="Index">
-                            <img 
-                                src="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png" 
-                                alt="AnatoliaRoot Yöresel Ürünler Logo"
-                                width="180" height="90"
-                                style="height: 81px; width: auto;"
-                            />
-                        </a>
-                    </div>
+                                         <div class="navbar-brand">
+                         <a href="/">
+                             <img 
+                                 src="https://res.cloudinary.com/dbhogeepn/image/upload/f_auto,q_auto/v1750510080/logo_qs1ll1.png" 
+                                 alt="AnatoliaRoot Yöresel Ürünler Logo"
+                                 width="180" height="90"
+                                 style="height: 81px; width: auto;"
+                             />
+                         </a>
+                     </div>
                 </div>
 
                 <!-- Mobil Menü İkonu -->
@@ -162,39 +162,38 @@
 
                 <!-- Menü -->
                 <div class="collapse navbar-collapse" id="navbarCollapse">
-                    <ul class="nav navbar-nav ml-auto">
-                        <li><a asp-controller="Home" asp-action="Services">Hizmetler</a></li>
-                        <li><a asp-controller="Product" asp-action="Index">Ürünler</a></li>
-                        <li class="subnav">
-                            <a href="javascript:void(0)">Kurumsal</a>
-                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
-                            <ul class="sub-menu">
-                                <li><a asp-controller="Home" asp-action="About">Hakkımızda</a></li>
-                                <li><a asp-controller="Home" asp-action="Mission">Misyonumuz</a></li>
-                                <li><a asp-controller="Home" asp-action="Vision">Vizyonumuz</a></li>
-                                <li><a asp-controller="Home" asp-action="Quality">Kalite Politikamız</a></li>
-                            </ul>
-                        </li>
-                        <li class="subnav">
-                            <a href="javascript:void(0)">Kategori</a>
-                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
-                            <ul class="sub-menu">
-                                <li><a asp-controller="Category" asp-action="Food">Gıda</a></li>
-                                <li><a asp-controller="Category" asp-action="Construction">İnşaat</a></li>
-                                <li><a asp-controller="Category" asp-action="Import">İthalat</a></li>
-                                <li><a asp-controller="Category" asp-action="Export">İhracat</a></li>
-                                <li><a asp-controller="Category" asp-action="Ideas">Fikirler</a></li>
-                            </ul>
-                        </li>
-                        <li class="subnav">
-                            <a href="javascript:void(0)">Medya</a>
-                            <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
-                            <ul class="sub-menu">
-                                <li><a asp-controller="Media" asp-action="Gallery">Resim galerisi</a></li>
-                            </ul>
-                        </li>
-                        <li><a asp-controller="Home" asp-action="Contact">İletişim</a></li>
-                    </ul>
+                                         <ul class="nav navbar-nav ml-auto">
+                         <li><a href="/hizmetlerimiz">Hizmetler</a></li>
+                         <li><a href="/urunler">Ürünler</a></li>
+                         <li class="subnav">
+                             <a href="javascript:void(0)">Kurumsal</a>
+                             <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
+                             <ul class="sub-menu">
+                                 <li><a href="/hakkimizda">Hakkımızda</a></li>
+                                 <li><a href="/misyonumuz">Misyonumuz</a></li>
+                                 <li><a href="/vizyonumuz">Vizyonumuz</a></li>
+                                 <li><a href="/kalite-politikamiz">Kalite Politikamız</a></li>
+                             </ul>
+                         </li>
+                         <li class="subnav">
+                             <a href="javascript:void(0)">Kategori</a>
+                             <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
+                             <ul class="sub-menu">
+                                 <li><a href="/gida">Gıda</a></li>
+                                 <li><a href="/insaat">İnşaat</a></li>
+                                 <li><a href="/ithalat-ihracat">İthalat & İhracat</a></li>
+                                 <li><a href="/fikirler">Fikirler</a></li>
+                             </ul>
+                         </li>
+                         <li class="subnav">
+                             <a href="javascript:void(0)">Medya</a>
+                             <div class="nav__expand"><i class="fa fa-chevron-down"></i></div>
+                             <ul class="sub-menu">
+                                 <li><a href="/galeri">Resim galerisi</a></li>
+                             </ul>
+                         </li>
+                         <li><a href="/iletisim">İletişim</a></li>
+                     </ul>
                 </div>
             </div>
         </nav>

@@ -37,13 +37,13 @@
                         </div>
                     </div>
                     
-                    <form asp-action="Delete" method="post">
+                    <form id="deleteForm" asp-action="Delete" method="post">
                         <input type="hidden" asp-for="Id" />
                         <div class="d-flex justify-content-between align-items-center">
                             <a asp-action="Index" class="btn btn-secondary btn-lg">
                                 <i class="fas fa-arrow-left"></i> İptal
                             </a>
-                            <button type="submit" class="btn btn-danger btn-lg">
+                            <button type="submit" class="btn btn-danger btn-lg" id="deleteBtn">
                                 <i class="fas fa-trash"></i> Evet, Sil
                             </button>
                         </div>
@@ -52,4 +52,84 @@
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-success text-white">
+                <h5 class="modal-title" id="successModalLabel">
+                    <i class="fas fa-check-circle"></i> Başarılı
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="successMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="window.location.href='@Url.Action("Index")'">
+                    <i class="fas fa-check"></i> Tamam
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="errorModalLabel">
+                    <i class="fas fa-exclamation-triangle"></i> Hata
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="errorMessage"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="fas fa-times"></i> Kapat
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            $('#deleteForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Butonu devre dışı bırak
+                $('#deleteBtn').prop('disabled', true).html('<i class="fas fa-spinner fa-spin"></i> Siliniyor...');
+                
+                $.ajax({
+                    url: '@Url.Action("Delete")',
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        if (response.success) {
+                            $('#successMessage').text(response.message);
+                            $('#successModal').modal('show');
+                        } else {
+                            $('#errorMessage').text(response.message);
+                            $('#errorModal').modal('show');
+                        }
+                    },
+                    error: function() {
+                        $('#errorMessage').text('Bir hata oluştu. Lütfen tekrar deneyiniz.');
+                        $('#errorModal').modal('show');
+                    },
+                    complete: function() {
+                        // Butonu tekrar aktif et
+                        $('#deleteBtn').prop('disabled', false).html('<i class="fas fa-trash"></i> Evet, Sil');
+                    }
+                });
+            });
+        });
+    </script>
+} 
