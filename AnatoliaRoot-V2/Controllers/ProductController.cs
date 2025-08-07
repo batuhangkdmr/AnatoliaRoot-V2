@@ -23,6 +23,7 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // GET: Product - Sadece ürünleri göster
+        [Route("urunler")]
         public async Task<IActionResult> Index(int? categoryId = null)
         {
             var categories = await _context.Categories.ToListAsync();

@@ -16,10 +16,6 @@
                 </div>
                 <div class="card-body">
                     <form asp-action="Create" method="post">
-                        @if (parentCategoryId != null)
-                        {
-                            <input type="hidden" asp-for="ParentCategoryId" value="@parentCategoryId" />
-                        }
                         <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
                         
                         <div class="mb-4">
@@ -29,6 +25,32 @@
                             <input asp-for="Name" class="form-control form-control-lg" placeholder="Örn: Gıda Ürünleri, İnşaat Malzemeleri..." />
                             <span asp-validation-for="Name" class="text-danger"></span>
                             <div class="form-text">Kategori adı benzersiz ve açıklayıcı olmalıdır.</div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="ParentCategoryId" class="form-label fw-bold">
+                                <i class="fas fa-sitemap"></i> Üst Kategori
+                            </label>
+                            <select name="ParentCategoryId" id="ParentCategoryId" class="form-select form-select-lg">
+                                <option value="">Ana Kategori (Üst kategori yok)</option>
+                                @if (ViewBag.ParentCategories != null)
+                                {
+                                    foreach (var parentCategory in ViewBag.ParentCategories)
+                                    {
+                                        if (Model.ParentCategoryId == parentCategory.Id)
+                                        {
+                                            <option value="@parentCategory.Id" selected>@parentCategory.Name</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@parentCategory.Id">@parentCategory.Name</option>
+                                        }
+                                    }
+                                }
+                            </select>
+                            <small class="form-text text-muted">
+                                Bu kategoriyi bir üst kategoriye bağlamak istiyorsanız seçiniz. Boş bırakırsanız ana kategori olur.
+                            </small>
                         </div>
                         
                         <div class="d-flex justify-content-between align-items-center">

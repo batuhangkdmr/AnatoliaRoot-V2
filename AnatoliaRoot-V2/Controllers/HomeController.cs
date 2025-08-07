@@ -26,6 +26,8 @@ namespace AnatoliaRoot_V2.Controllers
             _goldPriceService = goldPriceService;
         }
 
+        [Route("")]
+        [Route("anasayfa")]
         public async Task<IActionResult> Index()
         {
             var lastRate = await _context.ExchangeRates
@@ -70,30 +72,36 @@ namespace AnatoliaRoot_V2.Controllers
             return View();
         }
 
+        [Route("gizlilik")]
         public IActionResult Privacy()
         {
+            ViewData["Title"] = "Gizlilik Politikası";
             return View();
         }
 
         // Kurumsal Sayfaları
+        [Route("hakkimizda")]
         public IActionResult About()
         {
             ViewData["Title"] = "Hakkımızda";
             return View();
         }
 
+        [Route("misyonumuz")]
         public IActionResult Mission()
         {
             ViewData["Title"] = "Misyonumuz";
             return View();
         }
 
+        [Route("vizyonumuz")]
         public IActionResult Vision()
         {
             ViewData["Title"] = "Vizyonumuz";
             return View();
         }
 
+        [Route("kalite-politikamiz")]
         public IActionResult Quality()
         {
             ViewData["Title"] = "Kalite Politikamız";
@@ -101,6 +109,7 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // Hizmetler Sayfası
+        [Route("hizmetlerimiz")]
         public IActionResult Services()
         {
             ViewData["Title"] = "Hizmetlerimiz";
@@ -108,6 +117,7 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // İletişim Sayfası
+        [Route("iletisim")]
         public IActionResult Contact()
         {
             ViewData["Title"] = "İletişim";

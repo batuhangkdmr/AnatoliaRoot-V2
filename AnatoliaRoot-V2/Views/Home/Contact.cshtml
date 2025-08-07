@@ -2,104 +2,889 @@
     ViewData["Title"] = "İletişim";
 }
 
-<div class="wrap-bg-small">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+</head>
+
+<!-- Contact Section -->
+<div class="contact-section">
     <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <div class="section-title with-p">
-                    <h2>İLETİŞİM</h2>
-                    <p>Bizimle iletişime geçin.</p>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="contact-info">
-                    <h4>İletişim Bilgileri</h4>
-                    <div class="contact-item">
-                        <i class="fa fa-phone"></i>
-                        <p><a href="tel:+90 532 399 72 60">0532 399 72 60</a></p>
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="contact-wrapper">
+                    <!-- Contact Header -->
+                    <div class="contact-header text-center mb-5">
+                        <h1 class="contact-title animate__animated animate__fadeInUp">İLETİŞİM</h1>
+                        <p class="contact-subtitle animate__animated animate__fadeInUp animate__delay-1s">
+                            Bizimle iletişime geçin, size yardımcı olalım
+                        </p>
                     </div>
-                    <div class="contact-item">
-                        <i class="fa fa-envelope"></i>
-                        <p><a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a></p>
+
+                    <!-- Contact Info Cards -->
+                    <div class="row mb-5">
+                        <div class="col-md-4">
+                            <div class="contact-card animate__animated animate__fadeInUp animate__delay-1,2s">
+                                <div class="card-icon">
+                                    <i class="fa fa-map-marker"></i>
+                                </div>
+                                <h4>Adres</h4>
+                                <p>Tokat Merkez, Türkiye</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-card animate__animated animate__fadeInUp animate__delay-1,2s">
+                                <div class="card-icon">
+                                    <i class="fa fa-phone"></i>
+                                </div>
+                                <h4>Telefon</h4>
+                                <p>+90 532 399 72 60</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="contact-card animate__animated animate__fadeInUp animate__delay-1,4s">
+                                <div class="card-icon">
+                                    <i class="fa fa-envelope"></i>
+                                </div>
+                                <h4>E-posta</h4>
+                                <p>info@anatoliaroot.com</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fa fa-map-marker"></i>
-                        <p>Tokat Merkez</p>
+
+                    <!-- Contact Form -->
+                    <div class="contact-form-container">
+                        <div class="form-card animate__animated animate__fadeInUp animate__delay-1s">
+                            <h3 class="form-title">Mesaj Gönderin</h3>
+                            <form action="https://formspree.io/f/xldlrpza" method="POST" class="contact-form" id="contactForm">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-wrapper">
+                                                <input type="text" id="name" name="adSoyad" required>
+                                                <label for="name">Adınız</label>
+                                                <div class="input-line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="input-wrapper">
+                                                <input type="email" id="email" name="Mail" required>
+                                                <label for="email">E-posta Adresiniz</label>
+                                                <div class="input-line"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <input type="text" id="subject" name="konu" required>
+                                        <label for="subject">Konu</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <div class="input-wrapper">
+                                        <textarea id="message" name="mesaj" rows="5" required></textarea>
+                                        <label for="message">Mesajınız</label>
+                                        <div class="input-line"></div>
+                                    </div>
+                                </div>
+                                
+                                <!-- KVKK Checkboxes -->
+                                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
+                                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                                        <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                    </label>
+                                </div>
+                                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
+                                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
+                                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
+                                        <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                    </label>
+                                </div>
+                                
+                                <button type="submit" class="submit-btn animate__animated animate__pulse animate__infinite">
+                                    <span>Gönder</span>
+                                    <i class="fa fa-paper-plane"></i>
+                                </button>
+                            </form>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <div class="col-lg-6">
-                <div class="contact-form">
-                    <h4>Mesaj Gönderin</h4>
-                    <form id="contactForm" action="https://formspree.io/f/xldlrpza" method="POST">
-                        
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="adSoyad" placeholder="Adınız" required>
+
+                    <!-- Contact Footer -->
+                    <div class="contact-footer text-center mt-5 animate__animated animate__fadeInUp animate__delay-3s">
+                        <div class="footer-content">
+                            <h4>Bizimle İletişime Geçin</h4>
+                            <p>
+                                Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçebilirsiniz. 
+                                En kısa sürede size geri dönüş yapacağız.
+                            </p>
+                            <div class="social-links">
+                                <a href="#" class="social-link"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
+                                <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" class="form-control" name="eposta" placeholder="E-posta" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea class="form-control" name="mesaj" rows="5" placeholder="Mesajınız" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-custom">Gönder</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+    <div class="modal-content success-modal animate__animated animate__zoomIn">
+        <div class="modal-header">
+            <div class="success-icon">
+                <i class="fa fa-check-circle"></i>
+            </div>
+            <h3>Mesajınız Başarıyla Gönderildi!</h3>
+        </div>
+        <div class="modal-body">
+            <p>Teşekkür ederiz! Mesajınız başarıyla iletildi. En kısa sürede size geri dönüş yapacağız.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn success-btn" onclick="closeModal('successModal')">
+                <i class="fa fa-thumbs-up"></i>
+                Tamam
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Error Modal -->
+<div class="modal-overlay" id="errorModal">
+    <div class="modal-content error-modal animate__animated animate__zoomIn">
+        <div class="modal-header">
+            <div class="error-icon">
+                <i class="fa fa-exclamation-triangle"></i>
+            </div>
+            <h3>Bir Hata Oluştu</h3>
+        </div>
+        <div class="modal-body">
+            <p>Üzgünüz, mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin veya daha sonra tekrar deneyin.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="modal-btn error-btn" onclick="closeModal('errorModal')">
+                <i class="fa fa-refresh"></i>
+                Tekrar Dene
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap Modal KVKK Aydınlatma -->
+<div class="modal fade" id="kvkkAydinlatmaModal" tabindex="-1" aria-labelledby="kvkkAydinlatmaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="kvkkAydinlatmaModalLabel">Kişisel Verilerin Korunması Aydınlatma Metni</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body" style="font-size:1rem; color:#222;">
+        <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında, <b>AnatoliaRoot</b> olarak tarafımıza ilettiğiniz kişisel verilerinizin işlenme amaçları, hukuki sebepleri, toplanma yöntemi, kimlere ve hangi amaçla aktarılabileceği ve KVKK kapsamındaki haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
+        <h6 class="mt-3">1. Kişisel Verilerin İşlenme Amacı</h6>
+        <p>İletişim formu aracılığıyla paylaştığınız ad, soyad, e-posta adresi, konu ve mesaj bilgileriniz; yalnızca iletişim talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir.</p>
+        <p><strong>Zorunlu Kişisel Veriler:</strong> Ad Soyad, e-posta adresi, konu ve mesaj alanları iletişim hizmeti verebilmek için zorunludur. Bu bilgiler olmadan iletişim talebinizi değerlendiremeyiz. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
+        <h6 class="mt-3">2. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h6>
+        <p>Kişisel verileriniz, web sitemizdeki iletişim formu aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK md. 5/1-a kapsamında "açık rızanızın bulunması" hukuki sebebine dayanmaktadır.</p>
+        <h6 class="mt-3">3. Kişisel Verilerin Aktarılması</h6>
+        <p>Kişisel verileriniz, yasal yükümlülükler haricinde hiçbir şekilde üçüncü şahıslarla paylaşılmaz ve yurt dışına aktarılmaz.</p>
+        <h6 class="mt-3">4. Kişisel Verilerin Saklanma Süresi</h6>
+        <p>İletişim formu ile paylaşılan kişisel veriler, 3 yıl süreyle saklanır ve bu sürenin sonunda güvenli şekilde silinir.</p>
+        <h6 class="mt-3">5. KVKK Kapsamındaki Haklarınız</h6>
+        <p>KVKK md. 11 uyarınca sahip olduğunuz haklar:</p>
+        <ul>
+          <li>Kişisel verilerinizin işlenip işlenmediğini öğrenme</li>
+          <li>Kişisel verileriniz işlenmişse buna ilişkin bilgi talep etme</li>
+          <li>Kişisel verilerinizin işlenme amacını ve bunların amacına uygun kullanılıp kullanılmadığını öğrenme</li>
+          <li>Yurt içinde veya yurt dışında kişisel verilerinizin aktarıldığı üçüncü kişileri bilme</li>
+          <li>Kişisel verilerinizin eksik veya yanlış işlenmiş olması hâlinde bunların düzeltilmesini isteme</li>
+          <li>KVKK'nın 7. maddesinde öngörülen şartlar çerçevesinde kişisel verilerinizin silinmesini veya yok edilmesini isteme</li>
+        </ul>
+        <h6 class="mt-3">6. İletişim</h6>
+        <p>KVKK kapsamındaki haklarınızı kullanmak veya kişisel verilerinizle ilgili her türlü soru ve talepleriniz için <a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a> adresine e-posta gönderebilirsiniz.</p>
+        <hr />
+        <p style="font-size:0.98rem; color:#555;">Bu metin, <b>AnatoliaRoot</b> tarafından güncellenebilir. Lütfen düzenli olarak kontrol ediniz.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Bootstrap Modal KVKK Açık Rıza -->
+<div class="modal fade" id="kvkkRizaModal" tabindex="-1" aria-labelledby="kvkkRizaModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="kvkkRizaModalLabel">KVKK Açık Rıza Metni</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
+      </div>
+      <div class="modal-body" style="font-size:1rem; color:#222;">
+        <p>6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) md. 5/1-a kapsamında, iletişim formu aracılığıyla paylaştığım kişisel verilerimin yukarıda belirtilen aydınlatma metni doğrultusunda toplanmasına, işlenmesine ve belirtilen amaçlarla kullanılmasına bilinçli ve açık rızamla izin veriyorum.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+    /* Contact Section */
+    .contact-section {
+        padding: 100px 0;
+        background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%);
+        position: relative;
+        min-height: 100vh;
+    }
+
+    .contact-wrapper {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Contact Header */
+    .contact-header {
+        margin-bottom: 60px;
+    }
+
+    .contact-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        color: white;
+        margin-bottom: 1rem;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .contact-subtitle {
+        font-size: 1.3rem;
+        color: rgba(255, 255, 255, 0.9);
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    /* Contact Cards */
+    .contact-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        padding: 40px 30px;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        height: 100%;
+        margin-bottom: 20px;
+    }
+
+    .contact-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+    }
+
+    .card-icon {
+        width: 90px;
+        height: 90px;
+        background: linear-gradient(135deg, #b1cfb1 0%, #adcbae 100%);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 25px;
+        font-size: 2.2rem;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(177, 207, 177, 0.3);
+    }
+
+    .contact-card:hover .card-icon {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 15px 35px rgba(177, 207, 177, 0.4);
+    }
+
+    .contact-card h4 {
+        color: #333;
+        margin-bottom: 15px;
+        font-weight: 600;
+        font-size: 1.3rem;
+    }
+
+    .contact-card p {
+        color: #666;
+        margin: 0;
+        font-size: 1.1rem;
+    }
+
+    /* Contact Form */
+    .contact-form-container {
+        margin-top: 60px;
+    }
+
+    .form-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 25px;
+        padding: 60px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .form-title {
+        text-align: center;
+        color: #333;
+        margin-bottom: 50px;
+        font-size: 2.8rem;
+        font-weight: 600;
+        background: linear-gradient(135deg, #b1cfb1 0%, #adcbae 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Form Inputs */
+    .form-group {
+        margin-bottom: 35px;
+        position: relative;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea {
+        width: 100%;
+        padding: 18px 0;
+        border: none;
+        border-bottom: 2px solid #ddd;
+        background: transparent;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        outline: none;
+    }
+
+    .input-wrapper textarea {
+        resize: vertical;
+        min-height: 120px;
+    }
+
+    .input-wrapper label {
+        position: absolute;
+        top: 18px;
+        left: 0;
+        color: #999;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        pointer-events: none;
+    }
+
+    .input-wrapper input:focus + label,
+    .input-wrapper input:valid + label,
+    .input-wrapper textarea:focus + label,
+    .input-wrapper textarea:valid + label {
+        top: -10px;
+        font-size: 12px;
+        color: #b1cfb1;
+        font-weight: 600;
+    }
+
+    .input-line {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #b1cfb1 0%, #adcbae 100%);
+        transition: width 0.3s ease;
+    }
+
+    .input-wrapper input:focus ~ .input-line,
+    .input-wrapper textarea:focus ~ .input-line {
+        width: 100%;
+    }
+
+    /* Submit Button */
+    .submit-btn {
+        background: linear-gradient(135deg, #b1cfb1 0%, #adcbae 100%);
+        color: white;
+        border: none;
+        padding: 18px 50px;
+        border-radius: 50px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin: 0 auto;
+        box-shadow: 0 10px 25px rgba(177, 207, 177, 0.3);
+    }
+
+    .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 35px rgba(177, 207, 177, 0.4);
+    }
+
+    .submit-btn i {
+        transition: transform 0.3s ease;
+    }
+
+    .submit-btn:hover i {
+        transform: translateX(8px);
+    }
+
+    /* Contact Footer */
+    .contact-footer {
+        margin-top: 80px;
+    }
+
+    .footer-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 20px;
+        padding: 40px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .footer-content h4 {
+        color: white;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        font-weight: 600;
+    }
+
+    .footer-content p {
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .social-link {
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.2rem;
+        transition: all 0.3s ease;
+        text-decoration: none;
+    }
+
+    .social-link:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-3px);
+        color: white;
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(10px);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .modal-content {
+        background: white;
+        border-radius: 25px;
+        padding: 0;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        position: relative;
+    }
+
+    .modal-header {
+        text-align: center;
+        padding: 40px 30px 20px;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    }
+
+    .success-icon, .error-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto 20px;
+        font-size: 2.5rem;
+        animation: bounceIn 0.6s ease;
+    }
+
+    .success-icon {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.3);
+    }
+
+    .error-icon {
+        background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+        color: white;
+        box-shadow: 0 10px 25px rgba(220, 53, 69, 0.3);
+    }
+
+    .modal-header h3 {
+        color: #333;
+        font-size: 1.8rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 30px;
+        text-align: center;
+    }
+
+    .modal-body p {
+        color: #666;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        margin: 0;
+    }
+
+    .modal-footer {
+        padding: 20px 30px 40px;
+        text-align: center;
+    }
+
+    .modal-btn {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 50px;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+    }
+
+    .success-btn {
+        background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+        color: white;
+        box-shadow: 0 8px 20px rgba(40, 167, 69, 0.3);
+    }
+
+    .success-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(40, 167, 69, 0.4);
+        color: white;
+    }
+
+    .error-btn {
+        background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+        color: white;
+        box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3);
+    }
+
+    .error-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(220, 53, 69, 0.4);
+        color: white;
+    }
+
+    /* Animations */
+    @@keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @@keyframes bounceIn {
+        0% {
+            transform: scale(0.3);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.05);
+        }
+        70% {
+            transform: scale(0.9);
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .contact-title {
+            font-size: 2.5rem;
+        }
+        
+        .form-card {
+            padding: 40px 30px;
+        }
+        
+        .contact-card {
+            margin-bottom: 40px;
+            padding: 35px 25px;
+        }
+
+        .contact-card:last-child {
+            margin-bottom: 20px;
+        }
+
+        .footer-content {
+            padding: 30px 20px;
+        }
+
+        .contact-header {
+            margin-bottom: 50px;
+        }
+
+        .contact-form-container {
+            margin-top: 50px;
+        }
+
+        /* Mobilde kartları ayrı satırlara al */
+        .row.mb-5 {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .row.mb-5 .col-md-4 {
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        /* Modal responsive */
+        .modal-content {
+            width: 95%;
+            margin: 20px;
+        }
+
+        .modal-header {
+            padding: 30px 20px 15px;
+        }
+
+        .modal-body {
+            padding: 20px;
+        }
+
+        .modal-footer {
+            padding: 15px 20px 30px;
+        }
+
+        .modal-header h3 {
+            font-size: 1.5rem;
+        }
+
+            .modal-body p {
+        font-size: 1rem;
+    }
+}
+
+/* KVKK Form Styles */
+.form-check-label a {
+    color: #388e3c;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+
+.form-check-label a:hover {
+    color: #123524;
+    text-decoration: underline;
+}
+
+/* Bootstrap Modal Styles */
+.modal .btn-close {
+    background: transparent url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23000'%3e%3cpath d='M.293.293a1 1 0 0 1 1.414 0L8 6.586 14.293.293a1 1 0 1 1 1.414 1.414L9.414 8l6.293 6.293a1 1 0 0 1-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 0 1-1.414-1.414L6.586 8 .293 1.707a1 1 0 0 1 0-1.414z'/%3e%3c/svg%3e") center/1em auto no-repeat !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0.5;
+    transition: opacity 0.2s;
+    width: 1em;
+    height: 1em;
+    padding: 0.25em 0.25em;
+    color: #000;
+    border-radius: 0.25rem;
+}
+
+.modal .btn-close:hover {
+    opacity: 1;
+    color: #000;
+}
+
+.modal .btn-close:focus {
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Modal backdrop düzeltmesi */
+.modal-backdrop {
+    z-index: 1040;
+}
+
+.modal {
+    z-index: 1050;
+}
+</style>
+
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const contactForm = document.getElementById('contactForm');
-    
-    contactForm.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Show loading state
-        const submitBtn = this.querySelector('button[type="submit"]');
-        const originalText = submitBtn.textContent;
-        submitBtn.textContent = 'Gönderiliyor...';
-        submitBtn.disabled = true;
-        
-        try {
-            const formData = new FormData(this);
+    // Form Animations and Modal Handling
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('contactForm');
+        const submitBtn = document.querySelector('.submit-btn');
+        const originalBtnContent = submitBtn.innerHTML;
+
+        // Form submission handling
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            // Sadece formSource alanını ekle (Türkçe ve tek)
-            formData.append('formSource', 'İletişim Sayfası');
+            // KVKK validation
+            var kvkkAydinlatma = document.getElementById('kvkkAydinlatma');
+            var kvkkRiza = document.getElementById('kvkkRiza');
+            if (!kvkkAydinlatma.checked || !kvkkRiza.checked) {
+                showModal('errorModal');
+                return;
+            }
             
-            const response = await fetch(this.action, {
+            // Show loading state
+            submitBtn.innerHTML = '<span>Gönderiliyor...</span><i class="fa fa-spinner fa-spin"></i>';
+            submitBtn.classList.remove('animate__pulse', 'animate__infinite');
+            submitBtn.disabled = true;
+
+            // Get form data
+            const formData = new FormData(form);
+            
+            // Add form source
+            formData.append('formSource', 'İletişim Formu - Contact Sayfası');
+            
+            // Submit to Formspree
+            fetch(form.action, {
                 method: 'POST',
                 body: formData,
-                headers: { 'Accept': 'application/json' }
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Success
+                    showModal('successModal');
+                    form.reset();
+                } else {
+                    // Error
+                    showModal('errorModal');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showModal('errorModal');
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.innerHTML = originalBtnContent;
+                submitBtn.classList.add('animate__pulse', 'animate__infinite');
+                submitBtn.disabled = false;
+            });
+        });
+
+        // Input focus animations
+        const inputs = document.querySelectorAll('.input-wrapper input, .input-wrapper textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', function() {
+                this.parentElement.classList.add('animate__animated', 'animate__pulse');
             });
             
-            if (response.ok) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Mesajınız Başarıyla Gönderildi!',
-                    text: 'Mesajınız yönetici ekibimize iletildi. En kısa sürede size geri dönüş yapılacaktır.',
-                    confirmButtonText: 'Teşekkürler'
-                });
-                this.reset();
-            } else {
-                throw new Error('Form gönderilemedi');
-            }
-        } catch (error) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Bir Hata Oluştu',
-                text: 'Mesajınız gönderilirken bir hata oluştu. Lütfen tekrar deneyin.',
-                confirmButtonText: 'Tamam'
+            input.addEventListener('blur', function() {
+                this.parentElement.classList.remove('animate__animated', 'animate__pulse');
             });
-        } finally {
-            submitBtn.textContent = originalText;
-            submitBtn.disabled = false;
+        });
+
+        // KVKK Modal Event Listeners
+        document.getElementById('kvkkModalLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal'));
+            modal.show();
+        });
+        
+        document.getElementById('kvkkRizaModalLink').addEventListener('click', function(e) {
+            e.preventDefault();
+            var modal = new bootstrap.Modal(document.getElementById('kvkkRizaModal'));
+            modal.show();
+        });
+    });
+
+    // Modal functions
+    function showModal(modalId) {
+        const modal = document.getElementById(modalId);
+        modal.style.display = 'flex';
+        
+        // Add entrance animation
+        const modalContent = modal.querySelector('.modal-content');
+        modalContent.classList.remove('animate__zoomIn');
+        void modalContent.offsetWidth; // Trigger reflow
+        modalContent.classList.add('animate__zoomIn');
+    }
+
+    function closeModal(modalId) {
+        const modal = document.getElementById(modalId);
+        const modalContent = modal.querySelector('.modal-content');
+        
+        // Add exit animation
+        modalContent.classList.remove('animate__zoomIn');
+        modalContent.classList.add('animate__zoomOut');
+        
+        setTimeout(() => {
+            modal.style.display = 'none';
+            modalContent.classList.remove('animate__zoomOut');
+            modalContent.classList.add('animate__zoomIn');
+        }, 300);
+    }
+
+    // Close modal when clicking outside
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal-overlay')) {
+            const modalId = e.target.id;
+            closeModal(modalId);
         }
     });
-});
-</script> 
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const modals = document.querySelectorAll('.modal-overlay');
+            modals.forEach(modal => {
+                if (modal.style.display === 'flex') {
+                    closeModal(modal.id);
+                }
+            });
+        }
+    });
+</script>
+
+<!-- Bootstrap 5 Modal JS (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
