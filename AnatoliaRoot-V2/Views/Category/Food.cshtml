@@ -56,16 +56,16 @@
                             <label for="message">Mesaj</label>
                             <textarea class="form-control" id="message" name="message" rows="3" placeholder="Detaylı bilgi yazabilirsiniz. Tarafımızdan sizlere dönüş sağlanılacaktır."></textarea>
                         </div>
-                        <div class="form-group form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                            <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
-                            <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                                <a href="#" id="kvkkModalLink">Aydınlatma Metni</a>'ni okudum, kabul ediyorum.
+                        <div class="form-group form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                            <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                            <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                                <a href="#" id="kvkkModalLink" style="display:inline;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                             </label>
                         </div>
-                        <div class="form-group form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                            <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
-                            <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                                <a href="#" id="kvkkRizaModalLink">Açık Rıza Metni</a>'ni okudum, kabul ediyorum.
+                        <div class="form-group form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                            <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                            <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                                <a href="#" id="kvkkRizaModalLink" style="display:inline;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                             </label>
                         </div>
                         <button type="submit" class="btn btn-supply w-100">Talebimi Gönder</button>
@@ -252,6 +252,47 @@
 .form-group.form-check a:hover {
     color: #123524;
     text-decoration: underline;
+}
+
+/* Mobil görünüm için KVKK metinleri - SADECE MOBİL İÇİN */
+@@media (max-width: 768px) {
+    /* Gıda formu KVKK metinleri */
+    .form-group.form-check .form-check-label,
+    .form-group.form-check .form-check-label a {
+        font-size: 13px !important;
+    }
+    
+    /* KVKK label'larını yan yana tutmak için - inline yapı */
+    .form-group.form-check .form-check-label {
+        display: block !important;
+        line-height: 1.4 !important;
+    }
+    
+    .form-group.form-check .form-check-label a {
+        display: inline !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Gıda sayfası başlık ve yazı boyutları - SADECE MOBİL İÇİN */
+    /* Tüm başlıklar 16px */
+    .food-supply-section h1,
+    .food-supply-section h2,
+    .food-supply-section h3,
+    .food-supply-section h4,
+    .food-supply-section h5,
+    .food-supply-section h6,
+    .supply-title {
+        font-size: 16px !important;
+    }
+    
+    /* Tüm paragraflar ve yazılar 13px */
+    .food-supply-section p,
+    .supply-desc,
+    .supply-form-card label,
+    .supply-form-card .form-control,
+    .supply-form-card .form-control::placeholder {
+        font-size: 13px !important;
+    }
 }
 </style>
 

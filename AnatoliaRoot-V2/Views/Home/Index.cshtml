@@ -23,12 +23,12 @@
 
 
 <!-- Anatolia World Info Section -->
-<div class="container my-5">
+<div class="container my-5 anatolia-info-section">
     <div class="row align-items-center">
         <!-- Sol: Açıklama Yazısı -->
         <div class="col-lg-7 col-md-6 mb-4 mb-lg-0">
-            <h3 class="mb-3" style="font-weight:700; color:#2d2d2d;">Anadolu'nun Bereketi, Modern Hizmetlerle Buluşuyor</h3>
-            <p style="font-size:1.15rem; color:#444;">
+            <h3 class="mb-3 anatolia-title" style="font-weight:700; color:#2d2d2d;">Anadolu'nun Bereketi, Modern Hizmetlerle Buluşuyor</h3>
+            <p class="anatolia-text" style="font-size:1.15rem; color:#444;">
                 Anadolu'nun bereketli topraklarında yetişen doğal ve kaliteli ürünlerin satışını yapıyoruz. Ayrıca <b>peyzaj hizmetleri</b> ile yaşam alanlarınızı güzelleştiriyor, <b>danışmanlık</b> ve <b>tedarik</b> hizmetlerimizle iş ortaklarımıza sürdürülebilir çözümler sunuyoruz. Anadolu'nun zenginliğini, modern hizmet anlayışıyla birleştirerek sizlere ulaştırıyoruz.
             </p>
         </div>
@@ -146,7 +146,7 @@
             <div style="font-size:2.5rem; color:#388e3c; margin-bottom:1rem;"><i class="fa fa-handshake-o"></i></div>
             <h4 class="mb-2" style="font-weight:700;">Hizmetlerimiz</h4>
             <p style="font-size:1.08rem; color:#444;">Danışmanlık, peyzaj ve tedarik hizmetlerimizle işinizi büyütün.</p>
-            <a href="/Home/Services" class="btn btn-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Hizmetlerimizi İncele</a>
+            <a href="/hizmetlerimiz" class="btn btn-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Hizmetlerimizi İncele</a>
             <!-- Masaüstü Grid Görünümü -->
             <div class="d-none d-md-block">
                 <div class="row mt-4">
@@ -214,7 +214,7 @@
             <div style="font-size:2.5rem; color:#0B18C9; margin-bottom:1rem;"><i class="fa fa-lightbulb-o"></i></div>
             <h4 class="mb-2" style="font-weight:700;">Fikirler & Projeler</h4>
             <p style="font-size:1.08rem; color:#444;">Yaratıcı fikirlerinizi paylaşın, birlikte geliştirelim.</p>
-            <a href="/Category/Ideas" class="btn btn-primary mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Fikirlerini Paylaş</a>
+            <a href="/fikirler" class="btn btn-primary mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Fikirlerini Paylaş</a>
             <!-- Masaüstü Grid Görünümü -->
             <div class="d-none d-md-block">
                 <div class="row mt-4">
@@ -281,7 +281,7 @@
             <div style="font-size:2.5rem; color:#b1cfb1; margin-bottom:1rem;"><i class="fa fa-leaf"></i></div>
             <h4 class="mb-2" style="font-weight:700;">Gıda Tedarik</h4>
             <p style="font-size:1.08rem; color:#444;">Anadolu’nun doğal ürünlerini güvenle temin edin.</p>
-            <a href="/Category/Food" class="btn btn-outline-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Gıda Tedarik</a>
+            <a href="/gida" class="btn btn-outline-success mt-2 px-4 py-2" style="border-radius:0.7rem; font-weight:600;">Gıda Tedarik</a>
             <!-- Masaüstü Grid Görünümü -->
             <div class="d-none d-md-block">
                 <div class="row mt-4">
@@ -295,7 +295,7 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
-                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718195/MarkaVeMuadil_h1aqav.jpg" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <img src="~/images/Marka & Muadil.png" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
                             <div class="consulting-icon pulse-anim"><i class="fa fa-tags"></i></div>
                             <h5>Marka ve Muadil</h5>
                             <p class="consulting-desc">Marka veya Muadiliyle Size En Uygun Teklif.</p>
@@ -324,7 +324,7 @@
                     </div>
                     <div class="col-12 mb-3">
                         <div class="card consulting-card-modern h-100 animate__animated animate__fadeInUp">
-                            <img src="https://res.cloudinary.com/dbhogeepn/image/upload/v1753718195/MarkaVeMuadil_h1aqav.jpg" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
+                            <img src="~/images/Marka & Muadil.png" alt="Marka ve Muadil" class="img-fluid mb-3" style="width:100%; height:160px; object-fit:cover; border-radius:1rem;">
                             <div class="consulting-icon pulse-anim"><i class="fa fa-tags"></i></div>
                             <h5>Marka ve Muadil</h5>
                             <p class="consulting-desc">Marka veya Muadiliyle Size En Uygun Teklif.</p>
@@ -570,5 +570,84 @@ h4, h5, h6 {
     text-overflow: ellipsis;
     white-space: nowrap;
     width: 100%;
+}
+
+/* Mobil görünüm için tüm ana sayfa yazı boyutları */
+@@media (max-width: 768px) {
+    /* Tüm başlıklar 16px - inline style'ları da override eder */
+    body h1,
+    body h2,
+    body h3,
+    body h4,
+    body h5,
+    body h6,
+    body h1[style*="font-size"],
+    body h2[style*="font-size"],
+    body h3[style*="font-size"],
+    body h4[style*="font-size"],
+    body h5[style*="font-size"],
+    body h6[style*="font-size"] {
+        font-size: 16px !important;
+    }
+    
+    /* Tüm paragraflar 13px - inline style'ları da override eder */
+    body p,
+    body p[style*="font-size"] {
+        font-size: 13px !important;
+    }
+    
+    /* Anadolu bölümü */
+    .anatolia-info-section h3,
+    .anatolia-info-section .anatolia-title {
+        font-size: 16px !important;
+    }
+    
+    .anatolia-info-section p,
+    .anatolia-info-section .anatolia-text {
+        font-size: 13px !important;
+    }
+    
+    /* Card içindeki başlıklar ve yazılar */
+    .card h4,
+    .card h5,
+    .card h6 {
+        font-size: 16px !important;
+    }
+    
+    .card p,
+    .card-body p {
+        font-size: 13px !important;
+    }
+    
+    .card-body p[style*="font-size"] {
+        font-size: 13px !important;
+    }
+    
+    /* Consulting card içindeki başlıklar ve yazılar */
+    .consulting-card-modern h5 {
+        font-size: 16px !important;
+    }
+    
+    .consulting-card-modern p,
+    .consulting-desc {
+        font-size: 13px !important;
+    }
+    
+    /* Hero section başlıkları */
+    .hero-heading {
+        font-size: 16px !important;
+    }
+    
+    /* Döviz ve altın kurları kartları */
+    .card-header h4,
+    .card-body h5,
+    .card-body h6 {
+        font-size: 16px !important;
+    }
+    
+    .card-body p,
+    .card-body small {
+        font-size: 13px !important;
+    }
 }
 </style>

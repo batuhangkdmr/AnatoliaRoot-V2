@@ -134,7 +134,7 @@
     font-weight: 500;
 }
 
-.trade-form input,
+.trade-form input:not(.form-check-input),
 .trade-form textarea,
 .trade-form select {
     width: 100%;
@@ -147,7 +147,7 @@
     transition: border 0.2s;
 }
 
-.trade-form input:focus,
+.trade-form input:not(.form-check-input):focus,
 .trade-form textarea:focus,
 .trade-form select:focus {
     border-color: #5A827E;
@@ -200,6 +200,45 @@
     }
     .trade-card h3 {
         font-size: 1.2rem;
+    }
+}
+
+/* Form check stilleri - Gıda sayfasıyla aynı */
+.form-group.form-check label {
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #123524;
+    margin-left: 0.3rem;
+    cursor: pointer;
+}
+.form-group.form-check a {
+    color: #388e3c;
+    text-decoration: underline;
+    font-weight: 600;
+    transition: color 0.2s;
+}
+.form-group.form-check a:hover {
+    color: #123524;
+    text-decoration: underline;
+}
+
+/* Mobil görünüm için KVKK metinleri - SADECE MOBİL İÇİN */
+@@media (max-width: 768px) {
+    /* İthalat-İhracat formu KVKK metinleri */
+    .form-group.form-check .form-check-label,
+    .form-group.form-check .form-check-label a {
+        font-size: 13px !important;
+    }
+    
+    /* KVKK label'larını yan yana tutmak için - inline yapı */
+    .form-group.form-check .form-check-label {
+        display: block !important;
+        line-height: 1.4 !important;
+    }
+    
+    .form-group.form-check .form-check-label a {
+        display: inline !important;
+        white-space: nowrap !important;
     }
 }
 </style>
@@ -264,16 +303,16 @@
                 <label for="urunDetay">Ürün/Hizmet Detayları</label>
                 <textarea id="urunDetay" name="urunDetay" rows="4" required placeholder="İthalat/ihracat yapmak istediğiniz ürün veya hizmet hakkında detay veriniz..."></textarea>
                 
-                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
-                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                        <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                <div class="form-group form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                        <a href="#" id="kvkkModalLink" style="display:inline;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                     </label>
                 </div>
-                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
-                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                        <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                <div class="form-group form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                        <a href="#" id="kvkkRizaModalLink" style="display:inline;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                     </label>
                 </div>
                 

@@ -154,6 +154,43 @@
         right: 10px !important;
     }
 }
+
+/* Mobil görünüm için KVKK metinleri - SADECE MOBİL İÇİN */
+@@media (max-width: 768px) {
+    /* Danışmanlık formu KVKK metinleri */
+    .consulting-form .form-check-label,
+    .consulting-form .form-check-label a {
+        font-size: 13px !important;
+    }
+    
+    /* KVKK label'larını yan yana tutmak için - inline yapı */
+    .consulting-form .form-check-label {
+        display: block !important;
+        line-height: 1.4 !important;
+    }
+    
+    .consulting-form .form-check-label a {
+        display: inline !important;
+        white-space: nowrap !important;
+    }
+    
+    /* Peyzaj formu KVKK metinleri */
+    .peyzaj-form-box .form-check-label,
+    .peyzaj-form-box .form-check-label a {
+        font-size: 13px !important;
+    }
+    
+    /* Peyzaj KVKK label'larını yan yana tutmak için - inline yapı */
+    .peyzaj-form-box .form-check-label {
+        display: block !important;
+        line-height: 1.4 !important;
+    }
+    
+    .peyzaj-form-box .form-check-label a {
+        display: inline !important;
+        white-space: nowrap !important;
+    }
+}
 .consulting-card-modern {
   position: relative;
         background: linear-gradient(135deg, #e0f7fa 0%, #b1cfb1 100%);
@@ -286,16 +323,16 @@
                 <input type="email" id="eposta" name="eposta" required placeholder="E-posta adresiniz">
                 <label for="mesaj">Mesajınız</label>
                 <textarea id="mesaj" name="mesaj" rows="4" required placeholder="Ör: Şu konu ile danışmanlık almak istiyorum..."></textarea>
-                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
-                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                        <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                        <a href="#" id="kvkkModalLink" style="display:inline;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                     </label>
                 </div>
-                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
-                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                        <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                        <a href="#" id="kvkkRizaModalLink" style="display:inline;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                     </label>
                 </div>
                 <button type="submit">Danışmanlık Talebi Gönder</button>
@@ -420,7 +457,7 @@
 <hr style="margin: 3rem 0 2rem 0; border-top: 2px solid #e0e0e0;">
 <div class="container py-4" id="peyzaj-section">
     <h2 style="font-size:2rem; font-weight:800; color:#123524; text-align:center; margin-bottom:2.2rem;">Peyzaj & Bahçe Bakım Hizmetleri</h2>
-    <div class="peyzaj-cards-row" style="display:flex; flex-wrap:wrap; gap:2rem; justify-content:center; margin-bottom:2.5rem;">
+    <div class="peyzaj-cards-row">
         <div class="peyzaj-card">
             <div class="peyzaj-icon">🌿</div>
             <h3>Bahçe Bakımı</h3>
@@ -467,16 +504,16 @@
             </select>
             <label for="peyzaj-mesaj">Mesajınız</label>
             <textarea id="peyzaj-mesaj" name="mesaj" rows="4" required placeholder="Bahçeniz veya talebiniz hakkında detay verebilirsiniz..." style="width:100%; padding:0.7rem 0.9rem; border:1px solid #b1cfb1; border-radius:0.6rem; margin-bottom:1rem; font-size:1rem; background:#f8faf8;"></textarea>
-            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                <input class="form-check-input" type="checkbox" id="peyzajKvkk" name="peyzajKvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
-                <label class="form-check-label" for="peyzajKvkk" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                    <a href="#" id="peyzajKvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                <input class="form-check-input" type="checkbox" id="peyzajKvkk" name="peyzajKvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                <label class="form-check-label" for="peyzajKvkk" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                    <a href="#" id="peyzajKvkkModalLink" style="display:inline;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                 </label>
             </div>
-            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                <input class="form-check-input" type="checkbox" id="peyzajKvkkRiza" name="peyzajKvkkRiza" required style="width:16px; height:16px; margin:0;">
-                <label class="form-check-label" for="peyzajKvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                    <a href="#" id="peyzajKvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+            <div class="form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                <input class="form-check-input" type="checkbox" id="peyzajKvkkRiza" name="peyzajKvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                <label class="form-check-label" for="peyzajKvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                    <a href="#" id="peyzajKvkkRizaModalLink" style="display:inline;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                 </label>
             </div>
             <button type="submit" style="background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%); color: #fff; font-weight: 700; font-size: 1.15rem; border-radius: 0.7rem; padding: 0.7rem 0; box-shadow: 0 2px 8px 0 rgba(56,142,60,0.10); transition: background 0.2s, box-shadow 0.2s; border: none; width: 100%;">Peyzaj Hizmeti Talebi Gönder</button>
@@ -616,23 +653,38 @@
     </div>
 </div>
 <style>
-.peyzaj-cards-row { flex-wrap: wrap; }
+.peyzaj-cards-row { 
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+}
 .peyzaj-card {
     background: #fff;
     border-radius: 1.2rem;
     box-shadow: 0 8px 32px 0 rgba(31,38,135,0.12);
     padding: 2rem 1.2rem 1.5rem 1.2rem;
     text-align: center;
-    max-width: 270px;
-    min-width: 200px;
-    flex: 1 1 220px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin: 0 auto;
     transition: transform 0.25s cubic-bezier(.17,.67,.83,.67), box-shadow 0.25s;
     cursor: pointer;
     position: relative;
+    width: 100%;
+}
+.peyzaj-card .peyzaj-icon,
+.peyzaj-card h3 {
+    text-align: center;
+}
+.peyzaj-card p {
+    text-align: left;
+    width: 100%;
+}
+.peyzaj-card .peyzaj-fiyat {
+    text-align: center;
+    width: 100%;
 }
 .peyzaj-card:hover {
     transform: translateY(-8px) scale(1.04);
@@ -664,8 +716,23 @@
     margin-top: auto;
 }
 @@media (max-width: 991.98px) {
-    .peyzaj-cards-row { flex-direction: column; gap: 1.2rem; }
-    .peyzaj-card { max-width: 100%; min-width: 0; }
+    .peyzaj-cards-row { 
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .peyzaj-card { 
+        width: 100%;
+        max-width: 100%;
+    }
+    .peyzaj-card p {
+        font-size: 13px !important;
+    }
+    .peyzaj-card h3 {
+        font-size: 13px !important;
+    }
+    .peyzaj-fiyat {
+        font-size: 12px !important;
+    }
 }
 
 /* Modal düzeltmeleri */
