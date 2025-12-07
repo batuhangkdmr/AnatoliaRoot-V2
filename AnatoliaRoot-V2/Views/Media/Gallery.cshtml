@@ -14,55 +14,6 @@
     </div>
 </div>
 
-<!-- Timeline Navigation -->
-<div class="timeline-navigation">
-    <div class="container">
-        <div class="timeline-nav-wrapper">
-            <div class="timeline-nav">
-                <button class="decade-btn active" data-decade="all">
-                    <span class="decade-number">Tümü</span>
-                    <span class="decade-label">1950-2024</span>
-                </button>
-
-                <button class="decade-btn" data-decade="1950">
-                    <span class="decade-number">1950</span>
-                    <span class="decade-label">Tarım Devrimi</span>
-                </button>
-                <button class="decade-btn" data-decade="1960">
-                    <span class="decade-number">1960</span>
-                    <span class="decade-label">Modernleşme</span>
-                </button>
-                <button class="decade-btn" data-decade="1970">
-                    <span class="decade-number">1970</span>
-                    <span class="decade-label">Sanayi Atılımı</span>
-                </button>
-                <button class="decade-btn" data-decade="1980">
-                    <span class="decade-number">1980</span>
-                    <span class="decade-label">Dönüşüm</span>
-                </button>
-                <button class="decade-btn" data-decade="1990">
-                    <span class="decade-number">1990</span>
-                    <span class="decade-label">Teknoloji</span>
-                </button>
-                <button class="decade-btn" data-decade="2000">
-                    <span class="decade-number">2000</span>
-                    <span class="decade-label">Globalleşme</span>
-                </button>
-                <button class="decade-btn" data-decade="2010">
-                    <span class="decade-number">2010</span>
-                    <span class="decade-label">İnovasyon</span>
-                </button>
-                <button class="decade-btn" data-decade="2020">
-                    <span class="decade-number">2020</span>
-                    <span class="decade-label">Gelecek</span>
-                </button>
-
-
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Gallery Grid -->
 <div class="gallery-container">
     <div class="container">
@@ -319,62 +270,6 @@
         margin: 0 auto;
     }
 
-    /* Timeline Navigation */
-    .timeline-navigation {
-        background: #f8f9fa;
-        padding: 30px 0;
-        border-bottom: 1px solid #e9ecef;
-    }
-
-    .timeline-nav-wrapper {
-        overflow-x: auto;
-        padding: 10px 0;
-    }
-
-    .timeline-nav {
-        display: flex;
-        gap: 15px;
-        min-width: max-content;
-        padding: 0 20px;
-    }
-
-    .decade-btn {
-        background: white;
-        border: 2px solid #e9ecef;
-        border-radius: 15px;
-        padding: 15px 20px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        min-width: 120px;
-        text-align: center;
-        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-
-        .decade-btn:hover {
-       /*      border-color: #667eea; */
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .decade-btn.active {
-            background: linear-gradient(135deg, #b1cfb1 0%, #adcbae 100%);
-            color: white;
-        /*     border-color: #667eea; */
-        }
-
-    .decade-number {
-        display: block;
-        font-size: 1.2rem;
-        font-weight: 700;
-        margin-bottom: 5px;
-    }
-
-    .decade-label {
-        display: block;
-        font-size: 0.9rem;
-        opacity: 0.8;
-    }
-
     /* Gallery Grid */
     .gallery-container {
         padding: 60px 0;
@@ -518,30 +413,9 @@
             font-size: 1.1rem;
         }
 
-        .timeline-nav {
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .decade-btn {
-            min-width: 100px;
-            padding: 12px 15px;
-        }
-
-        .decade-number {
-            font-size: 1rem;
-        }
-
-        .decade-label {
-            font-size: 0.8rem;
-        }
-
-
-
         .gallery-grid {
-            grid-template-columns: 1fr;
-            gap: 20px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
         }
 
         .gallery-item img {
@@ -549,15 +423,23 @@
         }
 
         .gallery-overlay {
-            padding: 20px;
+            padding: 15px;
         }
 
-        .gallery-title {
-            font-size: 1.2rem;
+        .gallery-item .gallery-year {
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            margin-bottom: 8px;
         }
 
-        .gallery-description {
-            font-size: 0.9rem;
+        .gallery-item .gallery-title {
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .gallery-item .gallery-description {
+            font-size: 0.7rem;
+            line-height: 1.3;
         }
 
         /* Mobile Lightbox Adjustments */
@@ -575,21 +457,24 @@
             font-size: 2rem;
         }
 
-        .timeline-nav {
-            gap: 8px;
+        .gallery-overlay {
+            padding: 12px;
         }
 
-        .decade-btn {
-            min-width: 80px;
-            padding: 10px 12px;
+        .gallery-item .gallery-year {
+            font-size: 0.65rem;
+            padding: 4px 8px;
+            margin-bottom: 6px;
         }
 
-        .decade-number {
-            font-size: 0.9rem;
+        .gallery-item .gallery-title {
+            font-size: 0.75rem;
+            margin-bottom: 5px;
         }
 
-        .decade-label {
-            font-size: 0.7rem;
+        .gallery-item .gallery-description {
+            font-size: 0.65rem;
+            line-height: 1.2;
         }
     }
 
@@ -632,65 +517,18 @@
 
 
 
-    /* Filter Animation */
-    .gallery-item.filtered {
-        opacity: 0.3;
-        transform: scale(0.95);
-        pointer-events: none;
-    }
-
-        .gallery-item.filtered.active {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: all;
-        }
 </style>
 
 <!-- Gallery JavaScript -->
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const galleryGrid = document.getElementById('galleryGrid');
-        const decadeBtns = document.querySelectorAll('.decade-btn');
         const lightboxModal = document.getElementById('lightboxModal');
         const lightboxImg = document.getElementById('lightboxImg');
         const lightboxCaption = document.getElementById('lightboxCaption');
         const lightboxClose = document.querySelector('.lightbox-close');
 
         let animationInterval;
-
-        // Timeline Filter Function
-        function filterGallery(decade) {
-            const items = document.querySelectorAll('.gallery-item');
-
-            items.forEach(item => {
-                if (decade === 'all' || item.dataset.decade === decade) {
-                    item.classList.remove('filtered');
-                    item.classList.add('active');
-                } else {
-                    item.classList.add('filtered');
-                    item.classList.remove('active');
-                }
-            });
-
-
-        }
-
-        // Decade Button Click Events
-        decadeBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                decadeBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                            // Filter gallery
-            const decade = this.dataset.decade;
-            filterGallery(decade);
-            
-            // Update auto animation when filtering
-            updateAutoAnimation();
-            });
-        });
 
         // Lightbox Functionality
         function openLightbox(imgSrc, caption) {
@@ -762,16 +600,6 @@
             observer.observe(img);
         });
 
-        // Smooth scroll to gallery on decade button click
-        decadeBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                galleryGrid.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            });
-        });
-
         // Auto Animation Functions
         function startAutoAnimation() {
             // Clear any existing interval
@@ -781,8 +609,8 @@
 
             // Start animation interval - trigger every 2 seconds
             animationInterval = setInterval(() => {
-                // Get all visible gallery items
-                const visibleItems = document.querySelectorAll('.gallery-item:not(.filtered)');
+                // Get all gallery items
+                const visibleItems = document.querySelectorAll('.gallery-item');
                 
                 if (visibleItems.length > 0) {
                     // Remove auto-hover from all items first
@@ -790,7 +618,7 @@
                         item.classList.remove('auto-hover');
                     });
 
-                    // Add auto-hover to visible items
+                    // Add auto-hover to all items
                     visibleItems.forEach(item => {
                         item.classList.add('auto-hover');
                     });
@@ -808,12 +636,6 @@
             document.querySelectorAll('.gallery-item').forEach(item => {
                 item.classList.remove('auto-hover');
             });
-        }
-
-        // Update auto animation when filtering
-        function updateAutoAnimation() {
-            // Restart animation with current filter
-            startAutoAnimation();
         }
 
         // Initialize with fade-in animation

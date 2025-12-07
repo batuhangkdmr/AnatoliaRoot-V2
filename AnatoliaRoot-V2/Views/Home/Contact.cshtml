@@ -94,16 +94,16 @@
                                 </div>
                                 
                                 <!-- KVKK Checkboxes -->
-                                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0;">
-                                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                                        <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                <div class="form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                                    <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0; accent-color:#388e3c; border:1.5px solid #b1cfb1; border-radius:0.25rem;">
+                                    <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4; display:block;">
+                                        <a href="#" id="kvkkModalLink" style="display:inline; white-space:nowrap;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                                     </label>
                                 </div>
-                                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:center; gap:0.5rem;">
-                                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0;">
-                                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; display:flex; align-items:center; gap:0.3rem;">
-                                        <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                <div class="form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                                    <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0; accent-color:#388e3c; border:1.5px solid #b1cfb1; border-radius:0.25rem;">
+                                    <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4; display:block;">
+                                        <a href="#" id="kvkkRizaModalLink" style="display:inline; white-space:nowrap;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                                     </label>
                                 </div>
                                 
@@ -123,12 +123,6 @@
                                 Sorularınız, önerileriniz veya işbirliği talepleriniz için bizimle iletişime geçebilirsiniz. 
                                 En kısa sürede size geri dönüş yapacağız.
                             </p>
-                            <div class="social-links">
-                                <a href="#" class="social-link"><i class="fa fa-facebook"></i></a>
-                                <a href="#" class="social-link"><i class="fa fa-twitter"></i></a>
-                                <a href="#" class="social-link"><i class="fa fa-instagram"></i></a>
-                                <a href="#" class="social-link"><i class="fa fa-linkedin"></i></a>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -467,31 +461,6 @@
         margin-right: auto;
     }
 
-    .social-links {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .social-link {
-        width: 50px;
-        height: 50px;
-        background: rgba(255, 255, 255, 0.2);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 1.2rem;
-        transition: all 0.3s ease;
-        text-decoration: none;
-    }
-
-    .social-link:hover {
-        background: rgba(255, 255, 255, 0.3);
-        transform: translateY(-3px);
-        color: white;
-    }
 
     /* Modal Styles */
     .modal-overlay {
@@ -702,6 +671,22 @@
 
             .modal-body p {
         font-size: 1rem;
+    }
+    
+    /* KVKK metinleri mobil görünüm - SADECE MOBİL İÇİN */
+    .form-check-label,
+    .form-check-label a {
+        font-size: 13px !important;
+    }
+    
+    .form-check-label {
+        display: block !important;
+        line-height: 1.4 !important;
+    }
+    
+    .form-check-label a {
+        display: inline !important;
+        white-space: nowrap !important;
     }
 }
 
