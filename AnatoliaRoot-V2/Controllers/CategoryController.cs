@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace AnatoliaRoot_V2.Controllers
 {
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class CategoryController : Controller
     {
         private readonly AppDbContext _context;
@@ -20,6 +21,7 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // Public actions - Herkes erişebilir
+        [AllowAnonymous]
         [Route("gida")]
         public IActionResult Food()
         {
@@ -27,6 +29,7 @@ namespace AnatoliaRoot_V2.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Route("insaat")]
         public IActionResult Construction()
         {
@@ -34,6 +37,7 @@ namespace AnatoliaRoot_V2.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Route("ithalat-ihracat")]
         public IActionResult Trade()
         {
@@ -41,6 +45,7 @@ namespace AnatoliaRoot_V2.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         [Route("fikirler")]
         public IActionResult Ideas()
         {
@@ -48,7 +53,7 @@ namespace AnatoliaRoot_V2.Controllers
             return View();
         }
 
-        // Dashboard - Public erişim
+        // Admin kategori yönetimi
         [Route("kategoriler")]
         public async Task<IActionResult> Index()
         {
@@ -66,7 +71,9 @@ namespace AnatoliaRoot_V2.Controllers
             };
 
             // Mevcut kategorileri ViewBag'e ekle
-            ViewBag.ParentCategories = await _context.Categories.ToListAsync();
+            ViewBag.ParentCategories = await _context.Categories
+                .Where(category => category.ParentCategoryId == null)
+                .ToListAsync();
             
             return View(model);
         }
@@ -76,6 +83,24 @@ namespace AnatoliaRoot_V2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(CategoryCreateViewModel model)
         {
+            model.Name = model.Name?.Trim();
+
+            if (model.ParentCategoryId.HasValue)
+            {
+                var parentIsRoot = await _context.Categories.AnyAsync(category =>
+                    category.Id == model.ParentCategoryId.Value && category.ParentCategoryId == null);
+                if (!parentIsRoot)
+                    ModelState.AddModelError("ParentCategoryId", "Alt kategori yalnızca bir ana kategoriye bağlanabilir.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(model.Name))
+            {
+                var duplicateExists = await _context.Categories.AnyAsync(category =>
+                    category.ParentCategoryId == model.ParentCategoryId && category.Name == model.Name);
+                if (duplicateExists)
+                    ModelState.AddModelError("Name", "Aynı seviyede bu kategori adı zaten kullanılıyor.");
+            }
+
             if (ModelState.IsValid)
             {
                 var category = new Category
@@ -88,6 +113,10 @@ namespace AnatoliaRoot_V2.Controllers
                 TempData["Success"] = "Kategori başarıyla oluşturuldu.";
                 return RedirectToAction(nameof(Index));
             }
+
+            ViewBag.ParentCategories = await _context.Categories
+                .Where(category => category.ParentCategoryId == null)
+                .ToListAsync();
             return View(model);
         }
 
@@ -110,7 +139,7 @@ namespace AnatoliaRoot_V2.Controllers
 
             // Parent kategorileri ViewBag'e ekle
             ViewBag.ParentCategories = await _context.Categories
-                .Where(c => c.Id != id) // Kendisini parent olarak seçemez
+                .Where(c => c.Id != id && c.ParentCategoryId == null)
                 .ToListAsync();
 
             return View(category);
@@ -126,30 +155,36 @@ namespace AnatoliaRoot_V2.Controllers
                 return NotFound();
             }
 
+            var existingCategory = await _context.Categories.FindAsync(id);
+            if (existingCategory == null)
+                return NotFound();
+
+            category.Name = category.Name?.Trim();
+            var targetParentId = existingCategory.ParentCategoryId == null ? null : category.ParentCategoryId;
+
+            if (existingCategory.ParentCategoryId != null)
+            {
+                var parentIsRoot = targetParentId.HasValue && await _context.Categories.AnyAsync(parent =>
+                    parent.Id == targetParentId.Value && parent.ParentCategoryId == null && parent.Id != id);
+                if (!parentIsRoot)
+                    ModelState.AddModelError("ParentCategoryId", "Alt kategori yalnızca bir ana kategoriye bağlanabilir.");
+            }
+
+            if (!string.IsNullOrWhiteSpace(category.Name))
+            {
+                var duplicateExists = await _context.Categories.AnyAsync(item =>
+                    item.Id != id && item.ParentCategoryId == targetParentId && item.Name == category.Name);
+                if (duplicateExists)
+                    ModelState.AddModelError("Name", "Aynı seviyede bu kategori adı zaten kullanılıyor.");
+            }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    // Mevcut kategoriyi bul
-                    var existingCategory = await _context.Categories.FindAsync(id);
-                    if (existingCategory == null)
-                    {
-                        return NotFound();
-                    }
-
                     // Sadece değişen alanları güncelle
                     existingCategory.Name = category.Name;
-                    
-                    // Ana kategori ise ParentCategoryId'yi null olarak koru
-                    if (existingCategory.ParentCategoryId == null)
-                    {
-                        existingCategory.ParentCategoryId = null; // Ana kategori kalır
-                    }
-                    else
-                    {
-                        // Alt kategori ise ParentCategoryId'yi güncelle
-                        existingCategory.ParentCategoryId = category.ParentCategoryId;
-                    }
+                    existingCategory.ParentCategoryId = targetParentId;
 
                     await _context.SaveChangesAsync();
                     TempData["Success"] = "Kategori başarıyla güncellendi.";
@@ -170,7 +205,7 @@ namespace AnatoliaRoot_V2.Controllers
 
             // Hata durumunda parent kategorileri tekrar yükle
             ViewBag.ParentCategories = await _context.Categories
-                .Where(c => c.Id != id)
+                .Where(c => c.Id != id && c.ParentCategoryId == null)
                 .ToListAsync();
 
             return View(category);
@@ -211,13 +246,19 @@ namespace AnatoliaRoot_V2.Controllers
                         return Json(new { success = false, message = "Bu kategoriye bağlı ürünler bulunmaktadır. Lütfen önce bu kategoriye bağlı ürünleri silip tekrar deneyiniz." });
                     }
 
+                    var hasSubCategories = await _context.Categories.AnyAsync(item => item.ParentCategoryId == id);
+                    if (hasSubCategories)
+                    {
+                        return Json(new { success = false, message = "Bu kategoriye bağlı alt kategoriler bulunmaktadır. Lütfen önce alt kategorileri siliniz." });
+                    }
+
                     _context.Categories.Remove(category);
                     await _context.SaveChangesAsync();
                     return Json(new { success = true, message = "Kategori başarıyla silindi." });
                 }
                 catch (DbUpdateException ex) when (ex.InnerException?.Message.Contains("REFERENCE constraint") == true)
                 {
-                    return Json(new { success = false, message = "Bu kategoriye bağlı ürünler bulunmaktadır. Lütfen önce bu kategoriye bağlı ürünleri silip tekrar deneyiniz." });
+                    return Json(new { success = false, message = "Bu kategori başka kayıtlar tarafından kullanıldığı için silinemiyor." });
                 }
                 catch (Exception)
                 {
@@ -233,4 +274,4 @@ namespace AnatoliaRoot_V2.Controllers
             return _context.Categories.Any(e => e.Id == id);
         }
     }
-} 
+}

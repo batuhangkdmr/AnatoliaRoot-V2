@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using AnatoliaRoot_V2.Data;
 using AnatoliaRoot_V2.Models;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace AnatoliaRoot_V2.Controllers
 {
+    [Authorize(AuthenticationSchemes = "AdminCookie")]
     public class ProductController : Controller
     {
         private readonly AppDbContext _context;
@@ -23,11 +25,13 @@ namespace AnatoliaRoot_V2.Controllers
         }
 
         // GET: Product - Sadece ürünleri göster
+        [AllowAnonymous]
         [Route("urunler")]
-        public async Task<IActionResult> Index(int? categoryId = null)
+        public async Task<IActionResult> Index(int? categoryId = null, string sortOrder = null, int pageNumber = 1)
         {
             var categories = await _context.Categories.ToListAsync();
-            List<Product> products;
+            IQueryable<Product> query = _context.Products.Include(p => p.Category);
+
             if (categoryId.HasValue)
             {
                 var selectedCategory = categories.FirstOrDefault(c => c.Id == categoryId.Value);
@@ -35,44 +39,52 @@ namespace AnatoliaRoot_V2.Controllers
                 {
                     if (selectedCategory.ParentCategoryId == null)
                     {
-                        // Ana kategori: kendisi ve alt kategorilerdeki ürünler
                         var altKategoriIdler = categories
                             .Where(c => c.ParentCategoryId == selectedCategory.Id)
                             .Select(c => c.Id)
                             .ToList();
                         altKategoriIdler.Add(selectedCategory.Id);
-                        products = await _context.Products
-                            .Include(p => p.Category)
-                            .Where(p => altKategoriIdler.Contains(p.CategoryId))
-                            .ToListAsync();
+                        query = query.Where(p => altKategoriIdler.Contains(p.CategoryId));
                     }
                     else
                     {
-                        // Alt kategori: sadece bu kategoriye ait ürünler
-                        products = await _context.Products
-                            .Include(p => p.Category)
-                            .Where(p => p.CategoryId == selectedCategory.Id)
-                            .ToListAsync();
+                        query = query.Where(p => p.CategoryId == selectedCategory.Id);
                     }
                 }
-                else
-                {
-                    products = await _context.Products
-                        .Include(p => p.Category)
-                        .ToListAsync();
-                }
             }
-            else
+
+            // Sıralama
+            switch (sortOrder)
             {
-                products = await _context.Products
-                    .Include(p => p.Category)
-                    .ToListAsync();
+                case "name_desc":
+                    query = query.OrderByDescending(p => p.Name);
+                    break;
+                case "name_asc":
+                default:
+                    query = query.OrderBy(p => p.Name);
+                    sortOrder = "name_asc";
+                    break;
             }
+
+            // Sayfalama (Pagination - Sayfa başına 24 ürün)
+            int pageSize = 24;
+            int totalProducts = await query.CountAsync();
+            int totalPages = Math.Max(1, (int)Math.Ceiling(totalProducts / (double)pageSize));
+            pageNumber = Math.Clamp(pageNumber, 1, totalPages);
+
+            var products = await query
+                .Skip((pageNumber - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
             var viewModel = new ProductIndexViewModel
             {
                 Categories = categories,
                 Products = products,
-                SelectedCategoryId = categoryId
+                SelectedCategoryId = categoryId,
+                SortOrder = sortOrder,
+                PageNumber = pageNumber,
+                TotalPages = totalPages
             };
             return View(viewModel);
         }
@@ -101,10 +113,13 @@ namespace AnatoliaRoot_V2.Controllers
             model.AltKategoriler = altKategoriler;
             ModelState.Remove("AnaKategoriler");
             ModelState.Remove("AltKategoriler");
-            ModelState.Remove("ExistingImageUrl");
             if (model.ImageFile == null)
             {
                 ModelState.AddModelError("ImageFile", "Resim yüklenmesi zorunludur.");
+            }
+            if (!await IsValidCategorySelectionAsync(model.AnaCategoryId, model.AltCategoryId))
+            {
+                ModelState.AddModelError("AltCategoryId", "Seçilen alt kategori ana kategoriyle eşleşmiyor.");
             }
             if (!ModelState.IsValid)
             {
@@ -119,8 +134,8 @@ namespace AnatoliaRoot_V2.Controllers
             }
             var product = new Product
             {
-                Name = model.Name,
-                Description = model.Description,
+                Name = model.Name.Trim(),
+                Description = model.Description?.Trim(),
                 CategoryId = model.AltCategoryId.Value,
                 ImageUrl = imageUrl
             };
@@ -148,8 +163,7 @@ namespace AnatoliaRoot_V2.Controllers
                 AnaCategoryId = anaKategori,
                 AltCategoryId = product.CategoryId,
                 AnaKategoriler = anaKategoriler,
-                AltKategoriler = altKategoriler,
-                ExistingImageUrl = product.ImageUrl
+                AltKategoriler = altKategoriler
             };
             ViewBag.ImageUrl = product.ImageUrl;
             return View(viewModel);
@@ -164,10 +178,17 @@ namespace AnatoliaRoot_V2.Controllers
             var altKategoriler = await _context.Categories.Where(c => c.ParentCategoryId != null).ToListAsync();
             model.AnaKategoriler = anaKategoriler;
             model.AltKategoriler = altKategoriler;
+            ViewBag.ImageUrl = await _context.Products
+                .Where(product => product.Id == id)
+                .Select(product => product.ImageUrl)
+                .FirstOrDefaultAsync();
             ModelState.Remove("AnaKategoriler");
             ModelState.Remove("AltKategoriler");
-            ModelState.Remove("ExistingImageUrl");
             ModelState.Remove("ImageFile");
+            if (!await IsValidCategorySelectionAsync(model.AnaCategoryId, model.AltCategoryId))
+            {
+                ModelState.AddModelError("AltCategoryId", "Seçilen alt kategori ana kategoriyle eşleşmiyor.");
+            }
             if (!ModelState.IsValid)
             {
                 var errors = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage).ToList();
@@ -176,18 +197,14 @@ namespace AnatoliaRoot_V2.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product == null)
                 return NotFound();
-            product.Name = model.Name;
-            product.Description = model.Description;
+            product.Name = model.Name.Trim();
+            product.Description = model.Description?.Trim();
             product.CategoryId = model.AltCategoryId.Value;
             if (model.ImageFile != null)
             {
                 var imageUrl = await _cloudinaryService.UploadImageAsync(model.ImageFile);
                 if (!string.IsNullOrEmpty(imageUrl))
                     product.ImageUrl = imageUrl;
-            }
-            else
-            {
-                product.ImageUrl = model.ExistingImageUrl;
             }
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(AdminIndex));
@@ -233,5 +250,19 @@ namespace AnatoliaRoot_V2.Controllers
             ViewBag.AdminPanel = true;
             return View("AdminIndex", viewModel);
         }
+
+        private async Task<bool> IsValidCategorySelectionAsync(int? parentCategoryId, int? childCategoryId)
+        {
+            if (!parentCategoryId.HasValue || !childCategoryId.HasValue)
+                return false;
+
+            var parentExists = await _context.Categories
+                .AnyAsync(category => category.Id == parentCategoryId.Value && category.ParentCategoryId == null);
+            if (!parentExists)
+                return false;
+
+            return await _context.Categories.AnyAsync(category =>
+                category.Id == childCategoryId.Value && category.ParentCategoryId == parentCategoryId.Value);
+        }
     }
-} 
+}

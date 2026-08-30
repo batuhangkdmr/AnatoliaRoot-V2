@@ -1,45 +1,392 @@
 @{
-    ViewData["Title"] = "Misyonumuz";
+    ViewData["Title"] = "Misyonumuz - Anadolu'nun Değerleri";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 <style>
-    .kurumsal-baslik {
-        display: block;
+    :root {
+        --primary: #b1cfb1;
+        --primary-dark: #8ba88b;
+        --accent: #388e3c;
+        --bg-soft: #f4f8f4;
+        --white: #ffffff;
+        --dark: #1e2d1e;
+        --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    body {
+        background: var(--bg-soft);
+        font-family: 'Inter', sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+        margin: 0;
+    }
+
+    /* --- Hero Section: Görsel ve Derinlik --- */
+    .mission-hero {
+        position: relative;
         width: 100%;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        font-weight: 800;
-        font-size: 2.5rem;
-        margin-bottom: 2.5rem;
-        padding: 1.5rem 0;
-        border-radius: 1.5rem;
-        background: linear-gradient(90deg, #bbcfb9 0%, #cdd9c8 100%);
-        color: #222;
-        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
+        color: var(--dark);
+        background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('/images/mission.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    @@media (max-width: 768px) {
+        .mission-hero {
+            height: 60vh;
+            background-attachment: scroll;
+        }
+    }
+
+    /* --- BEYAZ ALAN KALDIRILDI --- */
+    .hero-content-box {
+        background: transparent; /* Arka plan şeffaf yapıldı */
+        backdrop-filter: none; /* Blur kaldırıldı */
+        padding: 60px 80px;
+        border-radius: 40px;
+        border: none; /* Çerçeve kaldırıldı */
+        box-shadow: none; /* Gölge kaldırıldı */
+    }
+
+    @@media (max-width: 576px) {
+        .hero-content-box {
+            padding: 40px 20px;
+            width: 90%;
+        }
+    }
+
+    .hero-label {
+        background: var(--primary);
+        color: #2d3e2d;
+        padding: 8px 25px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 8vw, 4.5rem);
+        margin: 0;
+        line-height: 1;
+        letter-spacing: -2px;
+        /* Yazının her resim üzerinde okunabilmesi için hafif gölge eklendi */
+        text-shadow: 0 2px 10px rgba(255,255,255,0.5);
+    }
+
+    /* --- Scroll Down Animation --- */
+    .scroll-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: var(--accent);
+        font-weight: 700;
         letter-spacing: 2px;
+        font-size: 0.8rem;
     }
-    .kurumsal-aciklama {
-        text-align: left;
-        max-width: 900px;
-        margin: 0 auto 1.5rem auto;
-        font-size: 1.25rem;
+
+    .scroll-arrow {
+        font-size: 1.5rem;
+        animation: bounce 2s infinite;
+    }
+
+    @@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-12px);
+        }
+
+        60% {
+            transform: translateY(-6px);
+        }
+    }
+
+    /* --- Main Container --- */
+    .mission-wrapper {
+        max-width: 1300px;
+        margin: -50px auto 100px;
+        padding: 0 25px;
+        position: relative;
+        z-index: 10;
+    }
+
+    /* Mission Lead with Decorative Element */
+    .mission-lead-card {
+        background: var(--white);
+        border-radius: 40px;
+        padding: 80px 50px;
+        text-align: center;
+        box-shadow: 0 40px 80px rgba(74, 103, 65, 0.08);
+        margin-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .mission-lead-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .mission-lead-card p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            line-height: 1.7;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+    /* Interactive Grid */
+    .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .pillar-card {
+        background: var(--white);
+        border-radius: 35px;
+        padding: 60px 40px;
+        transition: var(--transition);
+        border: 1px solid rgba(177, 207, 185, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+        .pillar-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(56, 142, 60, 0.15);
+            border-color: var(--primary);
+        }
+
+    .icon-circle {
+        width: 100px;
+        height: 100px;
+        background: var(--bg-soft);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        color: var(--accent);
+        margin-bottom: 35px;
+        transition: var(--transition);
+        position: relative;
+    }
+
+        .icon-circle::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--primary);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+            opacity: 0;
+        }
+
+    .pillar-card:hover .icon-circle {
+        background: var(--primary);
+        color: var(--white);
+    }
+
+        .pillar-card:hover .icon-circle::after {
+            opacity: 1;
+        }
+
+    @@keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .pillar-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .pillar-card p {
+        color: #555;
         line-height: 1.8;
-        color: #222;
+        font-size: 1.05rem;
+        margin: 0;
     }
-    @@media (max-width: 991.98px) {
-        .kurumsal-baslik { font-size: 2rem; padding: 1rem 0; }
-        .kurumsal-aciklama { font-size: 1.1rem; }
+
+    /* Certification Seal Style */
+    .trust-footer {
+        margin-top: 100px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        background: var(--dark);
+        border-radius: 50px;
+        padding: 60px;
+        color: white;
+    }
+
+    .trust-content {
+        flex: 1;
+    }
+
+        .trust-content h4 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display';
+        }
+
+        .trust-content p {
+            opacity: 0.8;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+    .seal-box {
+        width: 180px;
+        height: 180px;
+        border: 3px double var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: 1px;
+        transform: rotate(-10deg);
+        transition: var(--transition);
+    }
+
+    .trust-footer:hover .seal-box {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    @@media (max-width: 992px) {
+        .pillar-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .trust-footer {
+            flex-direction: column;
+            text-align: center;
+            border-radius: 40px;
+            padding: 40px 25px;
+        }
     }
 </style>
 
-<div class="container py-5">
-    <div class="mb-4">
-        <h2 class="kurumsal-baslik">MİSYONUMUZ</h2>
-        <p class="kurumsal-aciklama">
-            Yerel üreticilerimizin emeğini, modern pazarlama teknikleriyle tüm Türkiye'ye ve dünyaya ulaştırarak, Anadolu'nun değerlerini uluslararası pazarlara taşıyoruz.
+<div class="mission-page">
+    <header class="mission-hero">
+        <div class="hero-content-box animate__animated animate__zoomIn">
+            <span class="hero-label">Misyonumuz</span>
+            <h1 class="hero-title">Gelenekten <br>Geleceğe Bir Köprü</h1>
+        </div>
 
-            Kalite kontrol süreçlerimiz, sertifikasyonlarımız ve şeffaf iş modellerimizle müşteri güvenini en üst seviyede tutuyoruz. Her zaman en doğal, en taze ve güvenilir ürünleri sizlerle buluşturmak için çalışıyoruz.
-        </p>
-      @*   <p class="kurumsal-aciklama">Gelenekten geleceğe uzanan bir köprü olarak, yöremizin lezzetlerini Türkiye'nin dört bir yanına taşımak.</p>
-        <p class="kurumsal-aciklama">Her zaman kalite, hijyen ve müşteri memnuniyetini ön planda tutmak.</p> *@
+ @*        <div class="scroll-down animate__animated animate__fadeInUp animate__delay-1s">
+            <span>KEŞFET</span>
+            <i class="fa-solid fa-chevron-down scroll-arrow"></i>
+        </div> *@
+    </header>
+
+    <div class="mission-wrapper">
+        <div class="mission-lead-card animate__animated animate__fadeInUp">
+            <p>"Anadolu, sadece bir coğrafya değil; ilhamın, emeğin ve yeniliğin buluşma noktasıdır. Bu toprakların enerjisini tüm dünyaya taşıyoruz."</p>
+        </div>
+
+        <div class="pillar-grid">
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-earth-africa"></i>
+                </div>
+                <h3>Küresel Vizyon</h3>
+                <p>Yerel üreticilerimizin emeğini, modern pazarlama teknikleriyle Anadolu'nun değerlerini uluslararası pazarlara taşıyoruz.</p>
+            </div>
+
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-handshake-angle"></i>
+                </div>
+                <h3>Sarsılmaz Güven</h3>
+                <p>Kalite kontrol süreçlerimiz ve şeffaf iş modellerimizle müşteri güvenini en üst seviyede tutmayı temel görevimiz biliyoruz.</p>
+            </div>
+
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3>Saf Doğallık</h3>
+                <p>Her zaman en doğal, en taze ve en güvenilir ürünleri, toprağın bereketini bozmadan sizlerle buluşturmak için çalışıyoruz.</p>
+            </div>
+        </div>
+
+        <div class="trust-footer animate__animated animate__fadeInUp">
+            <div class="trust-content">
+                <h4>Anadolu'nun İlhamı</h4>
+                <p>Binlerce yıllık geleneksel bilgiyi modern teknoloji ile birleştirerek, hem geçmişin değerlerini koruyor hem de geleceğe yönelik yenilikçi ve sürdürülebilir çözümler sunuyoruz.</p>
+            </div>
+            <div class="seal-box">
+                ANATOLIAROOT<br>KALİTE VE<br>GÜVENCESİ
+            </div>
+        </div>
     </div>
-</div> 
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.scroll-down').addEventListener('click', () => {
+            window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.visibility = 'visible';
+                    entry.target.classList.add('animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.style.visibility = 'hidden';
+            observer.observe(card);
+        });
+    });
+</script>

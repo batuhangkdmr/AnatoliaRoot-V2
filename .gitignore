@@ -178,6 +178,7 @@ DocProject/Help/html
 
 # Click-Once directory
 publish/
+publish*.zip
 
 # Publish Web Output
 *.[Pp]ublish.xml
@@ -196,6 +197,10 @@ PublishScripts/
 *.nupkg
 # NuGet Symbol Packages
 *.snupkg
+appsettings.Production.json
+appsettings.*.json
+!appsettings.json
+!appsettings.Development.json
 # The packages folder can be ignored because of Package Restore
 **/[Pp]ackages/*
 # except build/, which is used as an MSBuild target.
