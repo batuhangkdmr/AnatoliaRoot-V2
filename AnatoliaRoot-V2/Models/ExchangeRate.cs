@@ -10,6 +10,8 @@ namespace AnatoliaRoot_V2.Models
         [Required]
         public DateTime Date { get; set; } // Kurun alındığı tarih (saat dahil)
 
+        public long? SourceTimestamp { get; set; }
+
         [Required]
         public decimal UsdRate { get; set; } // 1 TRY = ? USD
 
@@ -25,4 +27,4 @@ namespace AnatoliaRoot_V2.Models
         [StringLength(100)]
         public string Source { get; set; } // API kaynağı (örn: exchangerate.host)
     }
-} 
+}

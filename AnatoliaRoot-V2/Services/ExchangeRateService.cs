@@ -1,30 +1,41 @@
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Globalization;
 using System.Text.Json;
 using AnatoliaRoot_V2.Models;
 using Microsoft.EntityFrameworkCore;
 using AnatoliaRoot_V2.Data;
 using System.Linq;
+using Microsoft.Extensions.Configuration;
 
 namespace AnatoliaRoot_V2.Services
 {
     public class ExchangeRateService
     {
         private readonly AppDbContext _context;
-        private const string ApiKey = "e9891489cdf80a23f0ea8034031e098b";
-        private const string ApiUrl = "https://api.exchangerate.host/live?access_key=" + ApiKey + "&currencies=TRY,EUR,USD";
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly string _apiKey;
+        private readonly string _apiUrl;
 
-        public ExchangeRateService(AppDbContext context)
+        public ExchangeRateService(
+            AppDbContext context,
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory)
         {
             _context = context;
+            _httpClientFactory = httpClientFactory;
+            _apiKey = configuration["ExternalApis:ExchangeRate:ApiKey"];
+            _apiUrl = configuration["ExternalApis:ExchangeRate:ApiUrl"];
         }
 
         public async Task FetchAndSaveRatesAsync()
         {
-            using var httpClient = new HttpClient();
-            var response = await httpClient.GetAsync(ApiUrl);
+            if (string.IsNullOrWhiteSpace(_apiKey) || string.IsNullOrWhiteSpace(_apiUrl))
+                throw new InvalidOperationException("Döviz API yapılandırması eksik.");
+
+            var httpClient = _httpClientFactory.CreateClient("ExchangeRate");
+            var requestUrl = $"{_apiUrl}?access_key={Uri.EscapeDataString(_apiKey)}&currencies=TRY,EUR,USD";
+            using var response = await httpClient.GetAsync(requestUrl);
             response.EnsureSuccessStatusCode();
             var json = await response.Content.ReadAsStringAsync();
 
@@ -37,6 +48,24 @@ namespace AnatoliaRoot_V2.Services
             // USD bazlı oranlar: USDTRY, USDEUR
             decimal usdTry = quotes.GetProperty("USDTRY").GetDecimal();
             decimal usdEur = quotes.GetProperty("USDEUR").GetDecimal();
+            if (usdTry <= 0 || usdEur <= 0)
+                throw new InvalidOperationException("Kur API geçersiz veya sıfır oran döndürdü.");
+
+            long? sourceTimestamp = null;
+            if (root.TryGetProperty("timestamp", out var timestampElement)
+                && timestampElement.TryGetInt64(out var timestamp)
+                && timestamp > 0
+                && timestamp <= 253402300799)
+            {
+                sourceTimestamp = timestamp;
+            }
+
+            if (sourceTimestamp.HasValue
+                && await _context.ExchangeRates.AnyAsync(item => item.SourceTimestamp == sourceTimestamp.Value))
+            {
+                return;
+            }
+
             // EUR bazlı oranı almak için: EURTRY = USDTRY / USDEUR
             decimal eurTry = usdTry / usdEur;
             // 1 TRY = ? USD, 1 TRY = ? EUR
@@ -45,7 +74,10 @@ namespace AnatoliaRoot_V2.Services
 
             var rate = new ExchangeRate
             {
-                Date = DateTime.UtcNow,
+                Date = sourceTimestamp.HasValue
+                    ? DateTimeOffset.FromUnixTimeSeconds(sourceTimestamp.Value).UtcDateTime
+                    : DateTime.UtcNow,
+                SourceTimestamp = sourceTimestamp,
                 UsdRate = tryUsd,
                 EurRate = tryEur,
                 UsdTry = usdTry,
@@ -54,15 +86,24 @@ namespace AnatoliaRoot_V2.Services
             };
 
             _context.ExchangeRates.Add(rate);
-            await _context.SaveChangesAsync();
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateException) when (sourceTimestamp.HasValue)
+            {
+                _context.Entry(rate).State = EntityState.Detached;
+                if (!await _context.ExchangeRates.AnyAsync(item => item.SourceTimestamp == sourceTimestamp.Value))
+                    throw;
+            }
         }
 
         public async Task PruneOldRatesAsync()
         {
             var oneWeekAgo = DateTime.UtcNow.AddDays(-7);
-            var oldRates = _context.ExchangeRates.Where(x => x.Date < oneWeekAgo);
-            _context.ExchangeRates.RemoveRange(oldRates);
-            await _context.SaveChangesAsync();
+            await _context.ExchangeRates
+                .Where(x => x.Date < oneWeekAgo)
+                .ExecuteDeleteAsync();
         }
     }
-} 
+}

@@ -6,50 +6,61 @@ using System.Linq;
 using AnatoliaRoot_V2.Models;
 using Microsoft.EntityFrameworkCore;
 using AnatoliaRoot_V2.Data;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 
 namespace AnatoliaRoot_V2.Services
 {
     public class GoldPriceService
     {
         private readonly AppDbContext _context;
-        private const string ApiKey = "997ee36ba7msh7202498499c93a7p100757jsn8b83ebe4f6be";
-        private const string ApiUrl = "https://harem-altin-anlik-altin-fiyatlari-live-rates-gold.p.rapidapi.com/economy/live-exchange-rates";
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ILogger<GoldPriceService> _logger;
+        private readonly string _apiKey;
+        private readonly string _apiUrl;
+        private readonly string _apiHost;
 
-        public GoldPriceService(AppDbContext context)
+        public GoldPriceService(
+            AppDbContext context,
+            IConfiguration configuration,
+            IHttpClientFactory httpClientFactory,
+            ILogger<GoldPriceService> logger)
         {
             _context = context;
+            _httpClientFactory = httpClientFactory;
+            _logger = logger;
+            _apiKey = configuration["ExternalApis:GoldPrice:ApiKey"];
+            _apiUrl = configuration["ExternalApis:GoldPrice:ApiUrl"];
+            _apiHost = configuration["ExternalApis:GoldPrice:ApiHost"];
+
         }
 
         public async Task FetchAndSaveGoldPricesAsync()
         {
-            try
-            {
-                Console.WriteLine("Altın fiyatları çekiliyor...");
-                
-                using (var client = new HttpClient())
-                {
+            if (string.IsNullOrWhiteSpace(_apiKey) || string.IsNullOrWhiteSpace(_apiUrl) || string.IsNullOrWhiteSpace(_apiHost))
+                throw new InvalidOperationException("Altın API yapılandırması eksik.");
+
+            _logger.LogInformation("Altın fiyatları çekiliyor.");
+            var client = _httpClientFactory.CreateClient("GoldPrice");
+
                     // Harem Altın API için gerekli header'ları ekle
-                    client.DefaultRequestHeaders.Add("X-RapidAPI-Key", ApiKey);
-                    client.DefaultRequestHeaders.Add("X-RapidAPI-Host", "harem-altin-anlik-altin-fiyatlari-live-rates-gold.p.rapidapi.com");
+                    client.DefaultRequestHeaders.Add("X-RapidAPI-Key", _apiKey);
+                    client.DefaultRequestHeaders.Add("X-RapidAPI-Host", _apiHost);
 
                     // Query parametreleri ekle
-                    var url = $"{ApiUrl}?type=gold&code=gramaltin,CEYREKALTIN,YARIMALTIN,TAMALTIN,ONSALTIN";
-
-                    Console.WriteLine($"API URL: {url}");
+                    var url = $"{_apiUrl}?type=gold&code=gramaltin,CEYREKALTIN,YARIMALTIN,TAMALTIN,ONSALTIN";
 
                     var response = await client.GetStringAsync(url);
-                    Console.WriteLine($"API Response: {response}");
-
-                    var jsonDoc = JsonDocument.Parse(response);
+                    using var jsonDoc = JsonDocument.Parse(response);
 
                     // Harem Altın API response'unu parse et
                     if (jsonDoc.RootElement.GetProperty("status").GetString() == "success")
                     {
                         var data = jsonDoc.RootElement.GetProperty("data");
                         
-                        decimal gramGold = 0;
-                        decimal quarterGold = 0;
-                        decimal halfGold = 0;
+                        decimal? gramGold = null;
+                        decimal? quarterGold = null;
+                        decimal? halfGold = null;
                         decimal changeRate = 0;
                         decimal dayHigh = 0;
                         decimal dayLow = 0;
@@ -60,13 +71,10 @@ namespace AnatoliaRoot_V2.Services
                         {
                             var currencyCode = item.GetProperty("currencyCode").GetString();
                             var buy = item.GetProperty("buy").GetDecimal();
-                            var sell = item.GetProperty("sell").GetDecimal();
                             var change = item.GetProperty("changeRate").GetDecimal();
                             var high = item.GetProperty("dayHigh").GetDecimal();
                             var low = item.GetProperty("dayLow").GetDecimal();
                             var prev = item.GetProperty("prevClose").GetDecimal();
-
-                            Console.WriteLine($"Altın türü: {currencyCode}, Alış: {buy}, Satış: {sell}");
 
                             switch (currencyCode)
                             {
@@ -86,15 +94,30 @@ namespace AnatoliaRoot_V2.Services
                             }
                         }
 
+                        var timestamp = jsonDoc.RootElement.GetProperty("systemTime").GetInt64();
+                        if (timestamp <= 0)
+                            throw new InvalidOperationException("Altın API geçersiz timestamp döndürdü.");
+
+                        if (!gramGold.HasValue || gramGold.Value <= 0
+                            || !quarterGold.HasValue || quarterGold.Value <= 0
+                            || !halfGold.HasValue || halfGold.Value <= 0
+                            || dayHigh <= 0 || dayLow <= 0 || dayLow > dayHigh || prevClose <= 0)
+                        {
+                            throw new InvalidOperationException("Altın API zorunlu fiyat alanlarını eksik veya geçersiz döndürdü.");
+                        }
+
+                        if (await _context.GoldPrices.AnyAsync(item => item.Timestamp == timestamp))
+                            return;
+
                         var goldPrice = new GoldPrice
                         {
                             Date = DateTime.UtcNow,
-                            Timestamp = jsonDoc.RootElement.GetProperty("systemTime").GetInt64(),
+                            Timestamp = timestamp,
                             
                             // Altın fiyatları
-                            GramGold = gramGold,
-                            QuarterGold = quarterGold,
-                            HalfGold = halfGold,
+                            GramGold = gramGold.Value,
+                            QuarterGold = quarterGold.Value,
+                            HalfGold = halfGold.Value,
                             
                             // Değişim bilgileri
                             ChangeRate = changeRate,
@@ -108,35 +131,33 @@ namespace AnatoliaRoot_V2.Services
                             Exchange = "Harem Altın"
                         };
 
-                        Console.WriteLine($"Alınan fiyatlar - Gram: {gramGold}, Çeyrek: {quarterGold}, Yarım: {halfGold}");
-
                         _context.GoldPrices.Add(goldPrice);
-                        await _context.SaveChangesAsync();
-                        
-                        Console.WriteLine("Altın fiyatları başarıyla kaydedildi.");
+                        try
+                        {
+                            await _context.SaveChangesAsync();
+                        }
+                        catch (DbUpdateException)
+                        {
+                            _context.Entry(goldPrice).State = EntityState.Detached;
+                            if (!await _context.GoldPrices.AnyAsync(item => item.Timestamp == timestamp))
+                                throw;
+                        }
+
+                        _logger.LogInformation("Altın fiyatları kaydedildi. Kaynak timestamp: {Timestamp}", timestamp);
                     }
                     else
                     {
-                        Console.WriteLine("API başarısız döndü.");
                         var message = jsonDoc.RootElement.GetProperty("message").GetString();
-                        Console.WriteLine($"API Mesajı: {message}");
+                        throw new InvalidOperationException($"Altın API başarısız döndü: {message}");
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Log error
-                Console.WriteLine($"Altın kurları çekilirken hata: {ex.Message}");
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
-            }
         }
 
         public async Task PruneOldGoldPricesAsync()
         {
             var oneWeekAgo = DateTime.UtcNow.AddDays(-7);
-            var oldPrices = _context.GoldPrices.Where(x => x.Date < oneWeekAgo);
-            _context.GoldPrices.RemoveRange(oldPrices);
-            await _context.SaveChangesAsync();
+            await _context.GoldPrices
+                .Where(x => x.Date < oneWeekAgo)
+                .ExecuteDeleteAsync();
         }
     }
-} 
+}

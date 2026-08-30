@@ -1,41 +1,394 @@
 @{
-    ViewData["Title"] = "Kalite Politikamız";
+    ViewData["Title"] = "Kalite Politikamız - AnatoliaRoot Güvencesi";
 }
 
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+
 <style>
-    .kurumsal-baslik {
-        display: block;
+    :root {
+        --primary: #b1cfb1;
+        --primary-dark: #8ba88b;
+        --accent: #388e3c;
+        --bg-soft: #f4f8f4;
+        --white: #ffffff;
+        --dark: #1e2d1e;
+        --transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+    }
+
+    body {
+        background: var(--bg-soft);
+        font-family: 'Inter', sans-serif;
+        color: var(--dark);
+        overflow-x: hidden;
+        margin: 0;
+    }
+
+    /* --- Hero Section: Görsel ve Derinlik --- */
+    .mission-hero {
+        position: relative;
         width: 100%;
+        height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         text-align: center;
-        font-weight: 800;
-        font-size: 2.5rem;
-        margin-bottom: 2.5rem;
-        padding: 1.5rem 0;
-        border-radius: 1.5rem;
-        background: linear-gradient(90deg, #bbcfb9 0%, #cdd9c8 100%);
-        color: #222;
-        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
+        color: var(--white);
+        /* Unsplash Görseli: Kalite ve Tazelik Temalı */
+        background: linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)), url('/images/mission.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
+
+    @@media (max-width: 768px) {
+        .mission-hero {
+            height: 60vh;
+            background-attachment: scroll;
+        }
+    }
+
+    /* --- Şeffaf Alan --- */
+    .hero-content-box {
+        background: transparent;
+        backdrop-filter: none;
+        padding: 60px 80px;
+        border-radius: 40px;
+        border: none;
+        box-shadow: none;
+        text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+    }
+
+    @@media (max-width: 576px) {
+        .hero-content-box {
+            padding: 40px 20px;
+            width: 90%;
+        }
+    }
+
+    .hero-label {
+        background: var(--primary);
+        color: #2d3e2d;
+        padding: 8px 25px;
+        border-radius: 50px;
+        font-weight: 700;
+        font-size: 0.85rem;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 25px;
+        display: inline-block;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: clamp(2.5rem, 8vw, 5.5rem);
+        margin: 0;
+        line-height: 1.1;
+        letter-spacing: -2px;
+        color: var(--white);
+    }
+
+    /* --- Scroll Down --- */
+    .scroll-down {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        color: var(--white);
+        font-weight: 700;
         letter-spacing: 2px;
+        font-size: 0.8rem;
+        cursor: pointer;
     }
-    .kurumsal-aciklama {
-        text-align: left;
-        max-width: 900px;
-        margin: 0 auto 1.5rem auto;
-        font-size: 1.25rem;
+
+    .scroll-arrow {
+        font-size: 1.5rem;
+        animation: bounce 2s infinite;
+    }
+
+    @@keyframes bounce {
+        0%, 20%, 50%, 80%, 100% {
+            transform: translateY(0);
+        }
+
+        40% {
+            transform: translateY(-12px);
+        }
+
+        60% {
+            transform: translateY(-6px);
+        }
+    }
+
+    /* --- Main Container --- */
+    .mission-wrapper {
+        max-width: 1300px;
+        margin: -50px auto 100px;
+        padding: 0 25px;
+        position: relative;
+        z-index: 10;
+    }
+
+    .mission-lead-card {
+        background: var(--white);
+        border-radius: 40px;
+        padding: 80px 50px;
+        text-align: center;
+        box-shadow: 0 40px 80px rgba(74, 103, 65, 0.08);
+        margin-bottom: 80px;
+        position: relative;
+        overflow: hidden;
+    }
+
+        .mission-lead-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .mission-lead-card p {
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            line-height: 1.7;
+            color: var(--dark);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+        }
+
+    /* Interactive Grid */
+    .pillar-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+
+    .pillar-card {
+        background: var(--white);
+        border-radius: 35px;
+        padding: 60px 40px;
+        transition: var(--transition);
+        border: 1px solid rgba(177, 207, 185, 0.2);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+        .pillar-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(56, 142, 60, 0.15);
+            border-color: var(--primary);
+        }
+
+    .icon-circle {
+        width: 100px;
+        height: 100px;
+        background: var(--bg-soft);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.8rem;
+        color: var(--accent);
+        margin-bottom: 35px;
+        transition: var(--transition);
+        position: relative;
+    }
+
+        .icon-circle::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px dashed var(--primary);
+            border-radius: 50%;
+            animation: rotate 10s linear infinite;
+            opacity: 0;
+        }
+
+    .pillar-card:hover .icon-circle {
+        background: var(--primary);
+        color: var(--white);
+    }
+
+        .pillar-card:hover .icon-circle::after {
+            opacity: 1;
+        }
+
+    @@keyframes rotate {
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .pillar-card h3 {
+        font-family: 'Playfair Display', serif;
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+
+    .pillar-card p {
+        color: #555;
         line-height: 1.8;
-        color: #222;
+        font-size: 1.05rem;
+        margin: 0;
     }
-    @@media (max-width: 991.98px) {
-        .kurumsal-baslik { font-size: 2rem; padding: 1rem 0; }
-        .kurumsal-aciklama { font-size: 1.1rem; }
+
+    /* Trust Footer */
+    .trust-footer {
+        margin-top: 100px;
+        display: flex;
+        align-items: center;
+        gap: 40px;
+        background: var(--dark);
+        border-radius: 50px;
+        padding: 60px;
+        color: white;
+    }
+
+    .trust-content {
+        flex: 1;
+    }
+
+        .trust-content h4 {
+            color: var(--primary);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display';
+        }
+
+        .trust-content p {
+            opacity: 0.8;
+            font-size: 1.15rem;
+            line-height: 1.7;
+            margin: 0;
+        }
+
+    .seal-box {
+        width: 180px;
+        height: 180px;
+        border: 3px double var(--primary);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: 1px;
+        transform: rotate(-10deg);
+        transition: var(--transition);
+    }
+
+    .trust-footer:hover .seal-box {
+        transform: rotate(0deg) scale(1.1);
+    }
+
+    @@media (max-width: 992px) {
+        .pillar-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .trust-footer {
+            flex-direction: column;
+            text-align: center;
+            border-radius: 40px;
+            padding: 40px 25px;
+        }
     }
 </style>
 
-<div class="container py-5">
-    <div class="mb-4">
-        <h2 class="kurumsal-baslik">KALİTE POLİTİKAMIZ</h2>
-        <p class="kurumsal-aciklama">Ürünlerimizin her aşamasında hijyen, doğallık ve kaliteyi ön planda tutuyoruz. Tokat'ın verimli topraklarından elde edilen hammaddelerle, güvenilir ve sağlıklı gıda üretimi yapıyoruz. Müşteri memnuniyeti ve sürdürülebilir kalite anlayışıyla hizmet veriyoruz </p>
-@*         <p class="kurumsal-aciklama"></p>
-        <p class="kurumsal-aciklama">.</p> *@
+<div class="mission-page">
+    <header class="mission-hero">
+        <div class="hero-content-box animate__animated animate__zoomIn">
+            <span class="hero-label">Kalite Politikamız</span>
+            <h1 class="hero-title">Hijyen, Doğallık <br>Ve Güven</h1>
+        </div>
+
+  @*       <div class="scroll-down animate__animated animate__fadeInUp animate__delay-1s">
+            <span>KEŞFET</span>
+            <i class="fa-solid fa-chevron-down scroll-arrow"></i>
+        </div> *@
+    </header>
+
+    <div class="mission-wrapper">
+        <div class="mission-lead-card animate__animated animate__fadeInUp">
+            <p>"Anadolu'nun verimli topraklarından elde edilen ham maddelerle, ürünlerimizin her aşamasında hijyen ve kaliteyi en üst seviyede tutuyoruz."</p>
+        </div>
+
+        <div class="pillar-grid">
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-hand-sparkles"></i>
+                </div>
+                <h3>Sıfır Taviz Hijyen</h3>
+                <p>Üretim tesislerimizde en sıkı hijyen standartlarını uygulayarak, her bir ürünü steril ve güvenli koşullarda hazırlıyoruz.</p>
+            </div>
+
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-seedling"></i>
+                </div>
+                <h3>%100 Doğal Üretim</h3>
+                <p>Doğanın bize sunduğu saflığı bozmadan, hiçbir koruyucu madde kullanmadan en taze haliyle sofralarınıza ulaştırıyoruz.</p>
+            </div>
+
+            <div class="pillar-card animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="icon-circle">
+                    <i class="fa-solid fa-heart-circle-check"></i>
+                </div>
+                <h3>Müşteri Odaklılık</h3>
+                <p>Sürdürülebilir kalite anlayışımızla, her geri bildirimi değerlendirerek müşteri memnuniyetini odağımızda tutuyoruz.</p>
+            </div>
+        </div>
+
+        <div class="trust-footer animate__animated animate__fadeInUp">
+            <div class="trust-content">
+                <h4>Kalite Bir Yaşam Biçimidir</h4>
+                <p>Sadece gıda üretmiyor, Anadolu'nun kalitesini tescilliyoruz. Modern laboratuvar kontrollerimiz ve titiz iş süreçlerimizle her zaman yanınızdayız.</p>
+            </div>
+            <div class="seal-box">
+                ANATOLIAROOT<br>KALİTE VE<br>HİJYEN ONAYI
+            </div>
+        </div>
     </div>
-</div> 
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelector('.scroll-down').addEventListener('click', () => {
+            window.scrollTo({ top: window.innerHeight * 0.8, behavior: 'smooth' });
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.visibility = 'visible';
+                    entry.target.classList.add('animate__fadeInUp');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.pillar-card').forEach(card => {
+            card.style.visibility = 'hidden';
+            observer.observe(card);
+        });
+    });
+</script>

@@ -2,23 +2,421 @@
     ViewData["Title"] = "İnşaat Hizmetleri";
 }
 
-<div class="wrap-bg-small">
+<div class="construction-supply-section">
     <div class="container">
-        <div class="row justify-content-center text-center">
-            <div class="col-lg-8">
-                <div class="section-title with-p">
-                    <h2>İNŞAAT HİZMETLERİ</h2>
-                    <p>Profesyonel inşaat ve yapı hizmetleri.</p>
+        <div class="row align-items-center justify-content-center pb-5">
+            <div class="col-lg-6 mb-5 mb-lg-0">
+                <div class="supply-info animate__animated animate__fadeInLeft">
+                    <div class="supply-icon">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <ellipse cx="40" cy="40" rx="38" ry="38" fill="#d5ddd1" />
+                            <path d="M20 60 L40 20 L60 60 Z" fill="#b1cfb1" fill-opacity="0.7" />
+                            <path d="M30 60 L40 40 L50 60 Z" fill="#388e3c" fill-opacity="0.3" />
+                        </svg>
+                    </div>
+                    <h2 class="supply-title">İnşaat Tedariği: Temelden Çatıya Güçlü Çözümler</h2>
+                    <p class="supply-desc">
+                        Projeleriniz için gerekli olan tüm inşaat malzemelerini; demirden çimentoya, tesisat malzemelerinden dekoratif ürünlere kadar en yüksek kalitede ve uygun fiyatlarla tedarik ediyoruz. Sürdürülebilir yapı malzemeleri ve profesyonel danışmanlığımızla inşaat süreçlerinizi kolaylaştırıyoruz. İhtiyaç listenizi bize iletin, hızlıca fiyatlandıralım.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="supply-form-card animate__animated animate__fadeInRight">
+                    <form id="constructionSupplyForm" action="https://formspree.io/f/xldlrpza" method="POST" autocomplete="off">
+                        <div class="form-group">
+                            <label for="name">Ad Soyad / Firma Ünvanı</label>
+                            <input type="text" class="form-control" id="name" name="Ad Soyad veya Firma" required placeholder="Adınızı veya firmanızı giriniz">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-Posta</label>
+                            <input type="email" class="form-control" id="email" name="E-Posta" required placeholder="E-posta adresiniz">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefon Numarası</label>
+                            <input type="tel" class="form-control" id="phone" name="Telefon" required placeholder="05xx xxx xx xx">
+                        </div>
+                        <div class="form-group">
+                            <label for="material">Malzeme Grubu <span class="text-muted">(Demir, Beton, Seramik vb.)</span></label>
+                            <input type="text" class="form-control" id="material" name="Talep Edilen Malzemeler" required placeholder="Örn: 10 ton İnşaat Demiri">
+                        </div>
+                        <div class="form-group">
+                            <label for="location">Teslimat Adresi / İlçe</label>
+                            <input type="text" class="form-control" id="location" name="Teslimat Konumu" placeholder="Malzemenin teslim edileceği bölge">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Proje Detayları</label>
+                            <textarea class="form-control" id="message" name="Mesaj veya Detaylar" rows="3" placeholder="Projeniz hakkında eklemek istediğiniz detaylar..."></textarea>
+                        </div>
+
+                        <div class="form-group form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                            <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="KVKK Aydınlatma" value="Kabul Edildi" required>
+                            <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                                <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum ve kabul ediyorum.
+                            </label>
+                        </div>
+                        <div class="form-group form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
+                            <input class="form-check-input" type="checkbox" id="kvkkRiza" name="KVKK Açık Rıza" value="Kabul Edildi" required>
+                            <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
+                                <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum ve kabul ediyorum.
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-supply w-100">Teklif İste</button>
+                    </form>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="content-text">
-                    <p>Deneyimli ekibimizle kaliteli inşaat hizmetleri sunuyoruz.</p>
-                    <p>Modern teknolojiler ve güvenilir malzemeler kullanarak projelerinizi hayata geçiriyoruz.</p>
+
+        <hr class="my-5 animate__animated animate__fadeIn" style="border-top: 2px solid #b1cfb1; opacity: 0.3;">
+
+        <div class="row mb-5 animate__animated animate__fadeInUp">
+            <div class="col-12 text-center mb-4">
+                <h3 class="supply-title" style="font-size: 1.8rem;">İnşaat Malzeme Tedarik Sürecimiz</h3>
+                <p class="text-muted">Doğru malzeme, doğru zaman, doğru fiyat</p>
+            </div>
+
+            <div class="col-12">
+                <div class="supply-process-wrapper">
+                    <div class="process-step">
+                        <div class="process-icon">📋</div>
+                        <h6>İhtiyaç Analizi</h6>
+                        <p>Projeniz için gerekli malzeme listesini ve teknik şartnameleri inceleriz.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">🏗️</div>
+                        <h6>Global Tedarik</h6>
+                        <p>En kaliteli yerli ve ithal markalardan maliyet çalışması yaparız.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">⚖️</div>
+                        <h6>Kalite Kontrol</h6>
+                        <p>Yükleme öncesi tüm malzemelerin standartlara uygunluğunu denetleriz.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">🏗️</div>
+                        <h6>Sahaya Teslimat</h6>
+                        <p>Lojistik ağımızla malzemeleri inşaat sahanıza tam zamanında indiririz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5 animate__animated animate__fadeIn" style="border-top: 2px solid #b1cfb1; opacity: 0.3;">
+
+        <div class="row mb-4 animate__animated animate__fadeInUp">
+            <div class="col-12 text-center">
+                <h3 class="supply-title" style="font-size: 1.8rem;">Yapı & İnşaat Rehberi</h3>
+                <p class="text-muted">Modern yapılar için teknik bilgiler ve malzeme seçim önerileri</p>
+            </div>
+        </div>
+
+        <div class="row g-4 pb-5">
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card h-100 border-0 shadow-sm blog-card text-white bg-dark">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">🏢</div>
+                        <h5 class="fw-bold">Depreme Dayanıklı Malzeme Seçimi</h5>
+                        <p class="small opacity-75 mb-0">Statik projeye uygun demir sınıfı ve beton kalitesinin yapı güvenliğindeki kritik rolü.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="card h-100 border-0 shadow-sm blog-card">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">☀️</div>
+                        <h5 class="fw-bold text-dark">Enerji Verimliliği ve İzolasyon</h5>
+                        <p class="small text-muted mb-0">Yalıtım malzemeleriyle binalarda ısınma ve soğutma maliyetlerini minimize etme stratejileri.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="card h-100 border-0 shadow-sm blog-card">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">🛠️</div>
+                        <h5 class="fw-bold text-dark">İnce İşçilikte Kalite Standartları</h5>
+                        <p class="small text-muted mb-0">Seramik, boya ve dekorasyon malzemelerinde uzun ömürlü kullanım için seçim kriterleri.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pb-5 animate__animated animate__fadeInUp animate__delay-4s">
+            <div class="col-12">
+                <div class="p-4 rounded-4 bg-white-transparent shadow-sm border-start border-success border-4">
+                    <h6 class="fw-bold">Neden AnatoliaRoot İnşaat Tedariği?</h6>
+                    <p class="small text-muted mb-0">
+                        AnatoliaRoot olarak, <strong>inşaat malzemesi toptan satışı</strong>, <strong>çimento ve demir tedariği</strong>, <strong>altyapı boru sistemleri</strong> ve <strong>yapı kimyasalları</strong> alanlarında geniş tedarik ağımızla hizmet veriyoruz. Tokat ve çevre illerdeki projeleriniz için <strong>en uygun inşaat malzemesi fiyatları</strong> ve güvenilir lojistik çözümleri sunarak projelerinizi zamanında tamamlamanıza yardımcı oluyoruz.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
-</div> 
+</div>
+
+<div class="modal fade" id="kvkkAydinlatmaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">KVKK Aydınlatma Metni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="font-size:0.95rem; color:#333; line-height:1.6;">
+                <p><strong>Veri Sorumlusu:</strong> AnatoliaRoot ("Şirket")</p>
+                <p>Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun (“Kanun”) 10. maddesi çerçevesinde, web sitemizdeki formlar aracılığıyla toplanan kişisel verilerinizin işlenmesine yönelik yöntem, amaç ve haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
+
+                <h6 class="fw-bold mt-3">1. İşlenen Kişisel Verileriniz ve Toplama Yöntemi</h6>
+                <p>İlgili formlar üzerinden paylaştığınız; ad-soyad, e-posta adresi, telefon numarası, konum ve mesaj içeriğine dair verileriniz; tamamen sizin özgür iradenizle doldurduğunuz formlar aracılığıyla elektronik ortamda toplanmaktadır.</p>
+
+                <h6 class="fw-bold mt-3">2. Veri İşleme Amaçları ve Hukuki Sebepler</h6>
+                <p>Kişisel verileriniz, Kanun’un 5. maddesinde belirtilen şu hukuki sebeplerle işlenmektedir:</p>
+                <ul>
+                    <li><strong>Sözleşmenin Kurulması veya İfası:</strong> Talebinize yönelik teklif hazırlanması ve hizmet sunumu için zorunlu olması.</li>
+                    <li><strong>Veri Sorumlusunun Meşru Menfaati:</strong> Size geri dönüş yapılması ve müşteri ilişkileri yönetimi süreçlerinin yürütülmesi.</li>
+                    <li><strong>Açık Rıza:</strong> Pazarlama veya bilgilendirme süreçlerine onay vermeniz durumunda.</li>
+                </ul>
+
+                <h6 class="fw-bold mt-3">3. Verilerin Kimlere ve Hangi Amaçla Aktarılabileceği</h6>
+                <p>Kişisel verileriniz; üçüncü şahıslara veya kurumlara ticari amaçla <u>aktarılmamaktadır</u>. Sadece yasal yükümlülüklerin yerine getirilmesi amacıyla yetkili kamu kurum ve kuruluşları ile talep halinde paylaşılabilir.</p>
+
+                <h6 class="fw-bold mt-3">4. Kanun’un 11. Maddesi Kapsamındaki Haklarınız</h6>
+                <p>Şirketimize başvurarak verilerinizle ilgili şu haklara sahipsiniz:</p>
+                <ul>
+                    <li>Kişisel verinizin işlenip işlenmediğini öğrenme,</li>
+                    <li>Verileriniz işlenmişse buna ilişkin bilgi talep etme,</li>
+                    <li>Verilerin işlenme amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+                    <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme,</li>
+                    <li>Kanun çerçevesinde verilerin silinmesini veya yok edilmesini isteme.</li>
+                </ul>
+                <p>Taleplerinizi <strong>info@anatoliaroot.com</strong> adresine iletebilirsiniz.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="kvkkRizaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">KVKK Açık Rıza Metni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="font-size:1rem; color:#222; line-height:1.6;">
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca, AnatoliaRoot tarafından sunulan Aydınlatma Metni'ni okuduğumu ve anladığımı kabul ederim.</p>
+                <p>Bu kapsamda;</p>
+                <ul>
+                    <li>Kimlik ve iletişim verilerimin; ürün/hizmet taleplerimin karşılanması, tekliflerin hazırlanması ve süreç hakkında tarafımla iletişim kurulması amacıyla işlenmesine,</li>
+                    <li>Gerektiğinde talebimin sonuçlandırılması adına hizmet sağlayıcılar ve yasal mercilerle sınırlı olarak paylaşılmasına,</li>
+                </ul>
+                <p>Hiçbir baskı altında kalmadan, bilgilendirilmiş olarak <strong>açık rızam ile onay veriyorum.</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Tasarım Bütünlüğü: Gıda Sayfasıyla Aynı Renkler ve Stil */
+    .construction-supply-section {
+        padding: 60px 0 0 0;
+        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+        min-height: 100vh;
+    }
+
+    .supply-info {
+        background: rgba(255,255,255,0.7);
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
+        padding: 2.5rem 2rem 2rem 2rem;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .supply-title {
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #123524;
+        margin-bottom: 1.1rem;
+    }
+
+    .supply-desc {
+        font-size: 1.13rem;
+        color: #388e3c;
+        line-height: 1.7;
+    }
+
+    .supply-form-card {
+        background: #fff;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(177,207,177,0.18);
+        padding: 2.5rem 2rem 2rem 2rem;
+        min-height: 420px;
+    }
+
+        .supply-form-card .form-control {
+            border-radius: 0.7rem;
+            border: 1.5px solid #b1cfb1;
+            margin-bottom: 1rem;
+        }
+
+    .btn-supply {
+        background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 0.7rem;
+        padding: 0.7rem 0;
+        cursor: pointer;
+    }
+
+    .form-group.form-check a {
+        color: #388e3c;
+        font-weight: 600;
+        text-decoration: underline;
+    }
+
+    /* Süreç Şeması Stilleri */
+    .supply-process-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .process-step {
+        flex: 1;
+        text-align: center;
+        min-width: 150px;
+    }
+
+    .process-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+    }
+
+    .process-step h6 {
+        font-weight: 700;
+        color: #123524;
+    }
+
+    .process-step p {
+        font-size: 0.85rem;
+        color: #555;
+    }
+
+    .process-arrow {
+        font-size: 1.5rem;
+        color: #388e3c;
+        opacity: 0.6;
+    }
+
+    /* Blog Kartları */
+    .blog-card {
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .blog-card.bg-dark {
+            background: #212529 !important;
+        }
+
+    .blog-icon {
+        font-size: 2rem;
+    }
+
+    .bg-white-transparent {
+        background: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+
+    /* Animasyon Gecikmeler */
+    .animate__delay-1s {
+        animation-delay: 0.2s;
+    }
+
+    .animate__delay-2s {
+        animation-delay: 0.4s;
+    }
+
+    .animate__delay-3s {
+        animation-delay: 0.6s;
+    }
+
+    .animate__delay-4s {
+        animation-delay: 0.8s;
+    }
+
+    @@media (max-width: 991px) {
+        .supply-process-wrapper {
+            flex-direction: column;
+        }
+
+        .process-arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .supply-title {
+            font-size: 16px !important;
+        }
+
+        .supply-desc, .supply-form-card label, .supply-form-card .form-control {
+            font-size: 13px !important;
+        }
+    }
+</style>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Modal Yönetimi
+    document.getElementById('kvkkModalLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal')).show();
+    });
+    document.getElementById('kvkkRizaModalLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        new bootstrap.Modal(document.getElementById('kvkkRizaModal')).show();
+    });
+
+    // Form Gönderimi
+    const constForm = document.getElementById('constructionSupplyForm');
+    constForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!document.getElementById('kvkkAydinlatma').checked || !document.getElementById('kvkkRiza').checked) {
+            Swal.fire({ icon: 'warning', title: 'Uyarı', text: 'Lütfen KVKK onay kutularını işaretleyiniz.' });
+            return;
+        }
+        const formData = new FormData(constForm);
+        formData.append('Form Kaynağı', 'İnşaat Tedarik Sayfası');
+
+        try {
+            const response = await fetch(constForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'İnşaat malzeme talebiniz alınmıştır, size dönüş sağlayacağız.', confirmButtonText: 'Tamam' });
+                constForm.reset();
+            } else { throw new Error(); }
+        } catch (error) {
+            Swal.fire({ icon: 'error', title: 'Hata', text: 'Talebiniz iletilemedi, lütfen tekrar deneyiniz.' });
+        }
+    });
+</script>

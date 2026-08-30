@@ -1,17 +1,17 @@
 @{
     ViewData["Title"] = "Gıda";
 }
+
 <div class="food-supply-section">
     <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <!-- Sol Alan: Açıklama ve İkon -->
+        <div class="row align-items-center justify-content-center pb-5">
             <div class="col-lg-6 mb-5 mb-lg-0">
                 <div class="supply-info animate__animated animate__fadeInLeft">
                     <div class="supply-icon">
                         <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <ellipse cx="40" cy="40" rx="38" ry="38" fill="#d5ddd1"/>
-                            <path d="M40 15 C 30 25, 20 40, 30 60 C 40 80, 60 80, 70 60 C 80 40, 60 25, 40 15 Z" fill="#b1cfb1" fill-opacity="0.7"/>
-                            <path d="M40 25 C 35 30, 25 45, 35 58 C 45 70, 65 70, 70 58 C 75 45, 55 30, 40 25 Z" fill="#388e3c" fill-opacity="0.15"/>
+                            <ellipse cx="40" cy="40" rx="38" ry="38" fill="#d5ddd1" />
+                            <path d="M40 15 C 30 25, 20 40, 30 60 C 40 80, 60 80, 70 60 C 80 40, 60 25, 40 15 Z" fill="#b1cfb1" fill-opacity="0.7" />
+                            <path d="M40 25 C 35 30, 25 45, 35 58 C 45 70, 65 70, 70 58 C 75 45, 55 30, 40 25 Z" fill="#388e3c" fill-opacity="0.15" />
                         </svg>
                     </div>
                     <h2 class="supply-title">Tam Tedarik: Gıda İhtiyaçlarınız İçin Yanınızdayız</h2>
@@ -20,33 +20,32 @@
                     </p>
                 </div>
             </div>
-            <!-- Sağ Alan: Form -->
             <div class="col-lg-6">
                 <div class="supply-form-card animate__animated animate__fadeInRight">
-                    <form id="foodSupplyForm" autocomplete="off">
+                    <form id="foodSupplyForm" action="https://formspree.io/f/xldlrpza" method="POST" autocomplete="off">
                         <div class="form-group">
                             <label for="name">Ad Soyad</label>
-                            <input type="text" class="form-control" id="name" name="name" required placeholder="Adınızı ve soyadınızı giriniz">
+                            <input type="text" class="form-control" id="name" name="Ad Soyad" required placeholder="Adınızı ve soyadınızı giriniz">
                         </div>
                         <div class="form-group">
                             <label for="email">Mail</label>
-                            <input type="email" class="form-control" id="email" name="email" required placeholder="E-posta adresiniz">
+                            <input type="email" class="form-control" id="email" name="E-Posta" required placeholder="E-posta adresiniz">
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefon Numarası</label>
-                            <input type="tel" class="form-control" id="phone" name="phone" required placeholder="05xx xxx xx xx">
+                            <input type="tel" class="form-control" id="phone" name="Telefon" required placeholder="05xx xxx xx xx">
                         </div>
                         <div class="form-group">
                             <label for="product">Ürün <span class="text-muted">(ürünü ve istediğiniz miktarı yazınız)</span></label>
-                            <input type="text" class="form-control" id="product" name="product" required placeholder="Örn: Zeytinyağı 100 kg">
+                            <input type="text" class="form-control" id="product" name="Talep Edilen Ürün" required placeholder="Örn: Zeytinyağı 100 kg">
                         </div>
                         <div class="form-group">
                             <label for="brand">Marka <span class="text-muted">(Tercih ettiğiniz markayı yazabilirsiniz)</span></label>
-                            <input type="text" class="form-control" id="brand" name="brand" placeholder="Örn: Komili">
+                            <input type="text" class="form-control" id="brand" name="Tercih Edilen Marka" placeholder="Örn: Komili">
                         </div>
                         <div class="form-group">
                             <label for="altBrand">Muadil marka önerisi ister misiniz?</label>
-                            <select class="form-control" id="altBrand" name="altBrand" required>
+                            <select class="form-control" id="altBrand" name="Muadil Önerisi" required>
                                 <option value="">Seçiniz</option>
                                 <option value="Evet">Evet</option>
                                 <option value="Hayır">Hayır</option>
@@ -54,18 +53,19 @@
                         </div>
                         <div class="form-group">
                             <label for="message">Mesaj</label>
-                            <textarea class="form-control" id="message" name="message" rows="3" placeholder="Detaylı bilgi yazabilirsiniz. Tarafımızdan sizlere dönüş sağlanılacaktır."></textarea>
+                            <textarea class="form-control" id="message" name="Mesaj Detayı" rows="3" placeholder="Detaylı bilgi yazabilirsiniz."></textarea>
                         </div>
+
                         <div class="form-group form-check mb-2" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
-                            <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="kvkkAydinlatma" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                            <input class="form-check-input" type="checkbox" id="kvkkAydinlatma" name="KVKK Aydınlatma Onayı" value="Okundu/Kabul Edildi" required>
                             <label class="form-check-label" for="kvkkAydinlatma" style="font-size:0.95rem; margin:0; line-height:1.4;">
-                                <a href="#" id="kvkkModalLink" style="display:inline;">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                <a href="#" id="kvkkModalLink">KVKK Aydınlatma Metni</a>'ni okudum, anladım ve kabul ediyorum.
                             </label>
                         </div>
                         <div class="form-group form-check mb-3" style="text-align:left; display:flex; align-items:flex-start; gap:0.5rem;">
-                            <input class="form-check-input" type="checkbox" id="kvkkRiza" name="kvkkRiza" required style="width:16px; height:16px; margin:0; margin-top:2px; flex-shrink:0;">
+                            <input class="form-check-input" type="checkbox" id="kvkkRiza" name="KVKK Açık Rıza Onayı" value="Verildi" required>
                             <label class="form-check-label" for="kvkkRiza" style="font-size:0.95rem; margin:0; line-height:1.4;">
-                                <a href="#" id="kvkkRizaModalLink" style="display:inline;">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
+                                <a href="#" id="kvkkRizaModalLink">KVKK Açık Rıza Metni</a>'ni okudum, anladım ve kabul ediyorum.
                             </label>
                         </div>
                         <button type="submit" class="btn btn-supply w-100">Talebimi Gönder</button>
@@ -73,239 +73,362 @@
                 </div>
             </div>
         </div>
+
+        <hr class="my-5 animate__animated animate__fadeIn" style="border-top: 2px solid #b1cfb1; opacity: 0.3;">
+
+        <div class="row mb-5 animate__animated animate__fadeInUp">
+            <div class="col-12 text-center mb-4">
+                <h3 class="supply-title" style="font-size: 1.8rem;">Gıda Tedarik Sürecimiz</h3>
+                <p class="text-muted">İhtiyaçlarınızdan sofranıza uzanan şeffaf süreç</p>
+            </div>
+
+            <div class="col-12">
+                <div class="supply-process-wrapper">
+                    <div class="process-step">
+                        <div class="process-icon">📝</div>
+                        <h6>Talebin Alınması</h6>
+                        <p>Form üzerinden ürün ve marka detaylarınızı bize iletirsiniz.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">🔍</div>
+                        <h6>Analiz & Teklif</h6>
+                        <p>Piyasa araştırması ile en uygun marka ve muadil tekliflerini hazırlarız.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">🤝</div>
+                        <h6>Onay & Tedarik</h6>
+                        <p>Onayınızla birlikte güvenilir üreticilerden tedarik sürecini başlatırız.</p>
+                    </div>
+                    <div class="process-arrow d-none d-lg-block">➡️</div>
+                    <div class="process-step">
+                        <div class="process-icon">🚚</div>
+                        <h6>Güvenli Teslimat</h6>
+                        <p>Ürünlerinizi kalite kontrol sonrası en hızlı şekilde kapınıza ulaştırırız.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-5 animate__animated animate__fadeIn" style="border-top: 2px solid #b1cfb1; opacity: 0.3;">
+
+        <div class="row mb-4 animate__animated animate__fadeInUp">
+            <div class="col-12 text-center">
+                <h3 class="supply-title" style="font-size: 1.8rem;">Gıda Tedarik Rehberi</h3>
+                <p class="text-muted">Güvenilir tedarik zinciri ve kaliteli ürün seçimine dair ipuçları</p>
+            </div>
+        </div>
+
+        <div class="row g-4 pb-5">
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-1s">
+                <div class="card h-100 border-0 shadow-sm blog-card">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">🛡️</div>
+                        <h5 class="fw-bold text-dark">Güvenilir Gıda Tedariği Nasıl Yapılır?</h5>
+                        <p class="small text-muted mb-0">Tedarik zincirinde izlenebilirlik ve kalite sertifikalarının önemi, sofranıza gelen ürünün güvenliğini nasıl belirler?</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-2s">
+                <div class="card h-100 border-0 shadow-sm blog-card text-white bg-dark">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">🌿</div>
+                        <h5 class="fw-bold">Yöresel ve Doğal Ürün Seçimi</h5>
+                        <p class="small opacity-75 mb-0">Anadolu'nun bereketli topraklarından gelen coğrafi işaretli ürünlerin işletmenize değer katar.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 animate__animated animate__fadeInUp animate__delay-3s">
+                <div class="card h-100 border-0 shadow-sm blog-card">
+                    <div class="card-body p-4">
+                        <div class="blog-icon mb-3">📈</div>
+                        <h5 class="fw-bold text-dark">Toptan Gıda Alımında Verimlilik</h5>
+                        <p class="small text-muted mb-0">Doğru zamanda ve stratejik planlama ile işletme maliyetlerinizi optimize edin.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row pb-5 animate__animated animate__fadeInUp animate__delay-4s">
+            <div class="col-12">
+                <div class="p-4 rounded-4 bg-white-transparent shadow-sm border-start border-success border-4">
+                    <h6 class="fw-bold">Neden AnatoliaRoot Gıda Tedariği?</h6>
+                    <p class="small text-muted mb-0">
+                        Tokat ve çevresindeki yerel üreticilerden doğrudan temin edilen <strong>doğal gıda ürünleri</strong>, <strong>toptan gıda satışı</strong> ve <strong>muadil marka analizi</strong> ile işletmenizin gıda süreçlerini profesyonelce yönetiyoruz.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-<!-- Bootstrap Modal KVKK Aydınlatma -->
-<div class="modal fade" id="kvkkAydinlatmaModal" tabindex="-1" aria-labelledby="kvkkAydinlatmaModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kvkkAydinlatmaModalLabel">Kişisel Verilerin Korunması Aydınlatma Metni</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-      </div>
-      <div class="modal-body" style="font-size:1rem; color:#222;">
-        <p>Bu aydınlatma metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu (“KVKK”) kapsamında, <b>AnatoliaRoot</b> olarak tarafımıza ilettiğiniz kişisel verilerinizin işlenme amaçları, hukuki sebepleri, toplanma yöntemi, kimlere ve hangi amaçla aktarılabileceği ve KVKK kapsamındaki haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
-        <h6 class="mt-3">1. Kişisel Verilerin İşlenme Amacı</h6>
-        <p>Form aracılığıyla paylaştığınız ad, soyad, e-posta adresi, telefon ve mesaj bilgileriniz; yalnızca talebinizin değerlendirilmesi, size geri dönüş yapılması ve hizmetlerimizin geliştirilmesi amacıyla işlenmektedir. Kişisel verileriniz hiçbir şekilde üçüncü kişilerle paylaşılmaz, ticari amaçla kullanılmaz.</p>
-        <h6 class="mt-3">2. Kişisel Verilerin Toplanma Yöntemi ve Hukuki Sebebi</h6>
-        <p>Kişisel verileriniz, web sitemizdeki formlar aracılığıyla elektronik ortamda, tamamen sizin açık rızanız ile toplanmaktadır. Bu veriler, KVKK’nın 5. ve 6. maddelerinde belirtilen kişisel veri işleme şartlarına uygun olarak işlenmektedir.</p>
-        <h6 class="mt-3">3. Kişisel Verilerin Aktarılması</h6>
-        <p>Kişisel verileriniz, yasal yükümlülükler haricinde hiçbir şekilde üçüncü şahıslarla paylaşılmaz ve yurt dışına aktarılmaz.</p>
-        <h6 class="mt-3">4. Kişisel Verilerin Saklanma Süresi</h6>
-        <p>Paylaştığınız kişisel veriler, talebinizin sonuçlandırılması ve yasal yükümlülüklerimizin gerektirdiği süre boyunca saklanır, sonrasında güvenli şekilde imha edilir.</p>
-        <h6 class="mt-3">5. KVKK Kapsamındaki Haklarınız</h6>
-        <p>KVKK’nın 11. maddesi uyarınca, kişisel verilerinizin işlenip işlenmediğini öğrenme, işlenmişse bilgi talep etme, işlenme amacını ve uygun kullanılıp kullanılmadığını öğrenme, yurt içinde veya yurt dışında aktarıldığı üçüncü kişileri bilme, verilerin eksik veya yanlış işlenmiş olması hâlinde düzeltilmesini isteme, silinmesini veya yok edilmesini isteme, bu işlemlerin aktarıldığı üçüncü kişilere bildirilmesini isteme, işlenen verilerin münhasıran otomatik sistemler vasıtasıyla analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme ve zarara uğramanız hâlinde zararın giderilmesini talep etme haklarına sahipsiniz.</p>
-        <h6 class="mt-3">6. İletişim</h6>
-        <p>KVKK kapsamındaki haklarınızı kullanmak veya kişisel verilerinizle ilgili her türlü soru ve talepleriniz için <a href="mailto:info@anatoliaroot.com">info@anatoliaroot.com</a> adresine e-posta gönderebilirsiniz.</p>
-        <hr />
-        <p style="font-size:0.98rem; color:#555;">Bu metin, <b>AnatoliaRoot</b> tarafından güncellenebilir. Lütfen düzenli olarak kontrol ediniz.</p>
-      </div>
+<div class="modal fade" id="kvkkAydinlatmaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">KVKK Aydınlatma Metni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+                <div class="modal-body" style="font-size:0.95rem; color:#333; line-height:1.6;">
+                    <p><strong>Veri Sorumlusu:</strong> AnatoliaRoot ("Şirket")</p>
+                    <p>Bu Aydınlatma Metni, 6698 sayılı Kişisel Verilerin Korunması Kanunu’nun (“Kanun”) 10. maddesi çerçevesinde, web sitemizdeki formlar aracılığıyla toplanan kişisel verilerinizin işlenmesine yönelik yöntem, amaç ve haklarınız hakkında sizi bilgilendirmek amacıyla hazırlanmıştır.</p>
+
+                    <h6 class="fw-bold mt-3">1. İşlenen Kişisel Verileriniz ve Toplama Yöntemi</h6>
+                    <p>İlgili formlar üzerinden paylaştığınız; ad-soyad, e-posta adresi, telefon numarası, konum ve mesaj içeriğine dair verileriniz; tamamen sizin özgür iradenizle doldurduğunuz formlar aracılığıyla elektronik ortamda toplanmaktadır.</p>
+
+                    <h6 class="fw-bold mt-3">2. Veri İşleme Amaçları ve Hukuki Sebepler</h6>
+                    <p>Kişisel verileriniz, Kanun’un 5. maddesinde belirtilen şu hukuki sebeplerle işlenmektedir:</p>
+                    <ul>
+                        <li><strong>Sözleşmenin Kurulması veya İfası:</strong> Talebinize yönelik teklif hazırlanması ve hizmet sunumu için zorunlu olması.</li>
+                        <li><strong>Veri Sorumlusunun Meşru Menfaati:</strong> Size geri dönüş yapılması ve müşteri ilişkileri yönetimi süreçlerinin yürütülmesi.</li>
+                        <li><strong>Açık Rıza:</strong> Pazarlama veya bilgilendirme süreçlerine onay vermeniz durumunda.</li>
+                    </ul>
+
+                    <h6 class="fw-bold mt-3">3. Verilerin Kimlere ve Hangi Amaçla Aktarılabileceği</h6>
+                    <p>Kişisel verileriniz; üçüncü şahıslara veya kurumlara ticari amaçla <u>aktarılmamaktadır</u>. Sadece yasal yükümlülüklerin yerine getirilmesi amacıyla yetkili kamu kurum ve kuruluşları ile talep halinde paylaşılabilir.</p>
+
+                    <h6 class="fw-bold mt-3">4. Kanun’un 11. Maddesi Kapsamındaki Haklarınız</h6>
+                    <p>Şirketimize başvurarak verilerinizle ilgili şu haklara sahipsiniz:</p>
+                    <ul>
+                        <li>Kişisel verinizin işlenip işlenmediğini öğrenme,</li>
+                        <li>Verileriniz işlenmişse buna ilişkin bilgi talep etme,</li>
+                        <li>Verilerin işlenme amacına uygun kullanılıp kullanılmadığını öğrenme,</li>
+                        <li>Eksik veya yanlış işlenmişse düzeltilmesini isteme,</li>
+                        <li>Kanun çerçevesinde verilerin silinmesini veya yok edilmesini isteme.</li>
+                    </ul>
+                    <p>Taleplerinizi <strong>info@anatoliaroot.com</strong> adresine iletebilirsiniz.</p>
+                </div>
+        </div>
     </div>
-  </div>
 </div>
-<!-- Bootstrap Modal KVKK Açık Rıza -->
-<div class="modal fade" id="kvkkRizaModal" tabindex="-1" aria-labelledby="kvkkRizaModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="kvkkRizaModalLabel">KVKK Açık Rıza Metni</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Kapat"></button>
-      </div>
-      <div class="modal-body" style="font-size:1rem; color:#222;">
-        <p>Talebim kapsamında paylaştığım kişisel bilgilerimin AnatoliaRoot tarafından yalnızca iletişim ve hizmet amacıyla kullanılmasına açık rıza veriyorum.</p>
-      </div>
+
+<div class="modal fade" id="kvkkRizaModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">KVKK Açık Rıza Metni</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body" style="font-size:1rem; color:#222; line-height:1.6;">
+                <p>6698 sayılı Kişisel Verilerin Korunması Kanunu uyarınca, AnatoliaRoot tarafından sunulan Aydınlatma Metni'ni okuduğumu ve anladığımı kabul ederim.</p>
+                <p>Bu kapsamda;</p>
+                <ul>
+                    <li>Kimlik ve iletişim verilerimin; ürün/hizmet taleplerimin karşılanması, tekliflerin hazırlanması ve süreç hakkında tarafımla iletişim kurulması amacıyla işlenmesine,</li>
+                    <li>Gerektiğinde talebimin sonuçlandırılması adına hizmet sağlayıcılar ve yasal mercilerle sınırlı olarak paylaşılmasına,</li>
+                </ul>
+                <p>Hiçbir baskı altında kalmadan, bilgilendirilmiş olarak <strong>açık rızam ile onay veriyorum.</strong></p>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 <style>
-.food-supply-section {
-    padding: 60px 0 80px 0;
-    background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
-    min-height: 100vh;
-}
-.supply-info {
-    background: rgba(255,255,255,0.7);
-    border-radius: 1.5rem;
-    box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
-    padding: 2.5rem 2rem 2rem 2rem;
-    text-align: left;
-    position: relative;
-    z-index: 2;
-    min-height: 420px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.supply-icon {
-    margin-bottom: 1.2rem;
-    text-align: left;
-}
-.supply-title {
-    font-size: 2.1rem;
-    font-weight: 700;
-    color: #123524;
-    margin-bottom: 1.1rem;
-}
-.supply-desc {
-    font-size: 1.13rem;
-    color: #388e3c;
-    font-weight: 400;
-    line-height: 1.7;
-}
-.supply-form-card {
-    background: #fff;
-    border-radius: 1.5rem;
-    box-shadow: 0 8px 32px 0 rgba(177,207,177,0.18);
-    padding: 2.5rem 2rem 2rem 2rem;
-    position: relative;
-    z-index: 2;
-    min-width: 320px;
-    min-height: 420px;
-    transition: box-shadow 0.3s;
-    animation-delay: 0.2s;
-}
-.supply-form-card:hover {
-    box-shadow: 0 16px 48px 0 rgba(56,142,60,0.13);
-}
-.supply-form-card .form-group label {
-    font-weight: 600;
-    color: #123524;
-}
-.supply-form-card .form-control {
-    border-radius: 0.7rem;
-    border: 1.5px solid #b1cfb1;
-    font-size: 1.05rem;
-    margin-bottom: 1rem;
-    transition: border-color 0.2s;
-}
-.supply-form-card .form-control:focus {
-    border-color: #388e3c;
-    box-shadow: 0 0 0 2px #b1cfb1;
-}
-.btn-supply {
-    background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%);
-    color: #fff;
-    font-weight: 700;
-    font-size: 1.15rem;
-    border-radius: 0.7rem;
-    padding: 0.7rem 0;
-    box-shadow: 0 2px 8px 0 rgba(56,142,60,0.10);
-    transition: background 0.2s, box-shadow 0.2s;
-}
-.btn-supply:hover {
-    background: linear-gradient(135deg, #388e3c 0%, #b1cfb1 100%);
-    color: #fff;
-    box-shadow: 0 4px 16px 0 rgba(56,142,60,0.13);
-}
-@@media (max-width: 991.98px) {
+    /* CSS Tasarımı: İnşaat Sayfasıyla Birebir Aynı Boyutlandırmalar */
     .food-supply-section {
-        padding: 30px 0 40px 0;
+        padding: 60px 0 0 0;
+        background: linear-gradient(135deg, #d5ddd1 0%, #b1cfb1 100%);
+        min-height: 100vh;
     }
-    .supply-info, .supply-form-card {
-        padding: 1.5rem 1rem 1rem 1rem;
-        min-height: unset;
-    }
-}
-@@media (max-width: 767.98px) {
-    .food-supply-section {
-        padding: 15px 0 20px 0;
-    }
-    .supply-info, .supply-form-card {
-        border-radius: 1rem;
-        padding: 1rem 0.5rem 0.5rem 0.5rem;
-    }
-    .supply-title {
-        font-size: 1.3rem;
-    }
-}
-.kvkk-checkbox-text {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.98rem;
-}
-.kvkk-checkbox {
-    margin-top: 0.2rem;
-    margin-right: 0.4rem;
-    accent-color: #388e3c;
-}
-.kvkk-modal-body {
-    font-size: 1.05rem;
-    color: #222;
-    line-height: 1.7;
-}
-.form-group.form-check label {
-    font-size: 1.05rem;
-    font-weight: 500;
-    color: #123524;
-    margin-left: 0.3rem;
-    cursor: pointer;
-}
-.form-group.form-check a {
-    color: #388e3c;
-    text-decoration: underline;
-    font-weight: 600;
-    transition: color 0.2s;
-}
-.form-group.form-check a:hover {
-    color: #123524;
-    text-decoration: underline;
-}
 
-/* Mobil görünüm için KVKK metinleri - SADECE MOBİL İÇİN */
-@@media (max-width: 768px) {
-    /* Gıda formu KVKK metinleri */
-    .form-group.form-check .form-check-label,
-    .form-group.form-check .form-check-label a {
-        font-size: 13px !important;
+    .supply-info {
+        background: rgba(255,255,255,0.7);
+        border-radius: 1.5rem;
+        box-shadow: 0 4px 24px 0 rgba(187,207,185,0.10);
+        padding: 2.5rem 2rem 2rem 2rem;
+        min-height: 420px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
-    
-    /* KVKK label'larını yan yana tutmak için - inline yapı */
-    .form-group.form-check .form-check-label {
-        display: block !important;
-        line-height: 1.4 !important;
-    }
-    
-    .form-group.form-check .form-check-label a {
-        display: inline !important;
-        white-space: nowrap !important;
-    }
-    
-    /* Gıda sayfası başlık ve yazı boyutları - SADECE MOBİL İÇİN */
-    /* Tüm başlıklar 16px */
-    .food-supply-section h1,
-    .food-supply-section h2,
-    .food-supply-section h3,
-    .food-supply-section h4,
-    .food-supply-section h5,
-    .food-supply-section h6,
+
     .supply-title {
-        font-size: 16px !important;
+        font-size: 2.1rem;
+        font-weight: 700;
+        color: #123524;
+        margin-bottom: 1.1rem;
     }
-    
-    /* Tüm paragraflar ve yazılar 13px */
-    .food-supply-section p,
-    .supply-desc,
-    .supply-form-card label,
-    .supply-form-card .form-control,
-    .supply-form-card .form-control::placeholder {
-        font-size: 13px !important;
+
+    .supply-desc {
+        font-size: 1.13rem;
+        color: #388e3c;
+        line-height: 1.7;
     }
-}
+
+    .supply-form-card {
+        background: #fff;
+        border-radius: 1.5rem;
+        box-shadow: 0 8px 32px 0 rgba(177,207,177,0.18);
+        padding: 2.5rem 2rem 2rem 2rem;
+        min-height: 420px;
+    }
+
+        .supply-form-card .form-control {
+            border-radius: 0.7rem;
+            border: 1.5px solid #b1cfb1;
+            margin-bottom: 1rem;
+        }
+
+    .btn-supply {
+        background: linear-gradient(135deg, #b1cfb1 0%, #388e3c 100%);
+        color: #fff;
+        font-weight: 700;
+        border-radius: 0.7rem;
+        padding: 0.7rem 0;
+        cursor: pointer;
+        border: none;
+        transition: opacity 0.2s;
+    }
+
+        .btn-supply:hover {
+            opacity: 0.9;
+        }
+
+    .supply-process-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: rgba(255, 255, 255, 0.5);
+        padding: 2rem;
+        border-radius: 1.5rem;
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .process-step {
+        flex: 1;
+        text-align: center;
+        min-width: 150px;
+    }
+
+    .process-icon {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+    }
+
+    .process-step h6 {
+        font-weight: 700;
+        color: #123524;
+        margin-bottom: 10px;
+    }
+
+    .process-step p {
+        font-size: 0.85rem;
+        color: #555;
+        line-height: 1.4;
+    }
+
+    .process-arrow {
+        font-size: 1.5rem;
+        color: #388e3c;
+        opacity: 0.6;
+    }
+
+    .blog-card {
+        background: rgba(255, 255, 255, 0.85);
+        border-radius: 1.2rem;
+        transition: transform 0.3s ease;
+    }
+
+        .blog-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .blog-card.bg-dark {
+            background: #212529 !important;
+        }
+
+    .blog-icon {
+        font-size: 2rem;
+    }
+
+    .bg-white-transparent {
+        background: rgba(255, 255, 255, 0.6) !important;
+    }
+
+    .rounded-4 {
+        border-radius: 1rem !important;
+    }
+
+    .animate__delay-1s {
+        animation-delay: 0.2s;
+    }
+
+    .animate__delay-2s {
+        animation-delay: 0.4s;
+    }
+
+    .animate__delay-3s {
+        animation-delay: 0.6s;
+    }
+
+    .animate__delay-4s {
+        animation-delay: 0.8s;
+    }
+
+    @@media (max-width: 991px) {
+        .supply-process-wrapper {
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .process-arrow {
+            transform: rotate(90deg);
+            margin: 10px 0;
+        }
+    }
+
+    @@media (max-width: 768px) {
+        .supply-title {
+            font-size: 16px !important;
+        }
+
+        .food-supply-section p, .supply-desc, .supply-form-card label, .supply-form-card .form-control {
+            font-size: 13px !important;
+        }
+
+        .form-group.form-check .form-check-label {
+            font-size: 13px !important;
+        }
+    }
 </style>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-document.getElementById('kvkkModalLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    var modal = new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal'));
-    modal.show();
-});
-document.getElementById('kvkkRizaModalLink').addEventListener('click', function(e) {
-    e.preventDefault();
-    var modal = new bootstrap.Modal(document.getElementById('kvkkRizaModal'));
-    modal.show();
-});
+    // Modal Açma
+    document.getElementById('kvkkModalLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        new bootstrap.Modal(document.getElementById('kvkkAydinlatmaModal')).show();
+    });
+    document.getElementById('kvkkRizaModalLink').addEventListener('click', function(e) {
+        e.preventDefault();
+        new bootstrap.Modal(document.getElementById('kvkkRizaModal')).show();
+    });
+
+    // Form Gönderim
+    const foodForm = document.getElementById('foodSupplyForm');
+    foodForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (!document.getElementById('kvkkAydinlatma').checked || !document.getElementById('kvkkRiza').checked) {
+            Swal.fire({ icon: 'warning', title: 'Uyarı', text: 'Lütfen KVKK onay kutularını işaretleyiniz.' });
+            return;
+        }
+        const formData = new FormData(foodForm);
+        formData.append('Form Kaynağı', 'Gıda Tedarik Sayfası');
+        try {
+            const response = await fetch(foodForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+            if (response.ok) {
+                Swal.fire({ icon: 'success', title: 'Başarılı!', text: 'Talebiniz bize ulaştı, teşekkür ederiz.', confirmButtonText: 'Tamam' });
+                foodForm.reset();
+            } else { throw new Error(); }
+        } catch (error) {
+            Swal.fire({ icon: 'error', title: 'Hata', text: 'Mesaj gönderilemedi, lütfen tekrar deneyiniz.' });
+        }
+    });
 </script>

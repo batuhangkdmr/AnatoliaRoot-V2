@@ -10,6 +10,7 @@ namespace AnatoliaRoot_V2.Models.ViewModels
 
         [Required]
         [DataType(DataType.Password)]
+        [StringLength(256)]
         public string Password { get; set; }
     }
-} 
+}
